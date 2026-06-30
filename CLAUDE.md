@@ -28,7 +28,7 @@ jljskills/
 - 用 `allowed-tools` 收窄工具权限到该 skill 实际需要的范围。
 - 较长的方法 / 模板放到 `references/*.md`，在 SKILL.md 里用相对链接引用，保持主文件精炼。
 
-参考成熟样例：`plugins/project/skills/pre-design/`（含 `references/method.md`）。
+参考成熟样例：`plugins/project/skills/interview2doc/`（含 `references/method.md`）。
 
 ## 分发模型
 
@@ -36,5 +36,7 @@ jljskills/
 
 ## 约定
 
-- 仓库内文档与 skill 一律用中文。
+- **开发语言统一用简体中文**：仓库内文档、skill、注释与对外说明一律用简体中文。
 - commit message 沿用现有风格：`feat(...)`, `refine(...)`, `chore:` 等带中文描述。
+
+

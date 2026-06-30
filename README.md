@@ -44,7 +44,7 @@ jljskills/
     ├── project/
     │   ├── .claude-plugin/plugin.json
     │   └── skills/
-    │       └── pre-design/        # 把想法梳理成需求文档
+    │       └── interview2doc/     # 把想法梳理成需求文档
     │           ├── SKILL.md
     │           └── references/method.md
     └── figma2web/

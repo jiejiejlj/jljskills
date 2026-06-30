@@ -1,11 +1,11 @@
 ---
-name: pre-design
-description: 把一份模糊的想法或需求,通过逐一访谈梳理成一份清晰、结构化的需求文档。仅当用户主动用 `/project:pre-design` 指令调用时使用 —— 不要在普通对话里自行触发。
+name: interview2doc
+description: 把一份模糊的想法或需求,通过逐一访谈梳理成一份清晰、结构化的需求文档。仅当用户主动用 `/project:interview2doc` 指令调用时使用 —— 不要在普通对话里自行触发。
 allowed-tools: Read, Grep, Glob, Write, Edit, WebFetch, AskUserQuestion
 disable-model-invocation: true
 ---
 
-# pre-design — 把想法梳理成需求文档
+# interview2doc — 把想法梳理成需求文档
 
 ## 用途
 用户脑子里有一个还很模糊的想法或需求,本 skill 通过耐心的逐一访谈,把它问透、誊清,产出一份结构化的需求文档,供后续设计 / 开发使用。
@@ -13,7 +13,7 @@ disable-model-invocation: true
 核心心法:**这是「梳理输入」,不是「评审方案」。** 目标是把用户脑子里的东西完整、准确地搬到纸面,而不是替他做决定或挑毛病。
 
 ## 何时运行
-仅当用户主动用 `/project:pre-design` 指令调用时运行。它会主导一段访谈,不该在普通对话里被自动触发去打断用户。
+仅当用户主动用 `/project:interview2doc` 指令调用时运行。它会主导一段访谈,不该在普通对话里被自动触发去打断用户。
 
 ## 流程
 
@@ -31,7 +31,7 @@ disable-model-invocation: true
 3. **结构化汇总**。用户确认完毕后,把访谈结论填进需求文档模板(见 method.md 的「需求文档模板」)。只写访谈里确认过的内容,定不下来的进「开放问题」,不要自行脑补需求。
 
 4. **先问落盘位置,再写文件**。直接写死路径会污染用户的项目结构,所以先问、给推荐值:
-   `docs/pre-design/<YYYY-MM-DD>-<主题>.md`(当前项目 docs 目录 + 本 skill 名 + 「时间-主题.md」)。
+   `docs/interview2doc/<YYYY-MM-DD>-<主题>.md`(当前项目 docs 目录 + 本 skill 名 + 「时间-主题.md」)。
 
 5. **写文档并请用户 review**。落盘后让用户检查,按反馈迭代修改。
 
