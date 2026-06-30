@@ -1,0 +1,19 @@
+{
+  "$schema": "https://code.claude.com/schemas/marketplace.schema.json",
+  "name": "jljskills",
+  "owner": { "name": "jiejiejlj" },
+  "description": "jiejiejlj 的个人 skill 集合（marketplace）",
+  "metadata": { "pluginRoot": "./plugins" },
+  "plugins": [
+    {
+      "name": "preproject",
+      "source": "preproject",
+      "description": "项目前期准备相关 skill"
+    },
+    {
+      "name": "figma2web",
+      "source": "figma2web",
+      "description": "Figma 转网页相关 skill"
+    }
+  ]
+}
