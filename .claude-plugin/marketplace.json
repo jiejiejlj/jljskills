@@ -11,6 +11,11 @@
       "description": "项目前期准备相关 skill"
     },
     {
+      "name": "project",
+      "source": "project",
+      "description": "项目设计相关 skill"
+    },
+    {
       "name": "figma2web",
       "source": "figma2web",
       "description": "Figma 转网页相关 skill"
