@@ -3,21 +3,20 @@
   "name": "jljskills",
   "owner": { "name": "jiejiejlj" },
   "description": "jiejiejlj 的个人 skill 集合（marketplace）",
-  "metadata": { "pluginRoot": "./plugins" },
   "plugins": [
     {
       "name": "preproject",
-      "source": "preproject",
+      "source": "./plugins/preproject",
       "description": "项目前期准备相关 skill"
     },
     {
       "name": "project",
-      "source": "project",
+      "source": "./plugins/project",
       "description": "项目设计相关 skill"
     },
     {
       "name": "figma2web",
-      "source": "figma2web",
+      "source": "./plugins/figma2web",
       "description": "Figma 转网页相关 skill"
     }
   ]
