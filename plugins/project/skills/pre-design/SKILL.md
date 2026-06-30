@@ -1,6 +1,8 @@
 ---
 name: pre-design
 description: 把一份模糊的想法或需求,通过逐一访谈梳理成一份清晰、结构化的需求文档。仅当用户主动用 `/project:pre-design` 指令调用时使用 —— 不要在普通对话里自行触发。
+allowed-tools: Read, Grep, Glob, Write, Edit, WebFetch, AskUserQuestion
+disable-model-invocation: true
 ---
 
 # pre-design — 把想法梳理成需求文档
