@@ -30,7 +30,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 
 ## 调用
 
-安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/project:interview2doc`、`/figma2web:init`、`/figma-optimize:optimize`。
+安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/project:interview2doc`、`/figma2web:init`、`/figma-optimize:standard`、`/figma-optimize:page`。
 
 ## 目录结构
 
@@ -55,10 +55,9 @@ jljskills/
     │       └── <skill>/SKILL.md
     └── figma-optimize/
         ├── .claude-plugin/plugin.json
-        └── skills/
-            └── optimize/              # 交付前设计稿评审优化
-                ├── SKILL.md
-                └── references/         # checklist / flow / report-template
+        └── skills/                    # standard(规范板评审)/ page(界面稿评审)
+            ├── standard/SKILL.md + references/
+            └── page/SKILL.md + references/
 ```
 
 ## 新增 skill
