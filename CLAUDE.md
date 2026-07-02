@@ -12,7 +12,7 @@ jljskills/
     └── skills/<skill>/SKILL.md         # 一个 skill = 一个目录 + 一个 SKILL.md
 ```
 
-当前 plugin：`preproject`（项目前期准备）、`project`（项目设计）、`figma2web`（Figma 转网页）。
+当前 plugin：`project`（项目设计）、`figma2web`（Figma 转网页）、`figma-optimize`（交付前设计稿评审优化）。
 
 ## 关键约束（容易踩坑）
 

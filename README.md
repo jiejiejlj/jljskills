@@ -8,7 +8,6 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 
 | Plugin | 说明 |
 | --- | --- |
-| `preproject` | 项目前期准备相关 skill |
 | `project` | 项目设计相关 skill |
 | `figma2web` | Figma 转网页相关 skill |
 | `figma-optimize` | 设计稿交付前评审优化相关 skill |
@@ -20,7 +19,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 /plugin marketplace add jiejiejlj/jljskills
 
 # 按需安装分类
-/plugin install preproject@jljskills
+/plugin install project@jljskills
 /plugin install figma2web@jljskills
 /plugin install figma-optimize@jljskills
 
@@ -39,10 +38,6 @@ jljskills/
 ├── .claude-plugin/
 │   └── marketplace.json          # marketplace 清单，登记所有 plugin
 └── plugins/
-    ├── preproject/
-    │   ├── .claude-plugin/plugin.json
-    │   └── skills/
-    │       └── example/SKILL.md   # 占位示例，补齐真实 skill 后可删
     ├── project/
     │   ├── .claude-plugin/plugin.json
     │   └── skills/
