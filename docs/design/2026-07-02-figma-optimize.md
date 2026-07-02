@@ -1,6 +1,7 @@
 # figma-optimize 需求文档
 
-> 日期:2026-07-02 · 状态:草稿
+> 日期:2026-07-02 · 状态:草稿(已被取代)
+> 承接:本文档所设计的单技能 `optimize` 已由《2026-07-03 figma-optimize 拆分 standard / page》拆成 `standard`(评审设计规范板)与 `page`(评审界面稿)两个技能,文中 `optimize` 引用为历史记录。
 
 ## 1. 概述 / 背景
 

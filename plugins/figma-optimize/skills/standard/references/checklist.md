@@ -26,7 +26,7 @@
 | 编号 | 检查项 | 严重度 | 判据 |
 | --- | --- | --- | --- |
 | S-D1 | text styles 缺档 / 字号行高不成阶 | 中 | `getLocalTextStylesAsync` |
-| S-D2 | 非标字体混入 / 缺失字体 | 中 | `style.fontName` + `hasMissingFont` |
+| S-D2 | 非标字体混入 / 缺失字体 | 中 | `style.fontName` 比对标准字体族;缺失字体用 `listAvailableFontsAsync` 判定(`hasMissingFont` 仅 TextNode 有) |
 
 ### S-E 收敛
 | 编号 | 检查项 | 严重度 | 判据 |

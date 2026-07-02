@@ -18,7 +18,7 @@
 1. **S-A 变量集合完整性**:遍历 `getLocalVariableCollectionsAsync` 结果,检查色 / 字阶 / 间距 / 圆角是否成体系、有无整类缺档;检查 `variable.valuesByMode` 下集合分组 / mode(如明暗)是否完整。
 2. **S-B token 化纯净度**:检查 `fills[].boundVariables` 是否为空(游离裸值);辨别库变量 vs 真正裸 hex(见 P1 坑)。
 3. **S-C 命名规范**:遍历 `variable.name`,检查命名是否有语义、层级是否清晰、同类命名风格是否一致。
-4. **S-D 字阶 & 字体标准**:`getLocalTextStylesAsync` 检查字号 / 行高是否成阶、是否缺档;`style.fontName` + `hasMissingFont` 检查非标字体混入 / 缺失字体。
+4. **S-D 字阶 & 字体标准**:`getLocalTextStylesAsync` 检查字号 / 行高是否成阶、是否缺档;`style.fontName` 比对标准字体族揪非标字体,缺失字体用 `listAvailableFontsAsync` 判定(`hasMissingFont` 仅 TextNode 有,TextStyle 上取不到)。
 5. **S-E 收敛**:比对 `valuesByMode` 解析值,找出重复 / 近似应合并的 token。
 产带严重度的建议列表,每条含:问题 / 改法 / 依据(S 编号) / 严重度。
 

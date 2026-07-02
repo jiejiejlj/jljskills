@@ -8,7 +8,7 @@
   - `figma.variables.getLocalVariableCollectionsAsync()` —— 取全部变量集合(色板 / 字阶 / 间距 / 圆角等分类),用于 S-A 完整性审计。
   - `figma.variables.getLocalVariablesAsync()` —— 取全量变量。
   - `figma.getLocalTextStylesAsync()` —— 取全量 text styles,用于 S-D 字阶 & 字体标准审计。
-  - 三者配合拿到规范板的完整 token 体系,是本次评审的**审计对象**(不是像 page 那样当参照标准)。
+  - 三者配合拿到规范板的完整 token 体系,是本次评审的**审计对象**(不是像评审界面稿那样当参照标准)。
 - **取变量解析值**:
   ```js
   const variable = await figma.variables.getVariableByIdAsync(id);
@@ -24,7 +24,7 @@
   `get_variable_defs` 会把**库变量(跨文件引用)**显示成「名 = 值」的裸 hex,极易被误判为硬编码——凡是审计 token 化程度,一律以 `boundVariables` + `getVariableByIdAsync` 为准,不要只看 `get_variable_defs` 的展示数值。
 - **快览**:`get_variable_defs` 仅用于对规范板做一次性快速浏览,定位可能有问题的区域,**不作为审计结论依据**。
 - **命名遍历**:遍历 `variable.name`(及所在集合名),用于 S-C1(语义 / 层级)与 S-C2(风格一致性)。
-- **字体标准审计**:遍历 text styles 的 `style.fontName`(family/style)与 `hasMissingFont`,用于 S-D2(非标字体混入 / 缺失字体)。
+- **字体标准审计**:遍历 text styles 的 `style.fontName`(family/style),比对项目标准字体族揪非标字体;缺失字体则把 `style.fontName.family` 与 `figma.listAvailableFontsAsync()` 结果比对判定(`hasMissingFont` 是 TextNode 属性,TextStyle 上没有,别直接取)。用于 S-D2。
 
 ## 写回
 
