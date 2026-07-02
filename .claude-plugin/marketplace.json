@@ -18,6 +18,11 @@
       "name": "figma2web",
       "source": "./plugins/figma2web",
       "description": "Figma 转网页相关 skill"
+    },
+    {
+      "name": "figma-optimize",
+      "source": "./plugins/figma-optimize",
+      "description": "设计稿交付前评审优化相关 skill"
     }
   ]
 }
