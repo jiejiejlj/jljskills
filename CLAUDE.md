@@ -18,7 +18,7 @@ jljskills/
 
 - **skills 目录必须扁平**：Claude Code 只识别 `skills/<skill-name>/SKILL.md` 这一层，不能再嵌套子目录做分类。需要再分类时，新建一个 plugin，而不是加深目录。
 - **三处 name 必须一致**：skill 目录名、`SKILL.md` frontmatter 的 `name`、调用命名空间 `/<plugin>:<skill>` 三者要对应得上。
-- **新增 plugin 要两处登记**：建 `plugins/<plugin>/.claude-plugin/plugin.json` 的同时，必须在 `.claude-plugin/marketplace.json` 的 `plugins` 数组里补一条。漏登记则用户装不到。
+- **新增 plugin 要三处登记**：建 `plugins/<plugin>/.claude-plugin/plugin.json` 的同时，必须（1）在 `.claude-plugin/marketplace.json` 的 `plugins` 数组里补一条（漏登记则用户装不到），（2）同步更新 `README.md` 的分类表、安装示例与目录树（漏了不影响安装，但文档会漂移）。改了 plugin 的 skill 构成时，也要回头看 README 的目录树是否过时。
 - **空目录不会被 git 跟踪**：每个 plugin 至少留一个占位 `example` skill，否则 `skills/` 目录提交不上去。
 
 ## SKILL.md 写法
