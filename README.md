@@ -11,6 +11,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 | `preproject` | 项目前期准备相关 skill |
 | `project` | 项目设计相关 skill |
 | `figma2web` | Figma 转网页相关 skill |
+| `figma-optimize` | 设计稿交付前评审优化相关 skill |
 
 ## 安装
 
@@ -21,6 +22,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 # 按需安装分类
 /plugin install preproject@jljskills
 /plugin install figma2web@jljskills
+/plugin install figma-optimize@jljskills
 
 # 获取更新（滚动更新，每次 commit 即新版本）
 /plugin marketplace update
@@ -28,7 +30,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 
 ## 调用
 
-安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/preproject:example`、`/figma2web:example`。
+安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/project:interview2doc`、`/figma2web:init`、`/figma-optimize:optimize`。
 
 ## 目录结构
 
@@ -47,10 +49,16 @@ jljskills/
     │       └── interview2doc/     # 把想法梳理成需求文档
     │           ├── SKILL.md
     │           └── references/method.md
-    └── figma2web/
+    ├── figma2web/
+    │   ├── .claude-plugin/plugin.json
+    │   └── skills/                    # init/config/re-config/page2doc/re-page2doc/coding/component/verify
+    │       └── <skill>/SKILL.md
+    └── figma-optimize/
         ├── .claude-plugin/plugin.json
         └── skills/
-            └── example/SKILL.md
+            └── optimize/              # 交付前设计稿评审优化
+                ├── SKILL.md
+                └── references/         # checklist / flow / report-template
 ```
 
 ## 新增 skill
