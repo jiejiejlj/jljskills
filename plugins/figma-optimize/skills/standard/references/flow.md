@@ -1,0 +1,63 @@
+# standard 详细流程
+
+交付 / 维护前评审 Figma **设计规范板本身**是否成体系并帮改到位,产一份标准体系评审报告。全程**读 Figma + 经用户裁定写回 Figma**,不生成代码、不碰 figma2web。
+
+## P0 — 前置校验
+1. figma-mcp 可用(未认证 → 先跑认证流程)。
+2. 向用户索取**待审的设计规范板链接 / 范围**(整板 / 若干集合)。**不落盘,每次现问。**
+3. 说明本次评审依据:体系向评审清单(见 [checklist.md](checklist.md))。
+
+## P1 — 读全量体系
+1. **`use_figma` 读全量**:对规范板执行 `getLocalVariableCollectionsAsync` / `getLocalVariablesAsync` / `getLocalTextStylesAsync`,拿到全量**变量集合 / 变量 / text styles**,这是本次审计的完整数据源。
+2. **`get_variable_defs` 仅快览**:仅用它做快速浏览,**不作为审计主渠道**。
+   > ⚠️ **库变量误判坑**:`get_variable_defs` 会把**库变量(跨文件引用)**显示成「名 = 值」的裸 hex,极易被误判为「未 token 化的硬编码颜色」。审计时必须用 `fills[].boundVariables` + `getVariableByIdAsync` 辨别该值是否已绑定变量(已 token 化),不要只看数值就下裸值结论。这是 S-B 维度的核心判据。
+3. 读全量后按集合 / mode 归类,为 P2 逐维度评审做数据准备。
+
+## P2 — 逐维度评审
+对照 [checklist.md](checklist.md) 的 S-A~S-E 五维逐条审查:
+1. **S-A 变量集合完整性**:遍历 `getLocalVariableCollectionsAsync` 结果,检查色 / 字阶 / 间距 / 圆角是否成体系、有无整类缺档;检查 `variable.valuesByMode` 下集合分组 / mode(如明暗)是否完整。
+2. **S-B token 化纯净度**:检查 `fills[].boundVariables` 是否为空(游离裸值);辨别库变量 vs 真正裸 hex(见 P1 坑)。
+3. **S-C 命名规范**:遍历 `variable.name`,检查命名是否有语义、层级是否清晰、同类命名风格是否一致。
+4. **S-D 字阶 & 字体标准**:`getLocalTextStylesAsync` 检查字号 / 行高是否成阶、是否缺档;`style.fontName` + `hasMissingFont` 检查非标字体混入 / 缺失字体。
+5. **S-E 收敛**:比对 `valuesByMode` 解析值,找出重复 / 近似应合并的 token。
+产带严重度的建议列表,每条含:问题 / 改法 / 依据(S 编号) / 严重度。
+
+## P3 — 逐条裁定(HARD GATE)
+逐维度、逐条呈交建议,用户对每条选:
+- **采纳** —— 进入 P4 二次选择。
+- **跳过** —— 记入报告(跳过)。
+- **再调** —— 用户给反馈,AI 修正该条后重新呈交。
+
+**写入 Figma 前必须确认,未确认不得改动任何变量 / 样式。**
+
+## P4 — 采纳项二次选择
+每条采纳的问题,用户再选处置方式:
+- **让 AI 改** —— 进入 P5 写回。
+- **我自改** —— AI 给出明确、可照做的改法说明(改哪个变量 / 集合,从什么值改到什么值,为什么),交设计师在 Figma 自行修改。
+
+## P5 — 写回 Figma(仅「让 AI 改」项)
+1. **先走 `figma-use` skill**(强制前置,调 `use_figma` 之前必做)。
+2. `use_figma` 写入改动:重命名变量(`variable.name = …`)、绑定变量(`setBoundVariableForPaint` 等返回新对象需重赋)、收敛 token(合并近似变量后改引用)。配方细节见 [figma-api-cookbook.md](figma-api-cookbook.md)。
+3. **每处改完 `get_screenshot` 校验**,确认改动符合预期。
+4. 增量小步:每次只改一个变量 / 一小类,不要一次性大批量改动。
+
+## P6 — 复审
+复审体系问题是否达标:
+- 理想为体系问题**归零**;
+- 或仅剩用户**有意保留**、并在报告标注的例外。
+未达标项回 P3 与用户确认是保留还是继续改。
+
+## P7 — 标准体系评审报告(可选落盘)
+按 [report-template.md](report-template.md) 出报告:体系快照、发现与处置结果、保留的例外、复审结论、给「界面评审 / 开发」的 TL;DR。
+- **默认落** `docs/figma-optimize/standard-<板名>-<日期>.md`;
+- 报告阶段**允许用户改路径或选择不落盘**。
+
+## 完成标志
+- 体系问题复审后归零,或仅剩报告标注的有意例外。
+- S-A / S-B 高严重度问题均已处置(改到位或明确跳过并记录)。
+- 报告产出,可作为界面评审 / 开发的权威依据凭证。
+
+## 边界
+- **只审既有规范板**并按用户裁定优化,**不无中生有设计新体系**。
+- **不做取值裁决**,审美与具体取值归设计师;AI 只揪可验证的体系问题。
+- 越出「评审 + 经确认写回 Figma + 出报告」范围即停。
