@@ -36,7 +36,7 @@ for p in "${PATTERNS[@]}"; do
   fi
 done
 
-# ===== 可选门禁 A:main 分支保护 =====
+# ===== 可选门禁 A:main 分支保护(未启用则删除本段) =====
 PROTECTED_BRANCH="main"
 if printf '%s' "$STRIPPED" | grep -qE 'git[[:space:]]+(commit|push)([[:space:]]|$)'; then
   CURRENT_BRANCH=$(git branch --show-current 2>/dev/null)
@@ -46,11 +46,11 @@ if printf '%s' "$STRIPPED" | grep -qE 'git[[:space:]]+(commit|push)([[:space:]]|
   fi
 fi
 
-# ===== 可选门禁 B:commit 格式校验 =====
+# ===== 可选门禁 B:commit 格式校验(未启用则删除本段;PATTERN 按项目规范改) =====
 COMMIT_MSG_PATTERN='^(feat|fix|refine|chore|docs)(\([^)]+\))?: .+'
 if printf '%s' "$STRIPPED" | grep -qE 'git[[:space:]]+commit([[:space:]]|$)'; then
-  MSG=$(printf '%s' "$COMMAND" | sed -nE 's/.*-m[[:space:]]+"([^"]*)".*/\1/p' | head -1)
-  [ -z "$MSG" ] && MSG=$(printf '%s' "$COMMAND" | sed -nE "s/.*-m[[:space:]]+'([^']*)'.*/\1/p" | head -1)
+  MSG=$(printf '%s' "$COMMAND" | grep -oE -- '-m[[:space:]]+"[^"]*"' | head -1 | sed -E 's/^-m[[:space:]]+"//; s/"$//')
+  [ -z "$MSG" ] && MSG=$(printf '%s' "$COMMAND" | grep -oE -- "-m[[:space:]]+'[^']*'" | head -1 | sed -E "s/^-m[[:space:]]+'//; s/'\$//")
   if [ -n "$MSG" ] && ! printf '%s' "$MSG" | grep -qE "$COMMIT_MSG_PATTERN"; then
     echo "BLOCKED: commit message 不符合项目规范($COMMIT_MSG_PATTERN)。请按项目 CLAUDE.md「Git 约定」调整。" >&2
     exit 2
