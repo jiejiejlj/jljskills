@@ -14,7 +14,7 @@ disable-model-invocation: true
 ## 前置
 
 1. Read `../design-rules/SKILL.md` 装载词汇与判据——每条建议都用它的术语，一个词不许漂移。
-2. 读项目根 `CONTEXT.md`（领域词汇表）与 `docs/adr/`（已定决策）——领域名词用 CONTEXT.md 的，ADR 记录的决策不重新争论。两者不存在则跳过，不报错、不创建。
+2. 读 `docs/jljskills/engineering/CONTEXT.md`（领域词汇表）与 `docs/jljskills/engineering/adr/`（已定决策）——领域名词用 CONTEXT.md 的，ADR 记录的决策不重新争论。两者不存在则跳过，不报错、不创建。
 
 ## 阶段一：探索
 

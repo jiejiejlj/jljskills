@@ -27,18 +27,18 @@ _避免_：Bill、payment request
 
 ## 单 context vs 多 context
 
-**单 context（多数仓库）**：根目录一个 `CONTEXT.md`。
+**单 context（多数仓库）**：`docs/jljskills/engineering/CONTEXT.md`。
 
-**多 context**：根目录 `CONTEXT-MAP.md` 列出各 context 的位置与相互关系：
+**多 context**：`docs/jljskills/engineering/CONTEXT-MAP.md` 列出各 context 的位置与相互关系；各 context 词汇表集中放同目录 `contexts/<名>.md`，不随代码目录分散：
 
 ```md
 # Context Map
 
 ## Contexts
 
-- [Ordering](./src/ordering/CONTEXT.md) —— 接收与跟踪客户订单
-- [Billing](./src/billing/CONTEXT.md) —— 生成发票与处理支付
-- [Fulfillment](./src/fulfillment/CONTEXT.md) —— 管理仓库拣货与发运
+- [Ordering](./contexts/ordering.md) —— 接收与跟踪客户订单
+- [Billing](./contexts/billing.md) —— 生成发票与处理支付
+- [Fulfillment](./contexts/fulfillment.md) —— 管理仓库拣货与发运
 
 ## Relationships
 
@@ -47,7 +47,7 @@ _避免_：Bill、payment request
 - **Ordering ↔ Billing**：共享 `CustomerId` 与 `Money` 类型
 ```
 
-推断规则：有 `CONTEXT-MAP.md` 按 map 找；只有根 `CONTEXT.md` 即单 context；都没有则第一个术语敲定时惰性创建根 `CONTEXT.md`。多 context 时推断当前话题属于哪个 context；不明确就问。
+推断规则：有 `CONTEXT-MAP.md` 按 map 找；只有 `CONTEXT.md` 即单 context；都没有则第一个术语敲定时惰性创建 `docs/jljskills/engineering/CONTEXT.md`。多 context 时推断当前话题属于哪个 context；不明确就问。
 
 ---
 > 内化自 mattpocock/skills 的 `skills/engineering/domain-modeling/CONTEXT-FORMAT.md`（2026-07-03）。

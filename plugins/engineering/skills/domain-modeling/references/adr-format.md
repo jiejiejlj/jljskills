@@ -1,6 +1,6 @@
 # ADR 格式
 
-ADR 存放于 `docs/adr/`，顺序编号：`0001-slug.md`、`0002-slug.md`……目录惰性创建——第一条 ADR 要记时才建。编号规则：扫描现有最大号 +1。
+ADR 存放于 `docs/jljskills/engineering/adr/`，顺序编号：`0001-slug.md`、`0002-slug.md`……目录惰性创建——第一条 ADR 要记时才建。编号规则：扫描现有最大号 +1。多 context 仓库的 ADR 也集中在此目录：属特定 context 的在文件名加 context 前缀（如 `0007-ordering-事件溯源.md`）。
 
 ## 模板
 

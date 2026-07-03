@@ -13,9 +13,9 @@ disable-model-invocation: true
 
 ## 文件结构
 
-多数仓库单 context：根目录一个 `CONTEXT.md`（领域词汇表）+ `docs/adr/`（决策记录）。根目录存在 `CONTEXT-MAP.md` 则是多 context 仓库，按 map 找各 context 的位置。格式细节见 [references/context-format.md](references/context-format.md)。
+本插件组在目标项目里的文档统一收在 `docs/jljskills/engineering/` 下。单 context（多数仓库）：该目录下一个 `CONTEXT.md`（领域词汇表）+ `adr/`（决策记录）。该目录存在 `CONTEXT-MAP.md` 则是多 context 仓库，各 context 词汇表在 `contexts/<名>.md`。格式细节见 [references/context-format.md](references/context-format.md)。
 
-**文件惰性创建**——有东西要写才建：第一个术语敲定时建 CONTEXT.md，第一条 ADR 要记时建 docs/adr/。
+**文件惰性创建**——有东西要写才建：第一个术语敲定时建 CONTEXT.md，第一条 ADR 要记时建 adr/；上级目录不存在则连同建出。
 
 ## 会话中的五个动作
 
