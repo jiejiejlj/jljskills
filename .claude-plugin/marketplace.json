@@ -18,6 +18,11 @@
       "name": "figma-optimize",
       "source": "./plugins/figma-optimize",
       "description": "设计稿交付前评审优化相关 skill"
+    },
+    {
+      "name": "support",
+      "source": "./plugins/support",
+      "description": "工作流辅助相关 skill"
     }
   ]
 }
