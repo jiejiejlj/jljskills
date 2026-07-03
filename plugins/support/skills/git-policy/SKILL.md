@@ -9,7 +9,7 @@ disable-model-invocation: true
 
 ## 用途
 一次运行,配齐当前项目的 git 操作策略,共四层:
-- **红名单**:PreToolUse hook 硬拦截,模型绕不过;
+- **红名单**:PreToolUse hook 硬拦截,常规形式绕不过;
 - **绿名单**:`permissions.allow` 免审批放行;
 - **灰区**:不配置,保持默认弹窗询问;
 - **Git 约定**:commit 规范与分支策略写入项目 CLAUDE.md,其中「main 分支保护」「commit 格式校验」两项可升级为硬门禁进 hook。

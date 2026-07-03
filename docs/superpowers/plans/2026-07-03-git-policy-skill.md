@@ -1,5 +1,7 @@
 # git-policy Skill Implementation Plan
 
+> **已执行完毕(2026-07-03)**:本计划已实施并经终审修复;文内嵌入的脚本/测试代码是执行前的快照,与最终实现存在已知差异(门禁 B 取首个 -m、全局选项归一化、测试条数等)。**以仓库内实际文件为准**:`plugins/support/skills/git-policy/`。
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** 在 `support` 插件中实现 `/support:git-policy` skill——一次配齐项目级 git 红绿灰三色权限策略与 Git 约定(commit 规范、分支策略,含两项可选硬门禁)。

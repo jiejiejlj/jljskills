@@ -6,7 +6,7 @@
 
 | 命令 | 默认 | 依据 |
 | --- | --- | --- |
-| `git push --force` / `-f` | 红 | 覆盖远程历史,他人已拉取则不可逆 |
+| `git push --force` / `-f` | 红 | 覆盖远程历史,他人已拉取则不可逆;含 `--force-with-lease` |
 | `git reset --hard` | 红 | 丢弃工作区与暂存区全部修改 |
 | `git clean -f`(含 `-fd` 等) | 红 | 物理删除未跟踪文件,无处找回 |
 | `git branch -D` | 红 | 强删未合并分支 |
@@ -52,7 +52,7 @@
     "PreToolUse": [
       {
         "matcher": "Bash",
-        "hooks": [{ "type": "command", "command": ".claude/hooks/block-git.sh" }]
+        "hooks": [{ "type": "command", "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/block-git.sh" }]
       }
     ]
   }
