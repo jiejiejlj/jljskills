@@ -1,6 +1,6 @@
 ---
 name: design-rules
-description: 深模块设计的词汇库与判据：module/interface/seam/depth/adapter/leverage/locality 七术语、deep/shallow 模型、删除测试等四原则。仅当用户主动用 `/engineering:design-rules` 指令调用、或其他 skill 显式指路 Read 本文件时使用。
+description: 深模块设计的词汇库与判据：module/interface/implementation/depth/seam/adapter/leverage/locality 八术语、deep/shallow 模型、删除测试等四原则。仅当用户主动用 `/engineering:design-rules` 指令调用、或其他 skill 显式指路 Read 本文件时使用。
 allowed-tools: Read
 disable-model-invocation: true
 ---
@@ -13,13 +13,13 @@ disable-model-invocation: true
 
 （理论出处：John Ousterhout《软件设计的哲学》的深模块理论、Michael Feathers 的 seam 概念。）
 
-## 术语表（七词，精确使用）
+## 术语表（八词，精确使用）
 
 术语一律用英文原词——一致的语言是本 skill 的全部意义，禁用词一个不许漏进来。
 
-**Module** —— 任何「有 interface + 有 implementation」的东西。刻意不限尺度：函数、类、包、跨层切片都算。_禁用_：unit、component、service。
+**Module** —— 任何「有 interface + 有 implementation」的东西。刻意不限尺度：函数、类、包、跨层切片都算。_禁用_：unit、component、service；layer、wrapper（其实指 module 时）。
 
-**Interface** —— 调用者正确使用一个 module 所需知道的**一切**：类型签名之外，还包括不变量、调用顺序约束、错误模式、必需配置、性能特征。_禁用_：API、signature（都太窄，只指类型层面）。
+**Interface** —— 调用者正确使用一个 module 所需知道的**一切**：类型签名之外，还包括不变量、调用顺序约束、错误模式、必需配置、性能特征。_禁用_：API、signature（指 interface 时——都太窄，只指类型层面）。
 
 **Implementation** —— module 内部的代码体。与 **Adapter** 正交：一个东西可以是小 adapter + 大 implementation（Postgres 仓储），也可以是大 adapter + 小 implementation（内存 fake）。谈 seam 时用 adapter，其余场合用 implementation。
 

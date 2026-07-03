@@ -1,7 +1,7 @@
 ---
 name: improve-arch
 description: 扫描代码库找深化机会（shallow → deep），以可视化 HTML 报告呈现候选项，用户选定后走设计树拷问。仅当用户主动用 `/engineering:improve-arch` 指令调用时使用 —— 不要在普通对话里自行触发。
-allowed-tools: Read, Grep, Glob, Bash, Write, Agent, AskUserQuestion
+allowed-tools: Read, Grep, Glob, Bash, Write, Edit, Agent, AskUserQuestion
 disable-model-invocation: true
 ---
 
@@ -34,10 +34,10 @@ disable-model-invocation: true
 
 按 [references/html-report.md](references/html-report.md) 写一份自包含 HTML 到 OS 临时目录（`$TMPDIR`，无则 `/tmp`；Windows 用 `%TEMP%`；文件名 `architecture-review-<时间戳>.html`），不落仓库。写完自动打开（Linux `xdg-open`、macOS `open`、Windows `start`）并告知用户绝对路径。
 
-每个候选项一张卡片：Title、徽章行（推荐强度 + 依赖类别）、Files、before/after 图（居中件）、Problem 一句、Solution 一句、Wins 列表、ADR 冲突警示（如适用）。报告末尾必有 **Top recommendation**：先做哪个、为什么。
+每个候选项一张卡片：Title、徽章行（推荐强度 + 依赖类别）、Files、before/after 图、Problem 一句、Solution 一句、Wins 列表、ADR 冲突警示（如适用）。报告末尾必有 **Top recommendation**：先做哪个、为什么。
 
 - **领域名词用 CONTEXT.md 的，架构名词用 design-rules 的。** CONTEXT.md 定义了 Order，就说「Order intake module」——不说「FooBarHandler」，也不说「Order service」。
-- **ADR 冲突**：候选与现有 ADR 相抵时，只有摩擦真实到值得重开决策才列出，并在卡片上明确标注（amber 警示框：「与 ADR-0007 相抵——但值得重开，因为……」）。别把 ADR 禁止的理论重构全列一遍。
+- **ADR 冲突**：候选与现有 ADR 相抵时，只有摩擦真实到值得重开决策才列出，并在卡片上明确标注冲突及重开理由。别把 ADR 禁止的理论重构全列一遍。
 
 完成标准：Wins 用 locality / leverage 措辞（禁「更易维护」「更干净」）；每卡有 before/after 图；末尾有 Top recommendation。
 
@@ -45,7 +45,7 @@ disable-model-invocation: true
 
 ## 阶段三：拷问
 
-用户选定候选后，按 `../grilling/SKILL.md` 走设计树：约束、seam 位置、interface 形状、seam 后面藏什么、哪些测试存活。
+用户选定候选后，按 `../grilling/SKILL.md` 走设计树。
 
 决策晶化时副作用当场发生，按 `../domain-modeling/SKILL.md` 落笔：
 

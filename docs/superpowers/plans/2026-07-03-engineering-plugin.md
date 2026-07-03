@@ -1,5 +1,7 @@
 # engineering Plugin Implementation Plan
 
+> **已执行完毕（2026-07-03）**：本计划已实施并经终审修复；文内嵌入的文件内容是执行前的快照，与最终文件存在已知差异（禁用词补全、allowed-tools 修正、两处剪重、Mermaid linkStyle）。**以仓库内实际文件为准**：`plugins/engineering/`。
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** 新建 `engineering` plugin，内化 mattpocock/skills 的深模块方法论为四个 skill：`design-rules`（词汇库+判据）、`improve-arch`（扫描→HTML 报告→拷问的编排入口）、`grilling`（走设计树拷问）、`domain-modeling`（CONTEXT.md 词汇表 + ADR）。

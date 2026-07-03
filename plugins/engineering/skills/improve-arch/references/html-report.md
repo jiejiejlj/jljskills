@@ -57,7 +57,7 @@
 
 ### Mermaid graph（依赖 / 调用流的主力）
 
-要点是「X 调 Y 调 Z，看这团乱」时用 Mermaid `flowchart`。包进 Tailwind 卡片，别让它像空投进来的。classDef 把泄漏边标红、deep module 标深。时序图适合「before：6 次往返；after：1 次」。
+要点是「X 调 Y 调 Z，看这团乱」时用 Mermaid `flowchart`。包进 Tailwind 卡片，别让它像空投进来的。classDef 标红泄漏节点、linkStyle 标红泄漏边、deep module 标深。时序图适合「before：6 次往返；after：1 次」。
 
 ```html
 <div class="rounded-lg border border-slate-200 bg-white p-4">
@@ -68,6 +68,7 @@
       C -.leak.-> D[PricingClient]
       classDef leak stroke:#dc2626,stroke-width:2px;
       class C,D leak
+      linkStyle 2 stroke:#dc2626,stroke-width:2px;
   </pre>
 </div>
 ```

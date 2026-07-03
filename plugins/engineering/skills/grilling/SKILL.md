@@ -1,7 +1,7 @@
 ---
 name: grilling
 description: 对选定的深化候选走设计树拷问：约束 → seam 位置 → interface 形状 → 藏什么 → 哪些测试存活，收敛出 interface 草图。仅当用户主动用 `/engineering:grilling` 指令调用、或 improve-arch 第三阶段显式指路时使用。
-allowed-tools: Read, Grep, Glob, AskUserQuestion
+allowed-tools: Read, Grep, Glob, Agent, Write, Edit, AskUserQuestion
 disable-model-invocation: true
 ---
 
