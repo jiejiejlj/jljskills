@@ -31,7 +31,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 
 ## 调用
 
-安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/project:interview2doc`、`/project:grill`、`/figma2web:init`、`/figma-optimize:standard`、`/figma-optimize:page`、`/support:handoff`。
+安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/project:interview2doc`、`/project:grill`、`/figma2web:init`、`/figma-optimize:standard`、`/figma-optimize:page`、`/support:handoff`、`/support:git-policy`。
 
 ## 目录结构
 
@@ -60,8 +60,12 @@ jljskills/
     └── support/
         ├── .claude-plugin/plugin.json
         └── skills/
-            └── handoff/               # 把当前会话压缩成交接文档,供新会话接续
-                └── SKILL.md
+            ├── handoff/               # 把当前会话压缩成交接文档,供新会话接续
+            │   └── SKILL.md
+            └── git-policy/            # 一次配齐项目级 git 三色权限策略与 Git 约定
+                ├── SKILL.md
+                ├── references/policy-menu.md
+                └── scripts/block-git.sh
 ```
 
 ## 新增 skill
