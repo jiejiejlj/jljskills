@@ -23,6 +23,11 @@
       "name": "support",
       "source": "./plugins/support",
       "description": "工作流辅助相关 skill"
+    },
+    {
+      "name": "engineering",
+      "source": "./plugins/engineering",
+      "description": "代码库架构设计相关 skill（深模块方法论）"
     }
   ]
 }

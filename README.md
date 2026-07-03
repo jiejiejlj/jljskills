@@ -12,6 +12,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 | `figma2web` | Figma 转网页相关 skill |
 | `figma-optimize` | 设计稿交付前评审优化相关 skill |
 | `support` | 工作流辅助相关 skill |
+| `engineering` | 代码库架构设计相关 skill（深模块方法论） |
 
 ## 安装
 
@@ -24,6 +25,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 /plugin install figma2web@jljskills
 /plugin install figma-optimize@jljskills
 /plugin install support@jljskills
+/plugin install engineering@jljskills
 
 # 获取更新（滚动更新，每次 commit 即新版本）
 /plugin marketplace update
@@ -31,7 +33,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 
 ## 调用
 
-安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/project:interview2doc`、`/project:grill`、`/project:loopspec`、`/figma2web:init`、`/figma-optimize:standard`、`/figma-optimize:page`、`/support:handoff`、`/support:git-policy`。
+安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/project:interview2doc`、`/project:grill`、`/project:loopspec`、`/figma2web:init`、`/figma-optimize:standard`、`/figma-optimize:page`、`/support:handoff`、`/support:git-policy`、`/engineering:improve-arch`、`/engineering:design-rules`。
 
 ## 目录结构
 
@@ -59,15 +61,29 @@ jljskills/
     │   └── skills/                    # standard(规范板评审)/ page(界面稿评审)
     │       ├── standard/SKILL.md + references/
     │       └── page/SKILL.md + references/
-    └── support/
+    ├── support/
+    │   ├── .claude-plugin/plugin.json
+    │   └── skills/
+    │       ├── handoff/               # 把当前会话压缩成交接文档,供新会话接续
+    │       │   └── SKILL.md
+    │       └── git-policy/            # 一次配齐项目级 git 三色权限策略与 Git 约定
+    │           ├── SKILL.md
+    │           ├── references/policy-menu.md
+    │           └── scripts/block-git.sh
+    └── engineering/
         ├── .claude-plugin/plugin.json
         └── skills/
-            ├── handoff/               # 把当前会话压缩成交接文档,供新会话接续
+            ├── design-rules/          # 深模块词汇库与判据(供其他 skill 指路引用)
+            │   ├── SKILL.md
+            │   └── references/        # deepening.md + design-it-twice.md
+            ├── improve-arch/          # 扫描深化机会→HTML 报告→拷问(编排入口)
+            │   ├── SKILL.md
+            │   └── references/html-report.md
+            ├── grilling/              # 走设计树,收敛 interface 草图
             │   └── SKILL.md
-            └── git-policy/            # 一次配齐项目级 git 三色权限策略与 Git 约定
+            └── domain-modeling/       # 领域词汇表 CONTEXT.md + ADR
                 ├── SKILL.md
-                ├── references/policy-menu.md
-                └── scripts/block-git.sh
+                └── references/        # context-format.md + adr-format.md
 ```
 
 ## 新增 skill
