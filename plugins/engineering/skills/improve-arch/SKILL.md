@@ -1,6 +1,6 @@
 ---
 name: improve-arch
-description: 扫描代码库找深化机会（shallow → deep），以可视化 HTML 报告呈现候选项，用户选定后走设计树拷问。仅当用户主动用 `/engineering:improve-arch` 指令调用时使用 —— 不要在普通对话里自行触发。
+description: 扫描已有代码库找深化机会（shallow → deep），以可视化 HTML 报告呈现候选项，用户选定后走设计树拷问；终点是 interface 草图，不实施改码。仅当用户主动用 `/engineering:improve-arch` 指令调用时使用 —— 不要在普通对话里自行触发。
 allowed-tools: Read, Grep, Glob, Bash, Write, Edit, Agent, AskUserQuestion
 disable-model-invocation: true
 ---
@@ -9,7 +9,9 @@ disable-model-invocation: true
 
 ## 用途
 
-浮出架构摩擦，提出**深化机会**——把 shallow module 重构成 deep module 的候选项。目标是可测试性与 AI 可导航性。三阶段：探索 → HTML 报告 → 拷问。
+对**已有代码库**浮出架构摩擦，提出**深化机会**——把 shallow module 重构成 deep module 的候选项。目标是可测试性与 AI 可导航性。三阶段：探索 → HTML 报告 → 拷问。适用于「有模糊的不适感、说不出具体哪里疼」的时候。
+
+射程边界：输入必须是已有代码，无码可扫时不适用（全新设计走 `../design-rules/references/design-it-twice.md`）；终点是选定候选的 interface 草图（由 grilling 落盘），实施改码不在本 skill 内——草图就是交给实施会话的 seam。已明确知道要深化哪个 module 时，跳过本 skill 直接 `/engineering:grilling`。
 
 ## 前置
 

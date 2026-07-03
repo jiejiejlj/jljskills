@@ -11,6 +11,8 @@ disable-model-invocation: true
 
 对一个**待设计的深化**逐分支拷问，目标是**收敛出 interface 形状**——不是压出问题（那是 `/project:grill` 对已成形方案干的事），而是和用户一起把设计树走完，直到能写出深化后 module 的 interface 草图。
 
+两种进入方式：improve-arch 报告选定候选后被指路接入；或你已明确要深化哪个 module 时**直接调用**，不必先跑全套扫描。
+
 ## 前置
 
 若本会话尚未装载词汇，先 Read `../design-rules/SKILL.md`——拷问全程用它的术语。

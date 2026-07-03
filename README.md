@@ -72,6 +72,7 @@ jljskills/
     │           └── scripts/block-git.sh
     └── engineering/
         ├── .claude-plugin/plugin.json
+        ├── README.md              # 四技能一句话导览与选择指引
         └── skills/
             ├── design-rules/          # 深模块词汇库与判据(供其他 skill 指路引用)
             │   ├── SKILL.md

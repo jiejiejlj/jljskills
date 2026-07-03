@@ -11,6 +11,8 @@ disable-model-invocation: true
 
 在设计过程中**主动**打磨项目的领域模型：挑战术语、编造边界场景、词汇和决策一敲定立刻写下来。只是*读* CONTEXT.md 查词不算本 skill——那是任何 skill 一句话就能做的习惯。本 skill 用于**改**模型，不是消费模型。
 
+它是本插件组的**记忆层**：CONTEXT.md 让 improve-arch 的报告说领域名词、让 design-it-twice 的并行子代理命名一致；ADR 让已否决的建议不被未来的架构审查重提。除被另外两个 skill 指路接入外，典型的主动调用时机：接手术语混乱的项目建词汇表、重要设计讨论前钉死领域语言、重大决策拍板后趁热记 ADR。
+
 ## 文件结构
 
 本插件组在目标项目里的文档统一收在 `docs/jljskills/engineering/` 下。单 context（多数仓库）：该目录下一个 `CONTEXT.md`（领域词汇表）+ `adr/`（决策记录）。该目录存在 `CONTEXT-MAP.md` 则是多 context 仓库，各 context 词汇表在 `contexts/<名>.md`。格式细节见 [references/context-format.md](references/context-format.md)。
