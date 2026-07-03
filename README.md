@@ -29,7 +29,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 
 ## 调用
 
-安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/project:interview2doc`、`/figma2web:init`、`/figma-optimize:standard`、`/figma-optimize:page`。
+安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/project:interview2doc`、`/project:grill`、`/figma2web:init`、`/figma-optimize:standard`、`/figma-optimize:page`。
 
 ## 目录结构
 
@@ -41,9 +41,11 @@ jljskills/
     ├── project/
     │   ├── .claude-plugin/plugin.json
     │   └── skills/
-    │       └── interview2doc/     # 把想法梳理成需求文档
-    │           ├── SKILL.md
-    │           └── references/method.md
+    │       ├── interview2doc/     # 把想法梳理成需求文档(助产式访谈)
+    │       │   ├── SKILL.md
+    │       │   └── references/method.md
+    │       └── grill/             # 拷问已成形的方案(对抗式评审)
+    │           └── SKILL.md
     ├── figma2web/
     │   ├── .claude-plugin/plugin.json
     │   └── skills/                    # init/config/re-config/page2doc/re-page2doc/coding/component/verify
