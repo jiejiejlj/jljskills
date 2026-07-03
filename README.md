@@ -31,7 +31,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 
 ## 调用
 
-安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/project:interview2doc`、`/project:grill`、`/figma2web:init`、`/figma-optimize:standard`、`/figma-optimize:page`、`/support:handoff`、`/support:git-policy`。
+安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/project:interview2doc`、`/project:grill`、`/project:loopspec`、`/figma2web:init`、`/figma-optimize:standard`、`/figma-optimize:page`、`/support:handoff`、`/support:git-policy`。
 
 ## 目录结构
 
@@ -46,7 +46,9 @@ jljskills/
     │       ├── interview2doc/     # 把想法梳理成需求文档(助产式访谈)
     │       │   ├── SKILL.md
     │       │   └── references/method.md
-    │       └── grill/             # 拷问已成形的方案(对抗式评审)
+    │       ├── grill/             # 拷问已成形的方案(对抗式评审)
+    │       │   └── SKILL.md
+    │       └── loopspec/          # 拷问出自动化 workflow 规格(循环即可委派)
     │           └── SKILL.md
     ├── figma2web/
     │   ├── .claude-plugin/plugin.json
