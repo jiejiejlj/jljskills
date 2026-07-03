@@ -52,7 +52,7 @@ plugins/support/skills/git-policy/
 - 修正原版误杀 bug:正则锚定命令开头(词边界),`git commit -m "含 git push 字样"` 不再被误拦。
 - 拦截提示用简体中文,说明「用户通过 git-policy 禁止了此操作」及放行途径。
 - commit 格式门禁与 main 保护为脚本内可选段,未启用则不生成对应代码。
-- 依赖 `jq`;脚本开头检测,缺失时给出安装提示并放行(fail-open,避免环境问题卡死全部 git 操作)。
+- JSON 解析优先用 `jq`,缺失时退回 `python3`;两者都没有才提示并放行(fail-open,避免环境问题卡死全部 git 操作)。
 
 ## 红线
 

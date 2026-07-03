@@ -41,9 +41,10 @@
 # git-policy hook 脚本测试。须在非 git 目录运行(scratchpad),门禁 A 才不干扰
 SCRIPT="/home/king/github/jiejiejlj/jljskills/plugins/support/skills/git-policy/scripts/block-git.sh"
 pass=0; fail=0
+json_cmd() { python3 -c 'import json,sys; print(json.dumps({"tool_input":{"command":sys.argv[1]}}))' "$1"; }
 t() { # 用法: t <期望exit码> <命令串>
   local expected="$1"; shift
-  printf '{"tool_input":{"command":%s}}' "$(printf '%s' "$1" | jq -Rs .)" | bash "$SCRIPT" >/dev/null 2>&1
+  json_cmd "$1" | bash "$SCRIPT" >/dev/null 2>&1
   local got=$?
   if [ "$got" = "$expected" ]; then pass=$((pass+1)); else fail=$((fail+1)); echo "FAIL(got=$got want=$expected): $1"; fi
 }
@@ -88,10 +89,19 @@ Expected: 全部 FAIL(脚本不存在,bash 返回 127 ≠ 期望值)。
 # 机制:PreToolUse hook。命中红名单或已启用门禁时 exit 2 拦截,其余放行(exit 0)
 # 局限(有意 fail-open):heredoc / -am 形式的 commit message 无法提取,不校验直接放行
 
-command -v jq >/dev/null 2>&1 || { echo "git-policy: 未安装 jq,本次放行(安装 jq 后护栏生效)" >&2; exit 0; }
-
 INPUT=$(cat)
-COMMAND=$(printf '%s' "$INPUT" | jq -r '.tool_input.command // empty')
+if command -v jq >/dev/null 2>&1; then
+  COMMAND=$(printf '%s' "$INPUT" | jq -r '.tool_input.command // empty')
+elif command -v python3 >/dev/null 2>&1; then
+  COMMAND=$(printf '%s' "$INPUT" | python3 -c 'import json,sys
+try:
+    print(json.load(sys.stdin).get("tool_input", {}).get("command", ""))
+except Exception:
+    pass')
+else
+  echo "git-policy: 未找到 jq 或 python3,无法解析命令,本次放行(安装其一后护栏生效)" >&2
+  exit 0
+fi
 [ -z "$COMMAND" ] && exit 0
 
 # 剔除引号内内容再匹配,避免 commit message 里出现「git push」等字样被误杀
