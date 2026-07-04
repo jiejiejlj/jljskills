@@ -1,7 +1,7 @@
 # codeflow 大一统重组设计
 
 日期：2026-07-05
-状态：待实施
+状态：已实施（收口 commit c4df528，终审清扫 d21bbc7；实施记录见 docs/superpowers/plans/2026-07-05-codeflow-restructure.md 与 .superpowers/sdd/progress.md）
 来源：将 mattpocock/skills `skills/engineering` 主流程（idea→ship 交付链）融合进本仓库，并借机重组既有同族技能。
 
 ## 1. 背景与问题
