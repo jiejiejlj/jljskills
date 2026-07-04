@@ -18,7 +18,7 @@ disable-model-invocation: true
 **独立插件**:不依赖、不读写 figma2web 的任何产物(`project.md` / `tokens.md` / `design/` 等),不作为其流程一环;不依赖 superpowers。
 
 ## 产物(本 skill 是唯一写者)
-- `docs/figma-optimize/standard-<板名>-<日期>.md` —— 标准体系评审报告(可选落盘,报告阶段可改路径 / 不落盘)。
+- `docs/jljskills/figma-optimize/standard-<板名>-<日期>.md` —— 标准体系评审报告(可选落盘,报告阶段可改路径 / 不落盘)。
 
 ## 流程骨架
 1. **前置校验**:figma-mcp 可用(未认证先认证);向用户索取待审**规范板**链接 / 范围(不落盘,每次现问)。
@@ -28,7 +28,7 @@ disable-model-invocation: true
 5. **采纳项二次选择**:每条采纳的问题,用户再选「我自改」还是「让 AI 改」。
 6. **写回 / 自改说明**:「让 AI 改」→ **先走 `figma-use` skill** → `use_figma` 写入(重命名变量 / 绑定 / 收敛 token)→ 每处 `get_screenshot` 校验;「我自改」→ 给可照做的明确改法说明。
 7. **复审**:体系问题理想归零,或仅剩用户有意保留、报告标注的例外。
-8. **标准体系评审报告**:默认落 `docs/figma-optimize/`,报告阶段允许改路径 / 不落盘。
+8. **标准体系评审报告**:默认落 `docs/jljskills/figma-optimize/`,报告阶段允许改路径 / 不落盘。
 
 > 完整分阶段流程见 [references/flow.md](references/flow.md);体系向评审清单见 [references/checklist.md](references/checklist.md);Figma API 配方见 [references/figma-api-cookbook.md](references/figma-api-cookbook.md);报告模板见 [references/report-template.md](references/report-template.md) —— **动笔前先读它们**。
 

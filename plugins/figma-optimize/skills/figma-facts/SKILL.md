@@ -1,6 +1,6 @@
 ---
 name: figma-facts
-description: figma-optimize 的共享 Figma API 判据与写回纪律：库变量误判坑、setBoundVariableForPaint 重赋值、解析值读取、批次纪律四条。仅当 page / standard 的流程显式指路 Read 本文件、或用户主动用 `/figma-optimize:figma-facts` 把判据装进当前会话时使用。
+description: figma-optimize 的共享 Figma API 判据与写回纪律：库变量误判坑、setBoundVariableForPaint 重赋值、解析值读取、批次纪律四条。仅当 page / standard / component 的流程显式指路 Read 本文件、或用户主动用 `/figma-optimize:figma-facts` 把判据装进当前会话时使用。
 allowed-tools: Read
 disable-model-invocation: true
 ---
@@ -9,7 +9,7 @@ disable-model-invocation: true
 
 ## 用途
 
-figma-optimize 的单一真相源：page / standard 共用的 Figma Plugin API 判据与写回纪律。两个评审 skill 的流程在 P1 以硬性步骤 Read 本文件装载；判据正文只存这里，各 skill 文件只留指针、不复述。skill 专属配方（page 的字体归正、standard 的收敛 token 等）仍在各自的 `references/figma-api-cookbook.md`。
+figma-optimize 的单一真相源：page / standard / component 共用的 Figma Plugin API 判据与写回纪律。各评审 skill 的流程在 P1 以硬性步骤 Read 本文件装载；判据正文只存这里，各 skill 文件只留指针、不复述。skill 专属配方（page 的字体归正、standard 的收敛 token、component 的组件化写回等）仍在各自的 `references/figma-api-cookbook.md`。
 
 ## 库变量误判坑（token 化审计核心判据）
 

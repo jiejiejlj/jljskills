@@ -1,6 +1,6 @@
 # 标准体系评审报告模板
 
-`standard` 的唯一落盘产物,供设计师 / 开发确认设计规范板是否可作权威依据。默认落 `docs/figma-optimize/standard-<板名>-<日期>.md`(报告阶段可改路径 / 不落盘)。
+`standard` 的唯一落盘产物,供设计师 / 开发确认设计规范板是否可作权威依据。默认落 `docs/jljskills/figma-optimize/standard-<板名>-<日期>.md`(报告阶段可改路径 / 不落盘)。
 
 ```markdown
 ---

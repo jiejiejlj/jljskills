@@ -1,20 +1,16 @@
 # coding 详细流程
 
 `page2doc` 之后离线读 spec 出代码。**全程离线,不调 figma-mcp。**
-输入:目标 section spec(段落契约见 [../../spec-structure/SKILL.md](../../spec-structure/SKILL.md),B 表 / C 段 / G 段等词汇均以它为准)+ 本地切图 + `tokens.md` + `project.md` + `registry.json`。
+输入:目标 section spec(段落契约见 [../../spec-structure/SKILL.md](../../spec-structure/SKILL.md),B 表 / C 段 / G 段等词汇均以它为准)+ 本地切图 + `tokens.md` + `project.md`。
 
 ## P0 — 前置校验
 1. `docs/jljskills/figma2web/project.md` + `docs/jljskills/figma2web/tokens.md` 存在。
 2. 目标 spec 存在且已 finalize。
 3. **缺切图 HARD STOP**:spec **G 段**列的切图磁盘上必须存在;缺 → **停下**提示补跑 `page2doc`/`re-page2doc`,**不自行下载、不访问 Figma**。
-4. `registry.json` 存在(可空)。
-5. superpowers 已装(P3 用)。
+4. superpowers 已装(P3 用)。
 
-## P1 — 出实现计划(依据 `project.md` + `tokens.md` + registry)
+## P1 — 出实现计划(依据 `project.md` + `tokens.md`)
 - **框架 / 样式**:读 `project.md`。
-- **复用匹配 = 按 Figma 组件实例标识**:spec **B 表**实例名 ↔ `registry.json`「对应 Figma 节点」——
-  - 命中则**复用**;歧义则**问**;
-  - **非实例的重复 UI 写页面内局部**,留给 `component` 提炼。
 - **几何翻译**:B 表 `x/y/w/h` → `project.md` 布局模型(绝对定位 / flex / grid)。
 - **token 翻译**:spec **C 段**忠实值 + 变量绑定 → `tokens.md` 映射 → tailwind token;**禁止魔法值**。
 - **响应式**:spec **D 段** + `project.md` 断点。
@@ -36,6 +32,3 @@
 
 ## 完成标志
 目标 section 代码完成、结构 / 数值层自查通过;视觉层由 `verify` + 人裁定。
-
-## 提示(孤岛,不自动调)
-输出里可**提示**「此处有重复,建议跑 `component`」,但绝不自动调用。

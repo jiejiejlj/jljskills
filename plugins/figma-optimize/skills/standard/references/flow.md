@@ -49,7 +49,7 @@
 
 ## P7 — 标准体系评审报告(可选落盘)
 按 [report-template.md](report-template.md) 出报告:体系快照、发现与处置结果、保留的例外、复审结论、给「界面评审 / 开发」的 TL;DR。
-- **默认落** `docs/figma-optimize/standard-<板名>-<日期>.md`;
+- **默认落** `docs/jljskills/figma-optimize/standard-<板名>-<日期>.md`;
 - 报告阶段**允许用户改路径或选择不落盘**。
 
 ## 完成标志

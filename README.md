@@ -55,15 +55,16 @@ jljskills/
     ├── figma2web/
     │   ├── .claude-plugin/plugin.json
     │   ├── README.md              # 管线总览:主链/增量入口/旁路,前置 gate 与产物一览
-    │   └── skills/                    # init/config/re-config/page2doc/re-page2doc/coding/component/verify
+    │   └── skills/                    # init/config/re-config/page2doc/re-page2doc/coding/verify
     │       ├── <skill>/SKILL.md
     │       └── spec-structure/SKILL.md   # spec 文件结构契约地基,page2doc/re-page2doc/coding 三方共用
     ├── figma-optimize/
     │   ├── .claude-plugin/plugin.json
-    │   └── skills/                    # standard(规范板评审)/ page(界面稿评审)/ figma-facts(共享判据地基)
+    │   └── skills/                    # standard(规范板评审)/ page(界面稿评审)/ component(散件收编)/ figma-facts(共享判据地基)
     │       ├── standard/SKILL.md + references/
     │       ├── page/SKILL.md + references/
-    │       └── figma-facts/SKILL.md   # 共享 Figma API 判据单一真相源,供 page/standard 的 flow P1 装载
+    │       ├── component/SKILL.md + references/
+    │       └── figma-facts/SKILL.md   # 共享 Figma API 判据单一真相源,供 page/standard/component 的 flow P1 装载
     ├── support/
     │   ├── .claude-plugin/plugin.json
     │   └── skills/
