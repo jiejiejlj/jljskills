@@ -54,6 +54,7 @@ jljskills/
     │           └── SKILL.md
     ├── figma2web/
     │   ├── .claude-plugin/plugin.json
+    │   ├── README.md              # 管线总览:主链/增量入口/旁路,前置 gate 与产物一览
     │   └── skills/                    # init/config/re-config/page2doc/re-page2doc/coding/component/verify
     │       ├── <skill>/SKILL.md
     │       └── spec-structure/SKILL.md   # spec 文件结构契约地基,page2doc/re-page2doc/coding 三方共用
