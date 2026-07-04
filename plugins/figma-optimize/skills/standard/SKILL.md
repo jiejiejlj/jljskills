@@ -15,7 +15,7 @@ disable-model-invocation: true
 ## 何时运行
 仅当用户主动用 `/figma-optimize:standard` 指令调用时运行。前置:figma-mcp 可用(需读取,采纳项经 `use_figma` 写回;未认证先跑认证);拿到待审的**设计规范板**链接 / 范围。
 
-**独立插件**:不依赖、不读写 figma2web 的任何产物(`project.md` / `tokens.md` / `design/` 等),不作为其流程一环;不依赖 superpowers。
+**独立插件**(分工契约见 [../../README.md](../../README.md)):只写回 Figma、不落项目代码;不读写 figma2web 的任何产物;不依赖 superpowers。
 
 ## 产物(本 skill 是唯一写者)
 - `docs/jljskills/figma-optimize/standard-<板名>-<日期>.md` —— 标准体系评审报告(可选落盘,报告阶段可改路径 / 不落盘)。

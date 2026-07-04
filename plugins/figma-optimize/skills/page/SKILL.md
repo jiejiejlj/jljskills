@@ -15,7 +15,7 @@ disable-model-invocation: true
 ## 何时运行
 仅当用户主动用 `/figma-optimize:page` 指令调用时运行。前置:figma-mcp 可用(需读取,采纳项经 `use_figma` 写回;未认证先跑认证);拿到待审的 Figma 链接 / 范围。
 
-**独立插件**:不依赖、不读写 figma2web 的任何产物(`project.md` / `tokens.md` / `design/` 等),不作为其流程一环;不依赖 superpowers。
+**独立插件**(分工契约见 [../../README.md](../../README.md)):只写回 Figma、不落项目代码;不读写 figma2web 的任何产物;不依赖 superpowers。
 
 ## 产物(本 skill 是唯一写者)
 - `docs/jljskills/figma-optimize/<页面>-<日期>.md` —— 交付就绪报告(可选落盘,报告阶段可改路径 / 不落盘)。作为递给开发的自查单与交接凭证。

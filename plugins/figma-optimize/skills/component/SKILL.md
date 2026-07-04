@@ -15,7 +15,7 @@ disable-model-invocation: true
 ## 何时运行
 仅当用户主动用 `/figma-optimize:component` 指令调用时运行。前置:figma-mcp 可用(需读取,采纳项经 `use_figma` 写回;未认证先跑认证);拿到待收编的界面稿链接 / 范围。
 
-**独立插件**:不依赖、不读写 figma2web 的任何产物(`project.md` / `tokens.md` / `design/` 等),不作为其流程一环;不依赖 superpowers。
+**独立插件**(分工契约见 [../../README.md](../../README.md)):只写回 Figma、不落项目代码;不读写 figma2web 的任何产物;不依赖 superpowers。
 
 ## 产物(本 skill 是唯一写者)
 - Figma 文件内新成立的 components + 各出现处的实例替换(写回产物)。
