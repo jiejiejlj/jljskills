@@ -1,0 +1,5 @@
+{
+  "name": "codeflow",
+  "description": "编码工作流 idea→ship 相关 skill（拷问 → PRD → 拆 issue → TDD 实施 → 双轴审查，含深模块方法论）",
+  "author": { "name": "jiejiejlj" }
+}
