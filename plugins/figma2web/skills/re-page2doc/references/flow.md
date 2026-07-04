@@ -20,7 +20,7 @@ spec 的具体段落结构见契约 [../../spec-structure/SKILL.md](../../spec-s
 呈交三类清单 + **每个 CHANGED 的逐项具体改动**,确认;**未确认不写**。
 
 ## P4 — 分头处理
-- **NEW**:完整文档化(建 spec + 下切图 + `__ref.png`)。
+- **NEW**:按 [page2doc flow](../../page2doc/references/flow.md) 完整文档化,步骤以它为唯一权威(产物含 spec + 切图 + `__ref.png`)。
 - **CHANGED**:自刷新 spec —— 重建 B 表、核对改动、确认交互、**只重下变化切图**、刷新 `status=CHANGED` / `updated_at`。
 - **UNCHANGED**:完全不动。
 

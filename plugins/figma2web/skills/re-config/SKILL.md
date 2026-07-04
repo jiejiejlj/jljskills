@@ -21,7 +21,7 @@ disable-model-invocation: true
 
 ## 流程骨架
 1. **前置校验**:`project.md` + `tokens.md` 存在;figma-mcp 可用;向用户索取标准面板 Figma 链接。
-2. **重抓当前标准**(同 `config` P1:优先 variables,fallback 代表帧)。
+2. **重抓当前标准**(步骤见 [config flow P1](../config/references/flow.md),以它为唯一权威)。
 3. **diff 分类**:与现有 `tokens.md` 逐项比对 → NEW / CHANGED / UNCHANGED,含**来源演进**。
 4. **确认分类(HARD GATE)**:三类清单 + 每个 NEW/CHANGED 的前后具体值,逐项确认。
 5. **写回**(同一运行内一起写)+ 小结。

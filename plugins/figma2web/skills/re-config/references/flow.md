@@ -8,7 +8,7 @@
 3. 向用户索取**标准面板 Figma 链接**。
 
 ## P1 — 重抓当前标准
-同 `config` P1:优先 `get_variable_defs` 读 variables,无变量 fallback `get_design_context` 取代表帧;覆盖 7 维度;每项标来源。
+执行 [config flow 的 P1「抽取设计标准」](../../config/references/flow.md)全部步骤——抽取渠道、维度清单、来源标注均以它为唯一权威,不在本文件复述。
 
 ## P2 — diff 分类
 与现有 `tokens.md` **逐项比对** → **NEW / CHANGED / UNCHANGED**:
