@@ -6,13 +6,13 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 
 ## 当前分类（plugin）
 
-| Plugin | 说明 |
-| --- | --- |
-| `project` | 项目设计相关 skill |
-| `figma2web` | Figma 转网页相关 skill |
-| `figma-optimize` | 设计稿交付前评审优化相关 skill |
-| `support` | 工作流辅助相关 skill |
-| `engineering` | 代码库架构设计相关 skill（深模块方法论） |
+| Plugin | 说明 | 前置依赖（不装则相关功能静默失效） |
+| --- | --- | --- |
+| `project` | 项目设计相关 skill | — |
+| `figma2web` | Figma 转网页相关 skill | 官方 `figma` 插件（Figma MCP）；`coding` 内部编排调用 `superpowers` |
+| `figma-optimize` | 设计稿交付前评审优化相关 skill | 官方 `figma` 插件（Figma MCP + `figma-use` skill，写回前强制） |
+| `support` | 工作流辅助相关 skill | — |
+| `engineering` | 代码库架构设计相关 skill（深模块方法论） | — |
 
 ## 安装
 
