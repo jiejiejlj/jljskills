@@ -26,7 +26,7 @@ disable-model-invocation: true
 
 按顺序找，命中第一个就停：
 
-1. commit message 里的 issue 引用（`#123`、`Closes #45` 等）——按 `docs/jljskills/codeflow/issue-tracker.md` 的操作方式取全文与既有评论。
+1. commit message 里的 issue 引用（`#123`、`Closes #45` 等）——按 `docs/jljskills/codeflow/issue-tracker.md` 的操作方式取全文与既有评论；issue-tracker.md 未配置时跳过本级，直接退到第 2 级（审查是只读消费，不因追踪器未配置卡壳；想补配置可事后跑 `/codeflow:config`）。
 2. 用户传参给出的路径。
 3. `docs/` 下匹配当前分支名或特性名的 PRD。
 4. 都没有则问用户「spec 在哪」；用户明确说没有，Spec 轴跳过，在最终报告里注明「无 spec 可比对」。
