@@ -15,14 +15,14 @@ disable-model-invocation: true
 ## 何时运行
 仅当用户主动用 `/figma-optimize:standard` 指令调用时运行。前置:figma-mcp 可用(需读取,采纳项经 `use_figma` 写回;未认证先跑认证);拿到待审的**设计规范板**链接 / 范围。
 
-**独立插件**:不依赖、不读写 figma2web 的任何产物(尤其 `config.md`),不作为其流程一环;不依赖 superpowers。
+**独立插件**:不依赖、不读写 figma2web 的任何产物(`project.md` / `tokens.md` / `design/` 等),不作为其流程一环;不依赖 superpowers。
 
 ## 产物(本 skill 是唯一写者)
 - `docs/figma-optimize/standard-<板名>-<日期>.md` —— 标准体系评审报告(可选落盘,报告阶段可改路径 / 不落盘)。
 
 ## 流程骨架
 1. **前置校验**:figma-mcp 可用(未认证先认证);向用户索取待审**规范板**链接 / 范围(不落盘,每次现问)。
-2. **读全量体系**:`use_figma` 读 `getLocalVariableCollectionsAsync` / `getLocalVariablesAsync` / `getLocalTextStylesAsync`;`get_variable_defs` 仅快览;**辨 token vs 裸 hex**(库变量误判坑)。
+2. **读全量体系**:先 Read [figma-facts](../figma-facts/SKILL.md) 装载共享判据(flow P1 硬性步骤);`use_figma` 三源读全量;`get_variable_defs` 仅快览;辨 token vs 裸 hex 以 figma-facts 判据为准。
 3. **逐维度评审**:按 S-A~S-E 五维审查变量集合完整性、token 化纯净度、命名规范、字阶字体标准、收敛,产带严重度的建议列表。
 4. **逐条裁定(HARD GATE)**:逐维度、逐条呈交,用户选 采纳 / 跳过 / 再调;**写入 Figma 前必须确认,未确认不得改动**。
 5. **采纳项二次选择**:每条采纳的问题,用户再选「我自改」还是「让 AI 改」。
@@ -34,6 +34,6 @@ disable-model-invocation: true
 
 ## 红线
 - **HARD GATE 未确认不动 Figma**;调用 `use_figma` 之前**必先走 `figma-use` skill**,每处改完 `get_screenshot` 校验。
-- **不生成代码**、不做 design→code;**不读写 figma2web / `config.md`**,不复用其文件。
+- **不生成代码**、不做 design→code;**不读写 figma2web 的任何产物**,不复用其文件。
 - **不替设计师做审美裁决**,不无中生有设计新体系 —— 只审既有规范板并按用户裁定优化。
-- 数值 / 命名类靠 `use_figma` 精确审计;辨别**库变量(跨文件引用)vs 真正的裸 hex**,`get_variable_defs` 会把库变量显示成裸值,不可只看数值下硬编码结论。
+- 数值 / 命名类靠 `use_figma` 精确审计;**token 化审计判据(库变量 vs 裸 hex)以 [figma-facts](../figma-facts/SKILL.md) 为准**——判据正文不在本文件复述,动笔前必已由 flow P1 装载。

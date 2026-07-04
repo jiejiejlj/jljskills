@@ -58,9 +58,10 @@ jljskills/
     │       └── <skill>/SKILL.md
     ├── figma-optimize/
     │   ├── .claude-plugin/plugin.json
-    │   └── skills/                    # standard(规范板评审)/ page(界面稿评审)
+    │   └── skills/                    # standard(规范板评审)/ page(界面稿评审)/ figma-facts(共享判据地基)
     │       ├── standard/SKILL.md + references/
-    │       └── page/SKILL.md + references/
+    │       ├── page/SKILL.md + references/
+    │       └── figma-facts/SKILL.md   # 共享 Figma API 判据单一真相源,供 page/standard 的 flow P1 装载
     ├── support/
     │   ├── .claude-plugin/plugin.json
     │   └── skills/

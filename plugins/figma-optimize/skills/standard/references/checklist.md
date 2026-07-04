@@ -13,8 +13,8 @@
 ### S-B token 化纯净度
 | 编号 | 检查项 | 严重度 | 判据 |
 | --- | --- | --- | --- |
-| S-B1 | 规范板内存在游离裸色 / 未绑定值(本该是 token) | 高 | `fills[].boundVariables` 为空即裸值 |
-| S-B2 | 库变量被 `get_variable_defs` 误显为裸 hex(勿误判为硬编码) | 中 | 用 `boundVariables` + `getVariableByIdAsync` 辨别 |
+| S-B1 | 规范板内存在游离裸色 / 未绑定值(本该是 token) | 高 | 库变量判据见 figma-facts |
+| S-B2 | 库变量被 `get_variable_defs` 误显为裸 hex(勿误判为硬编码) | 中 | 库变量判据见 figma-facts |
 
 ### S-C 命名规范
 | 编号 | 检查项 | 严重度 | 判据 |
@@ -37,8 +37,5 @@
 - **S-A1(整类缺档)= 高**、**S-B1(游离裸值)= 高**:直接影响开发能否拿到一套可信 token,优先级最高。
 - 其余(S-A2 / S-C1 / S-D1 / S-D2 / S-E1)默认 **中**,S-C2 默认 **低**——风格不一致但不阻断可用性。
 
-## 辨 token 的判据说明(S-B 核心)
-- `get_variable_defs` 是**展示层快览工具**,会把**库变量(跨文件引用的共享变量)**摊平显示成「名 = 值」的裸 hex,数值上和真正的硬编码裸色**长得一模一样**。
-- 判断某处是否已 token 化,唯一可靠依据是节点 / 样式属性上的 **`boundVariables`**:有 `boundVariables.color`(或对应属性)即已绑定变量,已 token 化;为空才是真正需要计入 S-B1 的裸值。
-- 若需要进一步核实该变量本身的解析值(如按 mode 取浅色 / 深色下的具体色值),用 `getVariableByIdAsync(id)` 取到变量对象后读 `.valuesByMode`。
-- 一律不要仅凭 `get_variable_defs` 的展示值下「硬编码」结论。
+## 辨 token 的判据(S-B 核心)
+判据正文唯一存于 [figma-facts](../../figma-facts/SKILL.md)(flow P1 已装载,本清单不复述)。本清单只定**归档映射**:按 figma-facts 判据辨出的真正游离裸值计 **S-B1**;库变量被误显为裸 hex 的误判风险计 **S-B2**。

@@ -8,15 +8,15 @@
 3. 说明本次评审依据:体系向评审清单(见 [checklist.md](checklist.md))。
 
 ## P1 — 读全量体系
-1. **`use_figma` 读全量**:对规范板执行 `getLocalVariableCollectionsAsync` / `getLocalVariablesAsync` / `getLocalTextStylesAsync`,拿到全量**变量集合 / 变量 / text styles**,这是本次审计的完整数据源。
-2. **`get_variable_defs` 仅快览**:仅用它做快速浏览,**不作为审计主渠道**。
-   > ⚠️ **库变量误判坑**:`get_variable_defs` 会把**库变量(跨文件引用)**显示成「名 = 值」的裸 hex,极易被误判为「未 token 化的硬编码颜色」。审计时必须用 `fills[].boundVariables` + `getVariableByIdAsync` 辨别该值是否已绑定变量(已 token 化),不要只看数值就下裸值结论。这是 S-B 维度的核心判据。
-3. 读全量后按集合 / mode 归类,为 P2 逐维度评审做数据准备。
+1. **Read [`../../figma-facts/SKILL.md`](../../figma-facts/SKILL.md) 装载共享判据**(硬性步骤):库变量误判坑、三源 API、写回通用坑、纪律四条,P1–P5 全程适用,判据正文以它为唯一权威,不在本文件复述。
+2. **`use_figma` 读全量**:对规范板执行三源 API(见 figma-facts),拿到全量**变量集合 / 变量 / text styles**,这是本次审计的完整数据源(当**审计对象**,不当参照标准)。
+3. **`get_variable_defs` 仅快览**:仅用它做快速浏览,**不作为审计主渠道**;是否已 token 化以 figma-facts 的库变量判据为准——这是 S-B 维度的核心判据。
+4. 读全量后按集合 / mode 归类,为 P2 逐维度评审做数据准备。
 
 ## P2 — 逐维度评审
 对照 [checklist.md](checklist.md) 的 S-A~S-E 五维逐条审查:
 1. **S-A 变量集合完整性**:遍历 `getLocalVariableCollectionsAsync` 结果,检查色 / 字阶 / 间距 / 圆角是否成体系、有无整类缺档;检查 `variable.valuesByMode` 下集合分组 / mode(如明暗)是否完整。
-2. **S-B token 化纯净度**:检查 `fills[].boundVariables` 是否为空(游离裸值);辨别库变量 vs 真正裸 hex(见 P1 坑)。
+2. **S-B token 化纯净度**:检查游离裸值;辨别库变量 vs 真正裸 hex(判据见 figma-facts,P1 已装载)。
 3. **S-C 命名规范**:遍历 `variable.name`,检查命名是否有语义、层级是否清晰、同类命名风格是否一致。
 4. **S-D 字阶 & 字体标准**:`getLocalTextStylesAsync` 检查字号 / 行高是否成阶、是否缺档;`style.fontName` 比对标准字体族揪非标字体,缺失字体用 `listAvailableFontsAsync` 判定(`hasMissingFont` 仅 TextNode 有,TextStyle 上取不到)。
 5. **S-E 收敛**:比对 `valuesByMode` 解析值,找出重复 / 近似应合并的 token。

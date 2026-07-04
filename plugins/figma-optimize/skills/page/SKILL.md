@@ -15,7 +15,7 @@ disable-model-invocation: true
 ## 何时运行
 仅当用户主动用 `/figma-optimize:page` 指令调用时运行。前置:figma-mcp 可用(需读取,采纳项经 `use_figma` 写回;未认证先跑认证);拿到待审的 Figma 链接 / 范围。
 
-**独立插件**:不依赖、不读写 figma2web 的任何产物(尤其 `config.md`),不作为其流程一环;不依赖 superpowers。
+**独立插件**:不依赖、不读写 figma2web 的任何产物(`project.md` / `tokens.md` / `design/` 等),不作为其流程一环;不依赖 superpowers。
 
 ## 产物(本 skill 是唯一写者)
 - `docs/figma-optimize/<页面>-<日期>.md` —— 交付就绪报告(可选落盘,报告阶段可改路径 / 不落盘)。作为递给开发的自查单与交接凭证。
@@ -34,7 +34,7 @@ disable-model-invocation: true
 
 ## 红线
 - **HARD GATE 未确认不动 Figma**;调用 `use_figma` 之前**必先走 `figma-use` skill**,每处改完 `get_screenshot` 校验。
-- **不生成代码**、不做 design→code;**不读写 figma2web / `config.md`**,不复用其文件。
+- **不生成代码**、不做 design→code;**不读写 figma2web 的任何产物**,不复用其文件。
 - **不替设计师做审美裁决**,不无中生有设计新界面 —— 只审既有稿并按用户裁定优化。
 - 云端 Figma 字体类改动常受限 → **降级为「建议」**,报告标注「受限」,不强制;字体归正只 load **目标**字体,绝不 load 缺失字体(否则抛错整脚本原子回滚)。
 - 数值类靠 `use_figma` 精确审计;对 hug 宽度、1px 描边、组件实例、矢量锚点等合理非网格值**不误报**。
