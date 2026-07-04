@@ -11,7 +11,7 @@ disable-model-invocation: true
 
 设计 **deep module**：大量行为藏在小 interface 后面，落在干净的 seam 上，可透过 interface 测试。本文是架构讨论的单一真相源——凡是设计或重构代码的场合，用这里的语言和判据。目标：给调用者 leverage，给维护者 locality，给所有人可测试性。
 
-本 skill 是另外三个 skill 的共用地基，运行时被它们自动 Read 装载，通常不需要单独调用；单独 `/codeflow:design-rules` 只有一个场景——想在普通设计讨论里把这套语言装进当前会话。
+本 skill 是本插件多个 skill 的共用地基，运行时被它们自动 Read 装载，通常不需要单独调用；单独 `/codeflow:design-rules` 只有一个场景——想在普通设计讨论里把这套语言装进当前会话。
 
 （理论出处：John Ousterhout《软件设计的哲学》的深模块理论、Michael Feathers 的 seam 概念。）
 

@@ -17,7 +17,7 @@ test("user can checkout with valid cart", async () => {
 特征：
 
 - 测的是调用者/用户在意的行为
-- 只用 public API
+- 只用 public interface
 - 内部重构后依然存活
 - 描述「做什么」而非「怎么做」
 - 一个测试一条逻辑断言
