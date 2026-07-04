@@ -1,6 +1,6 @@
 ---
 name: domain-modeling
-description: 领域建模：挑战冲突术语、锐化模糊词、术语当场落笔进 CONTEXT.md，按三条件门槛记 ADR。仅当用户主动用 `/engineering:domain-modeling` 指令调用、或其他 skill 显式指路时使用。
+description: 领域建模：挑战冲突术语、锐化模糊词、术语当场落笔进 CONTEXT.md，按三条件门槛记 ADR。仅当用户主动用 `/codeflow:domain-modeling` 指令调用、或其他 skill 显式指路时使用。
 allowed-tools: Read, Grep, Glob, Edit, Write, AskUserQuestion
 disable-model-invocation: true
 ---
@@ -15,7 +15,7 @@ disable-model-invocation: true
 
 ## 文件结构
 
-本插件组在目标项目里的文档统一收在 `docs/jljskills/engineering/` 下。单 context（多数仓库）：该目录下一个 `CONTEXT.md`（领域词汇表）+ `adr/`（决策记录）。该目录存在 `CONTEXT-MAP.md` 则是多 context 仓库，各 context 词汇表在 `contexts/<名>.md`。格式细节见 [references/context-format.md](references/context-format.md)。
+本插件组在目标项目里的文档统一收在 `docs/jljskills/codeflow/` 下。单 context（多数仓库）：该目录下一个 `CONTEXT.md`（领域词汇表）+ `adr/`（决策记录）。该目录存在 `CONTEXT-MAP.md` 则是多 context 仓库，各 context 词汇表在 `contexts/<名>.md`。格式细节见 [references/context-format.md](references/context-format.md)。
 
 **文件惰性创建**——有东西要写才建：第一个术语敲定时建 CONTEXT.md，第一条 ADR 要记时建 adr/；上级目录不存在则连同建出。
 

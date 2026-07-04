@@ -1,11 +1,11 @@
 ---
-name: grilling
-description: 对选定的深化候选走设计树拷问：约束 → seam 位置 → interface 形状 → 藏什么 → 哪些测试存活，收敛出 interface 草图。仅当用户主动用 `/engineering:grilling` 指令调用、或 improve-arch 第三阶段显式指路时使用。
+name: grill-design
+description: 对选定的深化候选走设计树拷问：约束 → seam 位置 → interface 形状 → 藏什么 → 哪些测试存活，收敛出 interface 草图。仅当用户主动用 `/codeflow:grill-design` 指令调用、或 improve-arch 第三阶段显式指路时使用。
 allowed-tools: Read, Grep, Glob, Agent, Write, Edit, AskUserQuestion
 disable-model-invocation: true
 ---
 
-# grilling — 走设计树
+# grill-design — 走设计树
 
 ## 用途
 
@@ -34,7 +34,7 @@ disable-model-invocation: true
    - **能查代码回答的自己查**，不拿去问用户。
    - 每分支结论**当场登记**，不攒到最后凭记忆。
 
-4. **收尾：interface 草图落盘**。全部分支走完时，输出深化后 module 的 interface 草图：方法、参数、不变量、错误模式，外加依赖策略（哪类依赖、几个 adapter）；连同各分支结论登记写入 `docs/jljskills/engineering/designs/<日期>-<module名>.md`（目录不存在则建）。
+4. **收尾：interface 草图落盘**。全部分支走完时，输出深化后 module 的 interface 草图：方法、参数、不变量、错误模式，外加依赖策略（哪类依赖、几个 adapter）；连同各分支结论登记写入 `docs/jljskills/codeflow/designs/<日期>-<module名>.md`（目录不存在则建）。
 
 完成标准：**写不出 interface 草图 = 分支没走完**——回到没走透的分支继续，不得以「大方向已清楚」收工。
 
