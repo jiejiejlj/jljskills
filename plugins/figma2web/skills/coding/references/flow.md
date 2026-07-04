@@ -4,7 +4,7 @@
 输入:目标 section spec(段落契约见 [../../spec-structure/SKILL.md](../../spec-structure/SKILL.md),B 表 / C 段 / G 段等词汇均以它为准)+ 本地切图 + `tokens.md` + `project.md` + `registry.json`。
 
 ## P0 — 前置校验
-1. `docs/figma2web/project.md` + `docs/figma2web/tokens.md` 存在。
+1. `docs/jljskills/figma2web/project.md` + `docs/jljskills/figma2web/tokens.md` 存在。
 2. 目标 spec 存在且已 finalize。
 3. **缺切图 HARD STOP**:spec **G 段**列的切图磁盘上必须存在;缺 → **停下**提示补跑 `page2doc`/`re-page2doc`,**不自行下载、不访问 Figma**。
 4. `registry.json` 存在(可空)。

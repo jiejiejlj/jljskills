@@ -1,13 +1,13 @@
 # page2doc 详细流程
 
 给一个 Figma 页面链接,文档化成 spec + 切图;读 Figma。
-产 `docs/figma2web/design/<page>/<section>.md` + `docs/figma2web/assets/<page>/<section>/...`。
+产 `docs/jljskills/figma2web/design/<page>/<section>.md` + `docs/jljskills/figma2web/assets/<page>/<section>/...`。
 
 spec 的具体段落结构见契约 [../../spec-structure/SKILL.md](../../spec-structure/SKILL.md)(唯一权威,不在本文件复述)。
 
 ## P0 — 前置校验
-1. `docs/figma2web/project.md` 存在。
-2. **`docs/figma2web/tokens.md` 存在(强制先跑 `config`)** —— 转换时要用其标准值做参照与魔法值把关。
+1. `docs/jljskills/figma2web/project.md` 存在。
+2. **`docs/jljskills/figma2web/tokens.md` 存在(强制先跑 `config`)** —— 转换时要用其标准值做参照与魔法值把关。
 3. figma-mcp 可用;用户给一个带 `node-id` 的 Figma 页面链接。
 
 ## P1 — 读取 + 提议分块

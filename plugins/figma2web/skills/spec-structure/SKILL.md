@@ -7,7 +7,7 @@ disable-model-invocation: true
 
 # spec-structure — spec 文件结构契约(v2,地基)
 
-路径:`docs/figma2web/design/<page>/<section>.md`。
+路径:`docs/jljskills/figma2web/design/<page>/<section>.md`。
 **自包含** —— `coding` 只凭 spec + 本地切图即可离线还原,不再读 Figma。
 
 > 本文件是 spec 结构的**唯一契约**:`page2doc`(写)、`re-page2doc`(增量刷新)、`coding`(读)三方共同遵循,契约正文只存这里,各 skill 只留指针。

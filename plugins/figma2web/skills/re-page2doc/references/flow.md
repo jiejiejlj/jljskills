@@ -5,7 +5,7 @@
 spec 的具体段落结构见契约 [../../spec-structure/SKILL.md](../../spec-structure/SKILL.md)(唯一权威,不在本文件复述)。
 
 ## P0 — 前置校验
-`docs/figma2web/project.md` + `docs/figma2web/tokens.md` + **已有 spec** 均存在;figma-mcp 可用;用户给(更新后的)Figma 页面链接。
+`docs/jljskills/figma2web/project.md` + `docs/jljskills/figma2web/tokens.md` + **已有 spec** 均存在;figma-mcp 可用;用户给(更新后的)Figma 页面链接。
 
 ## P1 — 全量重抓
 1. 读现有 spec,取各 section 的 `frameNodeId`。

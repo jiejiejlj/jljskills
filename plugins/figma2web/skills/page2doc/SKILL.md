@@ -1,6 +1,6 @@
 ---
 name: page2doc
-description: 给一个带 node-id 的 Figma 页面链接,忠实文档化成一份自包含的纯设计 spec + 预下载切图,让同事拿 spec 就能离线复现代码、不必再读 Figma。产 `docs/figma2web/design/<page>/<section>.md` 与切图。仅当用户主动用 `/figma2web:page2doc` 指令调用时使用 —— 不要在普通对话里自行触发。
+description: 给一个带 node-id 的 Figma 页面链接,忠实文档化成一份自包含的纯设计 spec + 预下载切图,让同事拿 spec 就能离线复现代码、不必再读 Figma。产 `docs/jljskills/figma2web/design/<page>/<section>.md` 与切图。仅当用户主动用 `/figma2web:page2doc` 指令调用时使用 —— 不要在普通对话里自行触发。
 allowed-tools: Read, Grep, Glob, Write, Edit, Bash, AskUserQuestion, mcp__plugin_figma_figma
 disable-model-invocation: true
 ---
@@ -16,9 +16,9 @@ disable-model-invocation: true
 仅当用户主动用 `/figma2web:page2doc` 指令调用时运行。前置:`project.md` 存在;**`tokens.md` 存在(强制先跑 `config`——转换时要用其标准值做参照与魔法值把关)**;figma-mcp 可用;用户给一个带 `node-id` 的 Figma 页面链接。
 
 ## 产物(本 skill 与 `re-page2doc` 共同维护)
-- `docs/figma2web/design/<page>/<section>.md` —— 自包含设计 spec,`coding` 只读。
-- `docs/figma2web/assets/<page>/<section>/...` —— 本地切图。
-- `docs/figma2web/assets/<page>/<section>/__ref.png` —— section 整体参照截图,供 `verify` 离线比对。
+- `docs/jljskills/figma2web/design/<page>/<section>.md` —— 自包含设计 spec,`coding` 只读。
+- `docs/jljskills/figma2web/assets/<page>/<section>/...` —— 本地切图。
+- `docs/jljskills/figma2web/assets/<page>/<section>/__ref.png` —— section 整体参照截图,供 `verify` 离线比对。
 
 ## 流程骨架(每一步多为 HARD GATE)
 1. **读取 + 提议分块**:`get_metadata` + `get_design_context` + `get_screenshot`;主动提出 section 分块方案请用户确认。

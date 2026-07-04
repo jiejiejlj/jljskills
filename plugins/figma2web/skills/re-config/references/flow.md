@@ -3,7 +3,7 @@
 设计标准 / 变量改动后差异化同步;读 Figma。对位旧 `resetup`。**不维护变更日志**(靠 git)。
 
 ## P0 — 前置校验
-1. `docs/figma2web/project.md` + `docs/figma2web/tokens.md` 均存在(缺 `tokens.md` → 提示先跑 `config`)。
+1. `docs/jljskills/figma2web/project.md` + `docs/jljskills/figma2web/tokens.md` 均存在(缺 `tokens.md` → 提示先跑 `config`)。
 2. figma-mcp 可用。
 3. 向用户索取**标准面板 Figma 链接**。
 

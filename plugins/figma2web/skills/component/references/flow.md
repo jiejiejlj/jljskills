@@ -7,7 +7,7 @@
 手动 / 按需。`coding` 可在输出里**提示**「此处有重复,建议跑 component」,但**绝不自动调用**(孤岛)。
 
 ## P0 — 前置校验
-`docs/figma2web/project.md` 存在;代码目录存在;`registry.json` 存在或初始化(可空)。**不需 figma-mcp。**
+`docs/jljskills/figma2web/project.md` 存在;代码目录存在;`registry.json` 存在或初始化(可空)。**不需 figma-mcp。**
 
 ## P1 — 扫描候选(判据)
 扫 `app/src` 找候选:
@@ -46,7 +46,7 @@
       "purpose": "主操作按钮",
       "props": "label, onClick, disabled",
       "figmaNode": "Button/Primary",
-      "preview": "docs/figma2web/assets/_components/PrimaryButton.png"
+      "preview": "docs/jljskills/figma2web/assets/_components/PrimaryButton.png"
     }
   ]
 }

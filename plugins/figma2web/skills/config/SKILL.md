@@ -1,6 +1,6 @@
 ---
 name: config
-description: 经一个代表设计规范的 Figma 链接抽取设计标准(色板 / 字体族 / 字号阶 / 间距网格 / 圆角 / 阴影 / 渐变),文档化为 `docs/figma2web/tokens.md` 并落实为可用的 `tailwind.config.*`。`init` 之后、建页面前的地基。仅当用户主动用 `/figma2web:config` 指令调用时使用 —— 不要在普通对话里自行触发。
+description: 经一个代表设计规范的 Figma 链接抽取设计标准(色板 / 字体族 / 字号阶 / 间距网格 / 圆角 / 阴影 / 渐变),文档化为 `docs/jljskills/figma2web/tokens.md` 并落实为可用的 `tailwind.config.*`。`init` 之后、建页面前的地基。仅当用户主动用 `/figma2web:config` 指令调用时使用 —— 不要在普通对话里自行触发。
 allowed-tools: Read, Grep, Glob, Write, Edit, AskUserQuestion, mcp__plugin_figma_figma
 disable-model-invocation: true
 ---
@@ -16,7 +16,7 @@ disable-model-invocation: true
 仅当用户主动用 `/figma2web:config` 指令调用时运行。前置需 `init` 已产出 `project.md`。读 Figma,需 figma-mcp 可用(未认证先跑认证)。
 
 ## 产物(本 skill 与 `re-config` 共同维护)
-- `docs/figma2web/tokens.md` —— 设计标准文档(值 + Figma 变量 + token + 来源),**source of truth**。
+- `docs/jljskills/figma2web/tokens.md` —— 设计标准文档(值 + Figma 变量 + token + 来源),**source of truth**。
 - `app/tailwind.config.*` —— 可用 token(theme),每次据 `tokens.md` 重新生成。
 
 ## 流程骨架

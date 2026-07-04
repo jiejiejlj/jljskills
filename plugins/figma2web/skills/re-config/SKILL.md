@@ -1,6 +1,6 @@
 ---
 name: re-config
-description: 设计标准 / 变量在 Figma 侧改动后,差异化同步 `docs/figma2web/tokens.md` 与 `app/tailwind.config.*`(只改变化项,对位旧 resetup)。仅当用户主动用 `/figma2web:re-config` 指令调用时使用 —— 不要在普通对话里自行触发。
+description: 设计标准 / 变量在 Figma 侧改动后,差异化同步 `docs/jljskills/figma2web/tokens.md` 与 `app/tailwind.config.*`(只改变化项,对位旧 resetup)。仅当用户主动用 `/figma2web:re-config` 指令调用时使用 —— 不要在普通对话里自行触发。
 allowed-tools: Read, Grep, Glob, Write, Edit, AskUserQuestion, mcp__plugin_figma_figma
 disable-model-invocation: true
 ---
@@ -16,7 +16,7 @@ disable-model-invocation: true
 仅当用户主动用 `/figma2web:re-config` 指令调用时运行。前置需 `project.md` + 已有的 `tokens.md` 都存在(缺后者 → 提示先跑 `config`)。读 Figma,需 figma-mcp 可用。
 
 ## 产物(本 skill 与 `config` 共同维护)
-- `docs/figma2web/tokens.md` —— 只更新 NEW/CHANGED(值 + 来源),UNCHANGED 原样。
+- `docs/jljskills/figma2web/tokens.md` —— 只更新 NEW/CHANGED(值 + 来源),UNCHANGED 原样。
 - `app/tailwind.config.*` —— 据更新后的 `tokens.md` 同步重新生成。
 
 ## 流程骨架

@@ -1,9 +1,9 @@
 # init 详细流程
 
-纯交互式收集,不读 Figma、不写代码。产出 `docs/figma2web/project.md`。
+纯交互式收集,不读 Figma、不写代码。产出 `docs/jljskills/figma2web/project.md`。
 
 ## P0 — 前置校验 + 首建 / 重配判定
-1. 检测 `docs/figma2web/project.md`:
+1. 检测 `docs/jljskills/figma2web/project.md`:
    - **不存在 → 首建**:走全量收集。
    - **已存在 → 预填式重配**:载入现有值,P1 逐项**预填当前值**,用户只改要改的项、其余回车保留;**只写变更**,不动未改项。
 2. 向用户确认前提:**「已有一个能本地跑的工程」**(init 不建脚手架,只往里加配置 / token / 组件 / 页面 / 部署产物)。

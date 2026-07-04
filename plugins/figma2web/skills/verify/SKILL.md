@@ -16,7 +16,7 @@ disable-model-invocation: true
 仅当用户主动用 `/figma2web:verify` 指令调用时运行。前置:`project.md` 存在;目标页代码能 build;docker / docker compose + Playwright 可用;**Figma 参照图已由 `page2doc` 持久化**(离线读)。
 
 ## 产物(本 skill 是唯一写者)
-- `docs/figma2web/verify/<page>-<date>.md` —— 还原度差异报告(供人审校)。
+- `docs/jljskills/figma2web/verify/<page>-<date>.md` —— 还原度差异报告(供人审校)。
 
 ## 流程骨架
 1. **起服务**:`docker compose` 起服务(用 `coding` 产的 Docker 产物)。

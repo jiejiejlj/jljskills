@@ -1,6 +1,6 @@
 ---
 name: init
-description: 配置项目级技术决策(框架 / 语言 / 样式 / 目录 / token 落地 / 部署等),产出 `docs/figma2web/project.md`。figma2web 管线的首个必跑 skill,其它 skill 都 gate 于它。仅当用户主动用 `/figma2web:init` 指令调用时使用 —— 不要在普通对话里自行触发。
+description: 配置项目级技术决策(框架 / 语言 / 样式 / 目录 / token 落地 / 部署等),产出 `docs/jljskills/figma2web/project.md`。figma2web 管线的首个必跑 skill,其它 skill 都 gate 于它。仅当用户主动用 `/figma2web:init` 指令调用时使用 —— 不要在普通对话里自行触发。
 allowed-tools: Read, Grep, Glob, Write, Edit, AskUserQuestion
 disable-model-invocation: true
 ---
@@ -18,7 +18,7 @@ figma2web 管线的地基。**纯交互式**收集团队在本项目上的技术
 前提:**已有一个能本地跑的工程**(init 不负责脚手架初始化)。
 
 ## 产物(本 skill 是唯一写者)
-- `docs/figma2web/project.md` —— 项目技术配置,所有下游 skill 只读。
+- `docs/jljskills/figma2web/project.md` —— 项目技术配置,所有下游 skill 只读。
 
 ## 流程骨架
 1. **前置校验 + 首建 / 重配判定**:`project.md` 不存在 → 首建;已存在 → 预填式重配(载入现值逐项预填,只写变更)。

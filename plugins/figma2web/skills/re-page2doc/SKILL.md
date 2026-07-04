@@ -16,8 +16,8 @@ disable-model-invocation: true
 仅当用户主动用 `/figma2web:re-page2doc` 指令调用时运行。前置:`project.md` + `tokens.md` + **已有 spec** 均存在;figma-mcp 可用;用户给(更新后的)Figma 页面链接。
 
 ## 产物(本 skill 与 `page2doc` 共同维护)
-- `docs/figma2web/design/<page>/<section>.md` —— 只刷新 NEW/CHANGED,标 `status`。
-- `docs/figma2web/assets/<page>/<section>/...` —— 只重下变化切图;`__ref.png` 同步。
+- `docs/jljskills/figma2web/design/<page>/<section>.md` —— 只刷新 NEW/CHANGED,标 `status`。
+- `docs/jljskills/figma2web/assets/<page>/<section>/...` —— 只重下变化切图;`__ref.png` 同步。
 
 ## 流程骨架
 1. **全量重抓**:读现有 spec 取各 section `frameNodeId` 逐个重抓当前 Figma;扫页面找新增 section;先不下切图。

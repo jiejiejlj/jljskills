@@ -3,7 +3,7 @@
 `init` 之后的地基;读 Figma,产**设计标准文档 + `tailwind.config.*`**。
 
 ## P0 — 前置校验
-1. `docs/figma2web/project.md` 存在(否则停下,提示先跑 `init`)。
+1. `docs/jljskills/figma2web/project.md` 存在(否则停下,提示先跑 `init`)。
 2. figma-mcp 可用(未认证 → 先跑认证流程)。
 3. 向用户索取一个**代表设计规范的 Figma 链接**(变量面板 / 设计系统帧)。**不落盘,每次现问。**
 
@@ -25,7 +25,7 @@
 呈交设计标准表,列:`名称 | Figma 变量 | 设计值 | token | 来源`。用户可改任意值;**未确认不写**。
 
 ## P4 — 写两产物(同一运行内一起写,保一致)
-1. `docs/figma2web/tokens.md` —— 设计标准文档,**source of truth**。
+1. `docs/jljskills/figma2web/tokens.md` —— 设计标准文档,**source of truth**。
 2. `app/tailwind.config.*` —— **每次据 `tokens.md` 重新生成**(天然不漂移)。
 3. 报告,**提示下一步跑 `page2doc`**。
 
