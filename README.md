@@ -12,7 +12,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 | `figma2web` | Figma 转网页相关 skill | 官方 `figma` 插件（Figma MCP）；`coding` 内部编排调用 `superpowers` |
 | `figma-optimize` | 设计稿交付前评审优化相关 skill | 官方 `figma` 插件（Figma MCP + `figma-use` skill，写回前强制） |
 | `support` | 工作流辅助相关 skill | — |
-| `engineering` | 代码库架构设计相关 skill（深模块方法论） | — |
+| `codeflow` | 编码工作流 idea→ship：拷问→PRD→拆 issue→TDD 实施→双轴审查，含深模块方法论与架构健康层 | 可选：`project`（`/project:interview2doc` 前置梳理想法）、`support`（`/support:handoff` 跨会话衔接） |
 
 ## 安装
 
@@ -25,7 +25,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 /plugin install figma2web@jljskills
 /plugin install figma-optimize@jljskills
 /plugin install support@jljskills
-/plugin install engineering@jljskills
+/plugin install codeflow@jljskills
 
 # 获取更新（滚动更新，每次 commit 即新版本）
 /plugin marketplace update
@@ -33,7 +33,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 
 ## 调用
 
-安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/project:interview2doc`、`/project:grill`、`/project:loopspec`、`/figma2web:init`、`/figma-optimize:standard`、`/figma-optimize:page`、`/support:handoff`、`/support:git-policy`、`/engineering:improve-arch`、`/engineering:design-rules`。
+安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/project:interview2doc`、`/project:loopspec`、`/figma2web:init`、`/figma-optimize:standard`、`/figma-optimize:page`、`/support:handoff`、`/support:git-policy`、`/codeflow:grill-with-docs`、`/codeflow:to-prd`、`/codeflow:implement`、`/codeflow:improve-arch`、`/codeflow:design-rules`。
 
 ## 目录结构
 
@@ -48,8 +48,6 @@ jljskills/
     │       ├── interview2doc/     # 把想法梳理成需求文档(助产式访谈)
     │       │   ├── SKILL.md
     │       │   └── references/method.md
-    │       ├── grill/             # 拷问已成形的方案(对抗式评审)
-    │       │   └── SKILL.md
     │       └── loopspec/          # 拷问出自动化 workflow 规格(循环即可委派)
     │           └── SKILL.md
     ├── figma2web/
@@ -75,21 +73,23 @@ jljskills/
     │           ├── SKILL.md
     │           ├── references/policy-menu.md
     │           └── scripts/block-git.sh
-    └── engineering/
+    └── codeflow/
         ├── .claude-plugin/plugin.json
-        ├── README.md              # 四技能一句话导览与选择指引
-        └── skills/
-            ├── design-rules/          # 深模块词汇库与判据(供其他 skill 指路引用)
-            │   ├── SKILL.md
-            │   └── references/        # deepening.md + design-it-twice.md
-            ├── improve-arch/          # 扫描深化机会→HTML 报告→拷问(编排入口)
-            │   ├── SKILL.md
-            │   └── references/html-report.md
-            ├── grilling/              # 走设计树,收敛 interface 草图
-            │   └── SKILL.md
-            └── domain-modeling/       # 领域词汇表 CONTEXT.md + ADR
-                ├── SKILL.md
-                └── references/        # context-format.md + adr-format.md
+        ├── README.md              # 13 skill 四层管线总览:地基/入口/交付/健康,主流程图与外部前置声明
+        └── skills/                    # 地基:design-rules/domain-modeling；入口:grill/grill-with-docs；交付:config/to-prd/to-issues/tdd/review/implement/prototype；健康:improve-arch/grill-design
+            ├── design-rules/SKILL.md + references/        # 深模块词汇库与判据(供其他 skill 指路引用)
+            ├── domain-modeling/SKILL.md + references/     # 领域词汇表 CONTEXT.md + ADR
+            ├── grill/SKILL.md                             # 对已成形方案做对抗式压力测试
+            ├── grill-with-docs/SKILL.md                   # grill 手法+当场沉淀术语/ADR(主流程入口)
+            ├── config/SKILL.md + references/              # 认址目标项目 issue 追踪器
+            ├── to-prd/SKILL.md + references/              # 综合当前对话成 PRD
+            ├── to-issues/SKILL.md + references/           # PRD 拆成曳光弹式垂直切片 issue
+            ├── tdd/SKILL.md + references/                 # 红绿循环规则手册
+            ├── review/SKILL.md + references/              # 双轴审查(Standards + Spec)
+            ├── implement/SKILL.md                         # 单 issue 实施,内驱 tdd 收尾 review
+            ├── prototype/SKILL.md + references/           # 一次性代码探路(逻辑走终端小程序/UI 走多变体路由)
+            ├── improve-arch/SKILL.md + references/        # 扫描深化机会→HTML 报告(编排入口)
+            └── grill-design/SKILL.md                      # 走设计树,收敛 interface 草图
 ```
 
 ## 新增 skill
