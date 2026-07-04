@@ -14,7 +14,7 @@ disable-model-invocation: true
 
 与另两个 skill 的分工(别混):
 - `/project:interview2doc` 中立地把模糊需求誊成需求文档——**不挑刺、不产可执行工件**。
-- `/project:grill` 对抗式拷问任意已成形方案,产出拷问纪要——**只挑刺、不产工件**。
+- `/codeflow:grill` 对抗式拷问任意已成形方案,产出拷问纪要——**只挑刺、不产工件**。
 - 本 skill = **grill 的拷问手法 + 一个固定交付物(workflow 规格)**,且只在**自动化 workflow** 这一个领域;它还会用「循环透镜」帮用户**发现**值得做的循环,不只评审给定的。
 
 ## 何时运行

@@ -9,7 +9,7 @@ disable-model-invocation: true
 
 ## 用途
 
-对一个**待设计的深化**逐分支拷问，目标是**收敛出 interface 形状**——不是压出问题（那是 `/project:grill` 对已成形方案干的事），而是和用户一起把设计树走完，直到能写出深化后 module 的 interface 草图。
+对一个**待设计的深化**逐分支拷问，目标是**收敛出 interface 形状**——不是压出问题（那是 `/codeflow:grill` 对已成形方案干的事），而是和用户一起把设计树走完，直到能写出深化后 module 的 interface 草图。
 
 两种进入方式：improve-arch 报告选定候选后被指路接入；或你已明确要深化哪个 module 时**直接调用**，不必先跑全套扫描。
 
@@ -44,4 +44,4 @@ disable-model-invocation: true
 - 拷问中敲定新术语、或用户以承重理由否决候选时，按 `../domain-modeling/SKILL.md` 当场落笔（CONTEXT.md / ADR）。
 
 ---
-> 内化自 mattpocock/skills 的 `skills/productivity/grilling`，流程骨架参考本仓库 `project:grill` 补强（2026-07-03）。
+> 内化自 mattpocock/skills 的 `skills/productivity/grilling`，流程骨架参考本仓库 `codeflow:grill` 补强（2026-07-03）。

@@ -1,6 +1,6 @@
 ---
 name: grill
-description: 对一份已成形的方案、计划或需求文档做对抗式压力测试,逐分支拷问每个决策,把隐藏假设、失败模式和边界情况逼出来。仅当用户主动用 `/project:grill` 指令调用时使用 —— 不要在普通对话里自行触发。
+description: 对一份已成形的方案、计划或需求文档做对抗式压力测试,逐分支拷问每个决策,把隐藏假设、失败模式和边界情况逼出来。仅当用户主动用 `/codeflow:grill` 指令调用时使用 —— 不要在普通对话里自行触发。
 allowed-tools: Read, Grep, Glob, WebFetch, Edit, AskUserQuestion
 disable-model-invocation: true
 ---
@@ -13,7 +13,7 @@ disable-model-invocation: true
 核心心法:**这是「评审方案」,不是「梳理输入」。** 与 `/project:interview2doc` 恰好互补:那边帮用户把模糊想法誊清成文档,这边对成形的方案发起挑战。想法还没成形时别用这个,先用 interview2doc。
 
 ## 何时运行
-仅当用户主动用 `/project:grill` 指令调用时运行。它会主导一段高强度的追问,不该在普通对话里被自动触发。
+仅当用户主动用 `/codeflow:grill` 指令调用时运行。它会主导一段高强度的追问,不该在普通对话里被自动触发。
 
 ## 流程
 

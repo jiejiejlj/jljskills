@@ -38,7 +38,7 @@ disable-model-invocation: true
 | 踩过的坑 | 走过的死胡同、试错结论,防止新 agent 重走 |
 | 相关产物索引 | 涉及的文件、文档、commit、PR、issue,**只写路径或链接** |
 | 下一步行动 | 按优先级排序的具体步骤,第一条要细到能直接动手 |
-| 建议调用的 skills | 推荐新会话应调用哪些 skill、在哪一步调用(如先 `/project:grill` 拷问方案再动手) |
+| 建议调用的 skills | 推荐新会话应调用哪些 skill、在哪一步调用(如先 `/codeflow:grill` 拷问方案再动手) |
 
 ## 红线
 - **已有产物只引用不复制**:需求文档、计划、ADR、issue、commit、diff 里已有的内容,一律写路径 / URL,不把内容抄进交接文档。
