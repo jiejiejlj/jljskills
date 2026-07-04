@@ -22,12 +22,12 @@
 外部依赖传进来，不要在内部自建：
 
 ```typescript
-// Easy to mock
+// 易 mock
 function processPayment(order, paymentClient) {
   return paymentClient.charge(order.total);
 }
 
-// Hard to mock
+// 难 mock
 function processPayment(order) {
   const client = new StripeClient(process.env.STRIPE_KEY);
   return client.charge(order.total);
@@ -39,14 +39,14 @@ function processPayment(order) {
 给每个外部操作建专门函数，而不是一个带条件分支的通用函数：
 
 ```typescript
-// GOOD: Each function is independently mockable
+// 好：每个函数可独立 mock
 const api = {
   getUser: (id) => fetch(`/users/${id}`),
   getOrders: (userId) => fetch(`/users/${userId}/orders`),
   createOrder: (data) => fetch('/orders', { method: 'POST', body: data }),
 };
 
-// BAD: Mocking requires conditional logic inside the mock
+// 坏：mock 内部得写条件分支
 const api = {
   fetch: (endpoint, options) => fetch(endpoint, options),
 };
