@@ -1,7 +1,7 @@
 # coding 详细流程
 
 `page2doc` 之后离线读 spec 出代码。**全程离线,不调 figma-mcp。**
-输入:目标 section spec + 本地切图 + `tokens.md` + `project.md` + `registry.json`。
+输入:目标 section spec(段落契约见 [../../spec-structure/SKILL.md](../../spec-structure/SKILL.md),B 表 / C 段 / G 段等词汇均以它为准)+ 本地切图 + `tokens.md` + `project.md` + `registry.json`。
 
 ## P0 — 前置校验
 1. `docs/figma2web/project.md` + `docs/figma2web/tokens.md` 存在。

@@ -28,7 +28,7 @@ disable-model-invocation: true
 5. **切图预下载**:按保真规则定策略,先呈交「节点 → 本地路径」映射确认再下载;存 `__ref.png`。
 6. **写 spec + 复核**:自检后请用户复核。
 
-> 完整分阶段流程见 [references/flow.md](references/flow.md);spec 文件结构见 [references/spec-structure.md](references/spec-structure.md) —— **动笔前先读它俩**。
+> 完整分阶段流程见 [references/flow.md](references/flow.md);spec 文件结构契约见 [../spec-structure/SKILL.md](../spec-structure/SKILL.md)(page2doc / re-page2doc / coding 三方共用的地基)—— **动笔前先读它俩**。
 
 ## 红线
 - **spec 保持纯设计描述**:记设计事实,代码决策(复用 / 新建 / token 翻译)留给 `coding`。

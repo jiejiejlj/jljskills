@@ -5,7 +5,7 @@ Claude Code skill 集合仓库（plugin marketplace）。module = skill，interf
 ## Language
 
 **地基 skill**：
-同 plugin 内专为被兄弟 skill 以相对路径 Read 而存在的单一真相源 skill——`disable-model-invocation: true`，零上下文占用，命令面条目仅作显式装载入口。实例：`engineering/design-rules`、`figma-optimize/figma-facts`（设计中）。
+同 plugin 内专为被兄弟 skill 以相对路径 Read 而存在的单一真相源 skill——`disable-model-invocation: true`，零上下文占用，命令面条目仅作显式装载入口。实例：`engineering/design-rules`、`figma-optimize/figma-facts`、`figma2web/spec-structure`。
 _避免_：facts skill、shared reference、公共库
 
 **装载式指针**：

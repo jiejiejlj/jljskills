@@ -26,7 +26,7 @@ disable-model-invocation: true
 4. **分头处理**:NEW 完整文档化;CHANGED 自刷新 spec + 只重下变化切图;UNCHANGED 不动。
 5. **小结**,提示对 NEW/CHANGED 跑 `coding`(孤岛,不自动调)。
 
-> 完整分阶段流程见 [references/flow.md](references/flow.md);spec 文件结构见 [references/spec-structure.md](references/spec-structure.md) —— **动笔前先读它俩**。
+> 完整分阶段流程见 [references/flow.md](references/flow.md);spec 文件结构契约见 [../spec-structure/SKILL.md](../spec-structure/SKILL.md)(page2doc / re-page2doc / coding 三方共用的地基)—— **动笔前先读它俩**。
 
 ## 红线
 - **全量重抓**,分类靠比对不靠目视;以 **B 表**为基准。

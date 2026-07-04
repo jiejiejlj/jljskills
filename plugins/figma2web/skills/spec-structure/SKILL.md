@@ -1,9 +1,16 @@
-# spec 文件结构(v2)
+---
+name: spec-structure
+description: figma2web 的 spec 文件结构契约（v2）：frontmatter 字段、A–G 段定义、「B 表为 diff 基准」的一致性约束。仅当 page2doc / re-page2doc / coding 的流程显式指路 Read 本文件、或用户主动用 `/figma2web:spec-structure` 查阅契约时使用。
+allowed-tools: Read
+disable-model-invocation: true
+---
+
+# spec-structure — spec 文件结构契约(v2,地基)
 
 路径:`docs/figma2web/design/<page>/<section>.md`。
 **自包含** —— `coding` 只凭 spec + 本地切图即可离线还原,不再读 Figma。
 
-> 本文件被 `page2doc`(写)与 `re-page2doc`(增量刷新)共同遵循;`coding` 据此读取。
+> 本文件是 spec 结构的**唯一契约**:`page2doc`(写)、`re-page2doc`(增量刷新)、`coding`(读)三方共同遵循,契约正文只存这里,各 skill 只留指针。
 
 ## frontmatter
 ```yaml

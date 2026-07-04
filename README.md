@@ -55,7 +55,8 @@ jljskills/
     ├── figma2web/
     │   ├── .claude-plugin/plugin.json
     │   └── skills/                    # init/config/re-config/page2doc/re-page2doc/coding/component/verify
-    │       └── <skill>/SKILL.md
+    │       ├── <skill>/SKILL.md
+    │       └── spec-structure/SKILL.md   # spec 文件结构契约地基,page2doc/re-page2doc/coding 三方共用
     ├── figma-optimize/
     │   ├── .claude-plugin/plugin.json
     │   └── skills/                    # standard(规范板评审)/ page(界面稿评审)/ figma-facts(共享判据地基)

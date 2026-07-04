@@ -2,7 +2,7 @@
 
 设计改动后只更新变化 section;读 Figma。对位旧 `refresh`。**不擅删、问用户。**
 
-spec 的具体段落结构见 [spec-structure.md](spec-structure.md)。
+spec 的具体段落结构见契约 [../../spec-structure/SKILL.md](../../spec-structure/SKILL.md)(唯一权威,不在本文件复述)。
 
 ## P0 — 前置校验
 `docs/figma2web/project.md` + `docs/figma2web/tokens.md` + **已有 spec** 均存在;figma-mcp 可用;用户给(更新后的)Figma 页面链接。

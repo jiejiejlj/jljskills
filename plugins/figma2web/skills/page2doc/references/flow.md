@@ -3,7 +3,7 @@
 给一个 Figma 页面链接,文档化成 spec + 切图;读 Figma。
 产 `docs/figma2web/design/<page>/<section>.md` + `docs/figma2web/assets/<page>/<section>/...`。
 
-spec 的具体段落结构见 [spec-structure.md](spec-structure.md)。
+spec 的具体段落结构见契约 [../../spec-structure/SKILL.md](../../spec-structure/SKILL.md)(唯一权威,不在本文件复述)。
 
 ## P0 — 前置校验
 1. `docs/figma2web/project.md` 存在。
