@@ -49,7 +49,7 @@ disable-model-invocation: true
 
 用户选定候选后，按 `../grill-design/SKILL.md` 走设计树。
 
-决策晶化时副作用当场发生，按 `../domain-modeling/SKILL.md` 落笔：
+决策晶化时副作用当场发生，按 `../build-context/SKILL.md` 落笔：
 
 - 深化后的 module 要用 CONTEXT.md 里没有的概念命名？把词加进 CONTEXT.md（文件不存在则惰性创建）。
 - 对话中锐化了某个模糊术语？当场更新 CONTEXT.md。

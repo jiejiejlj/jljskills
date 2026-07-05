@@ -41,7 +41,7 @@ disable-model-invocation: true
 ## 红线
 
 - 用户想比较多种 interface 方案时，切到 `../design-deep-module/references/design-it-twice.md` 的并行子代理模式，不在单线拷问里硬比。
-- 拷问中敲定新术语、或用户以承重理由否决候选时，按 `../domain-modeling/SKILL.md` 当场落笔（CONTEXT.md / ADR）。
+- 拷问中敲定新术语、或用户以承重理由否决候选时，按 `../build-context/SKILL.md` 当场落笔（CONTEXT.md / ADR）。
 
 ---
 > 内化自 mattpocock/skills 的 `skills/productivity/grilling`，流程骨架参考本仓库 `codeflow:grill` 补强（2026-07-03）。

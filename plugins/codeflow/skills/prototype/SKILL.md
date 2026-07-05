@@ -33,7 +33,7 @@ disable-model-invocation: true
 
 ## 收尾
 
-原型本身不值得留，**答案**才值得留——连同它回答的那个问题，落进 commit message、ADR（domain-modeling 维护于 `docs/jljskills/codeflow/adr/`，格式见 [`../domain-modeling/SKILL.md`](../domain-modeling/SKILL.md)）、issue（决策性片段的收纳规则见 [`../to-prd/SKILL.md`](../to-prd/SKILL.md) 第 3 节），或原型旁的 `NOTES.md`。用户在场，当场问一句「这教会你什么」；用户不在场，先留占位，等验证结果回来再填，别把没验证过的原型直接删掉。
+原型本身不值得留，**答案**才值得留——连同它回答的那个问题，落进 commit message、ADR（build-context 维护于 `docs/jljskills/codeflow/adr/`，格式见 [`../build-context/SKILL.md`](../build-context/SKILL.md)）、issue（决策性片段的收纳规则见 [`../to-prd/SKILL.md`](../to-prd/SKILL.md) 第 3 节），或原型旁的 `NOTES.md`。用户在场，当场问一句「这教会你什么」；用户不在场，先留占位，等验证结果回来再填，别把没验证过的原型直接删掉。
 
 ---
 > 内化自 mattpocock/skills 的 `skills/engineering/prototype`（2026-07-05）。

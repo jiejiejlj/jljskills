@@ -2,7 +2,7 @@
 
 内化自 mattpocock/skills 的编码工作流：从一个还没成形的想法，走到可提交的代码，另汇入外来 issue/PR 分诊与硬 bug 诊断两条支线。16 个 skill 分五层协作（外加入口层旁挂的 research），靠文件产物衔接（不自动串调）。目标项目侧的文档统一收在 `docs/jljskills/codeflow/` 下：
 
-- `CONTEXT.md` —— 领域术语表（domain-modeling 维护）
+- `CONTEXT.md` —— 领域术语表（build-context 维护）
 - `adr/` —— 达到三条件门槛的重大决策记录
 - `designs/` —— grill-design 收敛出的 interface 草图
 - `issue-tracker.md` —— 本项目 issue 追踪器的认址与操作方式（config 产出）
@@ -25,12 +25,12 @@ grill-with-docs ──▶ [说不清就 prototype] ──▶ to-prd ──▶ to
 **地基**（其余 skill 的共用词汇与记忆层，通常不单独调用）
 
 - `/codeflow:design-deep-module` —— 深模块设计的词汇库与判据：八术语、deep/shallow 模型、删除测试等四原则。
-- `/codeflow:domain-modeling` —— 挑战冲突术语、锐化模糊词、术语当场落笔进 CONTEXT.md，按三条件门槛记 ADR。
+- `/codeflow:build-context` —— 挑战冲突术语、锐化模糊词、术语当场落笔进 CONTEXT.md，按三条件门槛记 ADR。
 
 **入口**（方案还没定型时先拷问）
 
 - `/codeflow:grill` —— 对一份已成形的方案、计划或需求文档做对抗式压力测试，逐分支拷问逼出隐藏假设与边界情况。
-- `/codeflow:grill-with-docs` —— 主流程入口：按 grill 的手法拷问方案，同时按 domain-modeling 当场沉淀术语与 ADR。
+- `/codeflow:grill-with-docs` —— 主流程入口：按 grill 的手法拷问方案，同时按 build-context 当场沉淀术语与 ADR。
 
 旁路：`/codeflow:research` —— 把阅读性调研外包给后台代理：只查一手来源、逐条带引用，落成文档根 `research/` 下一份 Markdown；主会话继续干活，产物可回喂 grill-with-docs，不占主链位置。
 
