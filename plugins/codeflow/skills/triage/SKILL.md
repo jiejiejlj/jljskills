@@ -15,7 +15,7 @@ disable-model-invocation: true
 
 五个**状态**角色：`needs-triage`（待评估）、`needs-info`（等报告人补充）、`ready-for-agent`（规格齐备，可交给 agent）、`ready-for-human`（需要人来做）、`wontfix`（不予处理）。
 
-标签的具体名字、打/摘标签与评论/关闭的命令一律照 `docs/jljskills/codeflow/issue-tracker.md`——本 skill 不复述。
+标签的具体名字、打/摘标签与评论/关闭的命令一律照 `docs/jljskills/codeflow/issue-tracker.md`——本 skill 不复述。追踪器未配置（目标项目无 `docs/jljskills/codeflow/issue-tracker.md`）时，先指路 `/codeflow:config` 配好再回来——triage 每一步都要读写追踪器，缺配置无法开工。
 
 不变量：每条被 triage 的 issue **恰好挂一个类别 + 一个状态**。两个状态角色同时挂着即冲突，先停下问维护者，不要自作主张摘掉一个。
 

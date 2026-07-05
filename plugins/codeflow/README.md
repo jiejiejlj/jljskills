@@ -73,7 +73,7 @@ grill 三兄弟的分界：**grill** 拷问的是方案本身；**grill-with-doc
 
 ## 流程约定
 
-- 首次在目标项目使用先跑 `/codeflow:config`，认清 issue 追踪器长什么样，后续 to-prd/to-issues/implement/review 都依赖这份认址。
+- 首次在目标项目使用先跑 `/codeflow:config`，认清 issue 追踪器长什么样，后续 to-prd/to-issues/implement/review/triage 都依赖这份认址。
 - `to-issues` 拆完之后，每个 issue **开一个新会话**执行 implement（issue 已独立可认领，不必延续拆解时的上下文）；完整表述见 `skills/implement/SKILL.md` 末段。
 - 跨会话衔接（比如把某个 issue 的进度交给下一个会话继续）用 `/support:handoff`。
 

@@ -1,6 +1,6 @@
 ---
 name: diagnosing-bugs
-description: 硬 bug 与性能回归的诊断纪律：先建一条能对本 bug 变红的反馈回路，无回路不许提假设；复现→最小化→假设→插桩→修复带回归测试→复盘。仅当用户主动用 `/codeflow:diagnosing-bugs` 指令调用时使用 —— 不要在普通对话里自行触发。
+description: 硬 bug 与性能回归的诊断纪律——东西坏了、报错、间歇性失败、变慢且一眼看不出时用：先建一条能对本 bug 变红的反馈回路，无回路不许提假设；复现→最小化→假设→插桩→修复带回归测试→复盘。仅当用户主动用 `/codeflow:diagnosing-bugs` 指令调用时使用 —— 不要在普通对话里自行触发。
 allowed-tools: Read, Grep, Glob, Bash, Write, Edit, Agent, AskUserQuestion
 disable-model-invocation: true
 ---
