@@ -1,7 +1,7 @@
 # codeflow 汇入层三件设计：triage / diagnosing-bugs / research
 
 日期：2026-07-05
-状态：待实施
+状态：已实施（收口 commit 21e0bd0，终审修补 8c945b3；实施记录见 docs/superpowers/plans/2026-07-05-codeflow-onramps.md 与 .superpowers/sdd/progress.md）
 来源：codeflow 大一统重组（见 `2026-07-05-codeflow-restructure-design.md`，已实施）的范围外三件，本轮补齐。移植源仍钉 mattpocock/skills `272f99b`（`/tmp/mattpocock-skills-src`）。
 
 ## 0. 已拍板决策
