@@ -43,7 +43,7 @@
 
 ## 2. 校验（每 commit 后跑相关项，C5 后全量）
 
-name 一致脚本零 MISMATCH（预期 29 个 skill）；旧名清零：`grep -rn "design-rules\|domain-modeling" plugins/ README.md CLAUDE.md` 零命中（docs/superpowers 与 docs/design 历史文档豁免）；相对链接从各文件所在目录可达；「驱动思想」小节 grep 可数（预期 ≥5 处）；JSON 可解析；README 目录树对照 find。
+name 一致脚本零 MISMATCH（skill 总数以 `find plugins -name SKILL.md | wc -l` 实际为准，本轮收口后为 33）；旧名清零：`grep -rn "design-rules\|domain-modeling" plugins/ README.md CLAUDE.md` 零命中（docs/superpowers 与 docs/design 历史文档豁免）；相对链接从各文件所在目录可达；「驱动思想」小节 grep 可数（预期 ≥5 处）；JSON 可解析；README 目录树对照 find。
 
 ## 3. 终审与收尾
 

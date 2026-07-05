@@ -27,7 +27,7 @@ disable-model-invocation: true
 
 1. **挑战**：「词汇表定义 cancellation 是 X，你说的像是 Y——是哪个？」
 2. **锐化**：「你说 account——指 Customer 还是 User？这是两个东西。」
-3. **边界场景压测**：发明压边界的具体场景，逼用户把概念分界说精确。
+3. **边界场景压测**：「客户下单后立刻退款——这算 cancellation 还是 refund？」
 4. **代码对质**：「代码里取消的是整个 Order，你刚说可以部分取消——哪个对？」
 5. **当场更新 CONTEXT.md**：术语一敲定立刻写，不攒批。条目格式见 [references/context-format.md](references/context-format.md)。
 

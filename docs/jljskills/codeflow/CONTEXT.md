@@ -5,8 +5,16 @@ Claude Code skill 集合仓库（plugin marketplace）。module = skill，interf
 ## Language
 
 **地基 skill**：
-同 plugin 内专为被兄弟 skill 以相对路径 Read 而存在的单一真相源 skill——`disable-model-invocation: true`，零上下文占用，命令面条目仅作显式装载入口。实例：`engineering/design-rules`、`figma-optimize/figma-facts`、`figma2web/spec-structure`。
+同 plugin 内专为被兄弟 skill 以相对路径 Read 而存在的单一真相源 skill——`disable-model-invocation: true`，零上下文占用，命令面条目仅作显式装载入口。实例：`codeflow/design-deep-module`、`figma-optimize/figma-facts`、`figma2web/spec-structure`。
 _避免_：facts skill、shared reference、公共库
+
+**思想基石**：
+地基 skill 的子类——承载一套设计思想的纯判据与词汇（深模块、领域建模），`design-` 前缀、一思想一 skill、只供 Read 装载不操作文件。组织判据与否决记 ADR-0005。
+_避免_：design-thoughts 大一统库、思想与机制同居
+
+**驱动思想**：
+行为 skill 正文的具名槽位——「驱动思想：<思想名>——Read `../design-<思想>/SKILL.md`」，以正向指针声明该 skill 的方法论来源；grep「驱动思想」即全库思想-链路映射。仅「方法本身是该思想应用」的 skill 佩戴，辅助查阅保持行内 Read。
+_避免_：反向消费方清单、每个 Read 都戴槽位
 
 **装载式指针**：
 消费方 flow 中的硬性「Read 地基 skill」步骤。判据正文只存地基一处，消费点不留摘要——漂移面归零，代价是运行时多一次 Read。
