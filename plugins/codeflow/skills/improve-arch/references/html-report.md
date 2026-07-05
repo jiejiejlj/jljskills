@@ -40,7 +40,7 @@
 
 ## 候选卡片
 
-**图承担重量，散文克制**，术语直接用 design-rules 词汇表的，不加铺垫。每个候选一个 `<article>`：
+**图承担重量，散文克制**，术语直接用 design-deep-module 词汇表的，不加铺垫。每个候选一个 `<article>`：
 
 - **Title** —— 短，直接命名这次深化（如「折叠 Order intake 管线」）。
 - **徽章行** —— 推荐强度（`Strong` = emerald、`Worth exploring` = amber、`Speculative` = slate）+ 依赖类别 tag（`in-process`、`local-substitutable`、`ports & adapters`、`mock`）。
@@ -103,7 +103,7 @@ before：函数调用树画成嵌套盒子。after：同一棵树折叠进一个
 
 ## 措辞
 
-散文平实简洁——但架构名词动词一律来自 design-rules 词汇表。简洁不是漂移的借口。
+散文平实简洁——但架构名词动词一律来自 design-deep-module 词汇表。简洁不是漂移的借口。
 
 **只用**：module、interface、implementation、depth、deep、shallow、seam、adapter、leverage、locality。
 

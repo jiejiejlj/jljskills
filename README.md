@@ -31,7 +31,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 
 ## 调用
 
-安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/figma2web:init`、`/figma-optimize:standard`、`/figma-optimize:page`、`/support:interview2doc`、`/support:loopspec`、`/support:handoff`、`/support:git-policy`、`/codeflow:grill-with-docs`、`/codeflow:to-prd`、`/codeflow:implement`、`/codeflow:improve-arch`、`/codeflow:design-rules`。
+安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/figma2web:init`、`/figma-optimize:standard`、`/figma-optimize:page`、`/support:interview2doc`、`/support:loopspec`、`/support:handoff`、`/support:git-policy`、`/codeflow:grill-with-docs`、`/codeflow:to-prd`、`/codeflow:implement`、`/codeflow:improve-arch`、`/codeflow:design-deep-module`。
 
 ## 目录结构
 
@@ -71,8 +71,8 @@ jljskills/
     └── codeflow/
         ├── .claude-plugin/plugin.json
         ├── README.md              # 16 skill 五层管线总览:地基/入口(旁挂 research)/交付/汇入/健康,主流程图与外部前置声明
-        └── skills/                    # 地基:design-rules/domain-modeling；入口:grill/grill-with-docs(旁挂 research)；交付:config/to-prd/to-issues/tdd/review/implement/prototype；汇入:triage/diagnosing-bugs；健康:improve-arch/grill-design
-            ├── design-rules/SKILL.md + references/        # 深模块词汇库与判据(供其他 skill 指路引用)
+        └── skills/                    # 地基:design-deep-module/domain-modeling；入口:grill/grill-with-docs(旁挂 research)；交付:config/to-prd/to-issues/tdd/review/implement/prototype；汇入:triage/diagnosing-bugs；健康:improve-arch/grill-design
+            ├── design-deep-module/SKILL.md + references/        # 深模块词汇库与判据(供其他 skill 指路引用)
             ├── domain-modeling/SKILL.md + references/     # 领域词汇表 CONTEXT.md + ADR
             ├── grill/SKILL.md                             # 对已成形方案做对抗式压力测试
             ├── grill-with-docs/SKILL.md                   # grill 手法+当场沉淀术语/ADR(主流程入口)

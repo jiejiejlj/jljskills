@@ -11,11 +11,11 @@ disable-model-invocation: true
 
 对**已有代码库**浮出架构摩擦，提出**深化机会**——把 shallow module 重构成 deep module 的候选项。目标是可测试性与 AI 可导航性。三阶段：探索 → HTML 报告 → 拷问。适用于「有模糊的不适感、说不出具体哪里疼」的时候。
 
-射程边界：输入必须是已有代码，无码可扫时不适用（全新设计走 `../design-rules/references/design-it-twice.md`）；终点是选定候选的 interface 草图（由 grill-design 落盘），实施改码不在本 skill 内——草图就是交给实施会话的 seam。已明确知道要深化哪个 module 时，跳过本 skill 直接 `/codeflow:grill-design`。
+射程边界：输入必须是已有代码，无码可扫时不适用（全新设计走 `../design-deep-module/references/design-it-twice.md`）；终点是选定候选的 interface 草图（由 grill-design 落盘），实施改码不在本 skill 内——草图就是交给实施会话的 seam。已明确知道要深化哪个 module 时，跳过本 skill 直接 `/codeflow:grill-design`。
 
 ## 前置
 
-1. Read `../design-rules/SKILL.md` 装载词汇与判据——每条建议都用它的术语，一个词不许漂移。
+1. **驱动思想：深模块**——Read `../design-deep-module/SKILL.md` 装载词汇与判据，每条建议都用它的术语，一个词不许漂移。
 2. 读 `docs/jljskills/codeflow/CONTEXT.md`（领域词汇表）与 `docs/jljskills/codeflow/adr/`（已定决策）——领域名词用 CONTEXT.md 的，ADR 记录的决策不重新争论。两者不存在则跳过，不报错、不创建。
 
 ## 阶段一：探索
@@ -38,7 +38,7 @@ disable-model-invocation: true
 
 每个候选项一张卡片：Title、徽章行（推荐强度 + 依赖类别）、Files、before/after 图、Problem 一句、Solution 一句、Wins 列表、ADR 冲突警示（如适用）。报告末尾必有 **Top recommendation**：先做哪个、为什么。
 
-- **领域名词用 CONTEXT.md 的，架构名词用 design-rules 的。** CONTEXT.md 定义了 Order，就说「Order intake module」——不说「FooBarHandler」，也不说「Order service」。
+- **领域名词用 CONTEXT.md 的，架构名词用 design-deep-module 的。** CONTEXT.md 定义了 Order，就说「Order intake module」——不说「FooBarHandler」，也不说「Order service」。
 - **ADR 冲突**：候选与现有 ADR 相抵时，只有摩擦真实到值得重开决策才列出，并在卡片上明确标注冲突及重开理由。别把 ADR 禁止的理论重构全列一遍。
 
 完成标准：Wins 用 locality / leverage 措辞（禁「更易维护」「更干净」）；每卡有 before/after 图；末尾有 Top recommendation。
@@ -54,7 +54,7 @@ disable-model-invocation: true
 - 深化后的 module 要用 CONTEXT.md 里没有的概念命名？把词加进 CONTEXT.md（文件不存在则惰性创建）。
 - 对话中锐化了某个模糊术语？当场更新 CONTEXT.md。
 - 用户以承重理由否决候选？提议记 ADR：「要不要记成 ADR，免得未来的架构审查再提同一个建议？」——只在理由真会被未来的探索者需要时才提；短暂性理由（「现在不值得」）和不言自明的理由跳过。
-- 想为深化后的 module 探索多种 interface？走 `../design-rules/references/design-it-twice.md` 的并行子代理模式。
+- 想为深化后的 module 探索多种 interface？走 `../design-deep-module/references/design-it-twice.md` 的并行子代理模式。
 
 ---
 > 内化自 mattpocock/skills 的 `skills/engineering/improve-codebase-architecture`（2026-07-03）。

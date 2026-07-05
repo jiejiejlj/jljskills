@@ -15,11 +15,11 @@ disable-model-invocation: true
 
 ## 前置
 
-若本会话尚未装载词汇，先 Read `../design-rules/SKILL.md`——拷问全程用它的术语。
+**驱动思想：深模块**——若本会话尚未装载词汇，先 Read `../design-deep-module/SKILL.md`，拷问全程用它的术语。
 
 ## 流程
 
-1. **锚定候选**。确认要设计的深化：涉及哪些文件、当前哪里 shallow、依赖属于哪一类（对照 `../design-rules/references/deepening.md` 的四分类）。没有候选时先问「要设计的深化是什么」。
+1. **锚定候选**。确认要设计的深化：涉及哪些文件、当前哪里 shallow、依赖属于哪一类（对照 `../design-deep-module/references/deepening.md` 的四分类）。没有候选时先问「要设计的深化是什么」。
 
 2. **走设计树，从最上游开始**。决策之间有依赖，上游塌了下游全塌。按序逐分支：
    - **约束**：新 interface 必须满足什么（性能、兼容、部署形态）？
@@ -40,7 +40,7 @@ disable-model-invocation: true
 
 ## 红线
 
-- 用户想比较多种 interface 方案时，切到 `../design-rules/references/design-it-twice.md` 的并行子代理模式，不在单线拷问里硬比。
+- 用户想比较多种 interface 方案时，切到 `../design-deep-module/references/design-it-twice.md` 的并行子代理模式，不在单线拷问里硬比。
 - 拷问中敲定新术语、或用户以承重理由否决候选时，按 `../domain-modeling/SKILL.md` 当场落笔（CONTEXT.md / ADR）。
 
 ---

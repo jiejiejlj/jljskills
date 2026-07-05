@@ -1,17 +1,17 @@
 ---
-name: design-rules
-description: 深模块设计的词汇库与判据：module/interface/implementation/depth/seam/adapter/leverage/locality 八术语、deep/shallow 模型、删除测试等四原则。仅当用户主动用 `/codeflow:design-rules` 指令调用、或其他 skill 显式指路 Read 本文件时使用。
+name: design-deep-module
+description: 深模块设计的词汇库与判据：module/interface/implementation/depth/seam/adapter/leverage/locality 八术语、deep/shallow 模型、删除测试等四原则。仅当用户主动用 `/codeflow:design-deep-module` 指令调用、或其他 skill 显式指路 Read 本文件时使用。
 allowed-tools: Read
 disable-model-invocation: true
 ---
 
-# design-rules — 深模块词汇与判据
+# design-deep-module — 深模块词汇与判据
 
 ## 用途
 
 设计 **deep module**：大量行为藏在小 interface 后面，落在干净的 seam 上，可透过 interface 测试。本文是架构讨论的单一真相源——凡是设计或重构代码的场合，用这里的语言和判据。目标：给调用者 leverage，给维护者 locality，给所有人可测试性。
 
-本 skill 是本插件多个 skill 的共用地基，运行时被它们自动 Read 装载，通常不需要单独调用；单独 `/codeflow:design-rules` 只有一个场景——想在普通设计讨论里把这套语言装进当前会话。
+本 skill 是本插件多个 skill 的共用地基，运行时被它们自动 Read 装载，通常不需要单独调用；单独 `/codeflow:design-deep-module` 只有一个场景——想在普通设计讨论里把这套语言装进当前会话。
 
 （理论出处：John Ousterhout《软件设计的哲学》的深模块理论、Michael Feathers 的 seam 概念。）
 

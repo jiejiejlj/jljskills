@@ -20,7 +20,7 @@ jljskills/
 - **三处 name 必须一致**：skill 目录名、`SKILL.md` frontmatter 的 `name`、调用命名空间 `/<plugin>:<skill>` 三者要对应得上。
 - **新增 plugin 要三处登记**：建 `plugins/<plugin>/.claude-plugin/plugin.json` 的同时，必须（1）在 `.claude-plugin/marketplace.json` 的 `plugins` 数组里补一条（漏登记则用户装不到），（2）同步更新 `README.md` 的分类表、安装示例与目录树（漏了不影响安装，但文档会漂移）。改了 plugin 的 skill 构成时，也要回头看 README 的目录树是否过时。
 - **空目录不会被 git 跟踪**：每个 plugin 的 `skills/` 下至少要有一个真 skill，否则目录提交不上去——不要建空壳 plugin。
-- **跨 plugin 不可用相对路径引用**：安装缓存按 `plugin/<hash>/` 隔离，`../../` 穿不出本 plugin。共享内容一律做成本 plugin 内的地基 skill（如 `codeflow/design-rules`、`figma-optimize/figma-facts`）；依赖外部 plugin 只能按名字引用，并在 README 分类表声明前置。
+- **跨 plugin 不可用相对路径引用**：安装缓存按 `plugin/<hash>/` 隔离，`../../` 穿不出本 plugin。共享内容一律做成本 plugin 内的地基 skill（如 `codeflow/design-deep-module`、`figma-optimize/figma-facts`）；依赖外部 plugin 只能按名字引用，并在 README 分类表声明前置。
 
 ## SKILL.md 写法
 

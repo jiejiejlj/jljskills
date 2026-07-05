@@ -13,7 +13,7 @@ disable-model-invocation: true
 
 ## 2. seam 先行
 
-写 PRD 前，先勾画测试 seam 并与用户确认。优先复用既有 seam；新 seam 放可行的最高处；全库理想数量是一个。seam 词汇 Read `../design-rules/SKILL.md`。确认通过再进入下一步，没确认不动笔写 PRD。
+写 PRD 前，先勾画测试 seam 并与用户确认。优先复用既有 seam；新 seam 放可行的最高处；全库理想数量是一个。seam 词汇 Read `../design-deep-module/SKILL.md`（驱动思想：深模块）。确认通过再进入下一步，没确认不动笔写 PRD。
 
 ## 3. 写 PRD
 

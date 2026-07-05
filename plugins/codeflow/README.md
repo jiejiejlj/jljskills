@@ -24,7 +24,7 @@ grill-with-docs ──▶ [说不清就 prototype] ──▶ to-prd ──▶ to
 
 **地基**（其余 skill 的共用词汇与记忆层，通常不单独调用）
 
-- `/codeflow:design-rules` —— 深模块设计的词汇库与判据：八术语、deep/shallow 模型、删除测试等四原则。
+- `/codeflow:design-deep-module` —— 深模块设计的词汇库与判据：八术语、deep/shallow 模型、删除测试等四原则。
 - `/codeflow:domain-modeling` —— 挑战冲突术语、锐化模糊词、术语当场落笔进 CONTEXT.md，按三条件门槛记 ADR。
 
 **入口**（方案还没定型时先拷问）
