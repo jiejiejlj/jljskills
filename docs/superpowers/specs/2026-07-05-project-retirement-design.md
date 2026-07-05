@@ -1,7 +1,7 @@
 # project 插件退役设计：interview2doc / loopspec 迁入 support
 
 日期：2026-07-05
-状态：待实施
+状态：已实施（单 commit d9e6087 收口并已 push）
 来源：codeflow 大一统重组（一期 c4df528、二期 21e0bd0）后 project 仅剩两个通用思考 skill，用户拍板迁入 support 并移除 project 插件组。
 
 ## 1. 迁移
