@@ -8,11 +8,10 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 
 | Plugin | 说明 | 前置依赖（不装则相关功能静默失效） |
 | --- | --- | --- |
-| `project` | 项目设计相关 skill | — |
 | `figma2web` | Figma 转网页相关 skill | 官方 `figma` 插件（Figma MCP）；`coding` 内部编排调用 `superpowers` |
 | `figma-optimize` | 设计稿交付前评审优化相关 skill | 官方 `figma` 插件（Figma MCP + `figma-use` skill，写回前强制） |
-| `support` | 工作流辅助相关 skill | — |
-| `codeflow` | 编码工作流 idea→ship：拷问→PRD→拆 issue→TDD 实施→双轴审查，含深模块方法论、架构健康层，以及外来 issue/PR 分诊与硬 bug 诊断两条汇入支线 | 可选：`project`（`/project:interview2doc` 前置梳理想法）、`support`（`/support:handoff` 跨会话衔接） |
+| `support` | 通用辅助 skill：需求梳理（interview2doc）、workflow 规格（loopspec）、会话交接（handoff）、git 策略（git-policy） | — |
+| `codeflow` | 编码工作流 idea→ship：拷问→PRD→拆 issue→TDD 实施→双轴审查，含深模块方法论、架构健康层，以及外来 issue/PR 分诊与硬 bug 诊断两条汇入支线 | 可选：`support`（`/support:interview2doc` 前置梳理想法、`/support:handoff` 跨会话衔接） |
 
 ## 安装
 
@@ -21,7 +20,6 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 /plugin marketplace add jiejiejlj/jljskills
 
 # 按需安装分类
-/plugin install project@jljskills
 /plugin install figma2web@jljskills
 /plugin install figma-optimize@jljskills
 /plugin install support@jljskills
@@ -33,7 +31,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 
 ## 调用
 
-安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/project:interview2doc`、`/project:loopspec`、`/figma2web:init`、`/figma-optimize:standard`、`/figma-optimize:page`、`/support:handoff`、`/support:git-policy`、`/codeflow:grill-with-docs`、`/codeflow:to-prd`、`/codeflow:implement`、`/codeflow:improve-arch`、`/codeflow:design-rules`。
+安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/figma2web:init`、`/figma-optimize:standard`、`/figma-optimize:page`、`/support:interview2doc`、`/support:loopspec`、`/support:handoff`、`/support:git-policy`、`/codeflow:grill-with-docs`、`/codeflow:to-prd`、`/codeflow:implement`、`/codeflow:improve-arch`、`/codeflow:design-rules`。
 
 ## 目录结构
 
@@ -42,14 +40,6 @@ jljskills/
 ├── .claude-plugin/
 │   └── marketplace.json          # marketplace 清单，登记所有 plugin
 └── plugins/
-    ├── project/
-    │   ├── .claude-plugin/plugin.json
-    │   └── skills/
-    │       ├── interview2doc/     # 把想法梳理成需求文档(助产式访谈)
-    │       │   ├── SKILL.md
-    │       │   └── references/method.md
-    │       └── loopspec/          # 拷问出自动化 workflow 规格(循环即可委派)
-    │           └── SKILL.md
     ├── figma2web/
     │   ├── .claude-plugin/plugin.json
     │   ├── README.md              # 管线总览:主链/增量入口/地基,前置 gate 与产物一览;写方向契约(只读侧)
@@ -67,6 +57,11 @@ jljskills/
     ├── support/
     │   ├── .claude-plugin/plugin.json
     │   └── skills/
+    │       ├── interview2doc/         # 把想法梳理成需求文档(助产式访谈)
+    │       │   ├── SKILL.md
+    │       │   └── references/method.md
+    │       ├── loopspec/              # 拷问出自动化 workflow 规格(循环即可委派)
+    │       │   └── SKILL.md
     │       ├── handoff/               # 把当前会话压缩成交接文档,供新会话接续
     │       │   └── SKILL.md
     │       └── git-policy/            # 一次配齐项目级 git 三色权限策略与 Git 约定

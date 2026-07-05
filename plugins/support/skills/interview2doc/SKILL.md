@@ -1,6 +1,6 @@
 ---
 name: interview2doc
-description: 把一份模糊的想法或需求,通过逐一访谈梳理成一份清晰、结构化的需求文档。仅当用户主动用 `/project:interview2doc` 指令调用时使用 —— 不要在普通对话里自行触发。
+description: 把一份模糊的想法或需求,通过逐一访谈梳理成一份清晰、结构化的需求文档。仅当用户主动用 `/support:interview2doc` 指令调用时使用 —— 不要在普通对话里自行触发。
 allowed-tools: Read, Grep, Glob, Write, Edit, WebFetch, AskUserQuestion
 disable-model-invocation: true
 ---
@@ -13,7 +13,7 @@ disable-model-invocation: true
 核心心法:**这是「梳理输入」,不是「评审方案」。** 目标是把用户脑子里的东西完整、准确地搬到纸面,而不是替他做决定或挑毛病。
 
 ## 何时运行
-仅当用户主动用 `/project:interview2doc` 指令调用时运行。它会主导一段访谈,不该在普通对话里被自动触发去打断用户。
+仅当用户主动用 `/support:interview2doc` 指令调用时运行。它会主导一段访谈,不该在普通对话里被自动触发去打断用户。
 
 ## 流程
 

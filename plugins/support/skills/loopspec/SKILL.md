@@ -1,6 +1,6 @@
 ---
 name: loopspec
-description: 用对抗式拷问把一个「值得委派的循环」逐决策问透,产出一份实现 agent 能零提问开工的自动化 workflow 规格(带触发器/检查点/右推/简报词汇),并维护 workflows/ 与 NOTES.md 工作区。仅当用户主动用 `/project:loopspec` 指令调用时使用 —— 不要在普通对话里自行触发。
+description: 用对抗式拷问把一个「值得委派的循环」逐决策问透,产出一份实现 agent 能零提问开工的自动化 workflow 规格(带触发器/检查点/右推/简报词汇),并维护 workflows/ 与 NOTES.md 工作区。仅当用户主动用 `/support:loopspec` 指令调用时使用 —— 不要在普通对话里自行触发。
 allowed-tools: Read, Grep, Glob, Write, Edit, WebFetch, AskUserQuestion
 disable-model-invocation: true
 ---
@@ -13,12 +13,12 @@ disable-model-invocation: true
 核心心法:**「循环即可委派」。** 把工作看成一层层循环,越可预测的循环越值得交出去;一份 workflow 就是某个循环被固化成的、能直接开工的规格。
 
 与另两个 skill 的分工(别混):
-- `/project:interview2doc` 中立地把模糊需求誊成需求文档——**不挑刺、不产可执行工件**。
+- `/support:interview2doc` 中立地把模糊需求誊成需求文档——**不挑刺、不产可执行工件**。
 - `/codeflow:grill` 对抗式拷问任意已成形方案,产出拷问纪要——**只挑刺、不产工件**。
 - 本 skill = **grill 的拷问手法 + 一个固定交付物(workflow 规格)**,且只在**自动化 workflow** 这一个领域;它还会用「循环透镜」帮用户**发现**值得做的循环,不只评审给定的。
 
 ## 何时运行
-仅当用户主动用 `/project:loopspec` 指令调用时运行。它会主导一段高强度追问,不该在普通对话里被自动触发。
+仅当用户主动用 `/support:loopspec` 指令调用时运行。它会主导一段高强度追问,不该在普通对话里被自动触发。
 
 ## 词汇表
 一套共享语言,**按需取用,绝不当填空清单**。**结构上什么都不强制**:一个 workflow 不必有 AI、不必有检查点、不必有定时——除非拷问证明它需要。别默认往里塞。

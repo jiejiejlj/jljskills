@@ -79,5 +79,5 @@ grill 三兄弟的分界：**grill** 拷问的是方案本身；**grill-with-doc
 
 ## 外部前置声明
 
-- 想法还没成形、需要先梳理再进 grill 系列 → 可选先用 `/project:interview2doc`（`project` 插件）。
+- 想法还没成形、需要先梳理再进 grill 系列 → 可选先用 `/support:interview2doc`（`support` 插件）。
 - 跨会话衔接 issue 进度 → `/support:handoff`（`support` 插件）。

@@ -9,7 +9,7 @@ disable-model-invocation: true
 
 ## 1. 只综合，不采访
 
-素材是当前对话与代码库认知，不开新一轮访谈。缺口标注为开放问题，写进 PRD 让用户或后续环节补——想采访用户，回 `/project:interview2doc`；想边拷问边落笔术语，回 `/codeflow:grill-with-docs`。
+素材是当前对话与代码库认知，不开新一轮访谈。缺口标注为开放问题，写进 PRD 让用户或后续环节补——想采访用户，回 `/support:interview2doc`；想边拷问边落笔术语，回 `/codeflow:grill-with-docs`。
 
 ## 2. seam 先行
 

@@ -1,5 +1,5 @@
 {
   "name": "support",
-  "description": "工作流辅助相关 skill",
+  "description": "通用辅助 skill：需求梳理、workflow 规格、会话交接、git 策略",
   "author": { "name": "jiejiejlj" }
 }
