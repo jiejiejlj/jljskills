@@ -70,10 +70,11 @@ jljskills/
     │           └── scripts/block-git.sh
     └── codeflow/
         ├── .claude-plugin/plugin.json
-        ├── README.md              # 16 skill 五层管线总览:地基/入口(旁挂 research)/交付/汇入/健康,主流程图与外部前置声明
-        └── skills/                    # 地基:design-deep-module/domain-modeling；入口:grill/grill-with-docs(旁挂 research)；交付:config/to-prd/to-issues/tdd/review/implement/prototype；汇入:triage/diagnosing-bugs；健康:improve-arch/grill-design
-            ├── design-deep-module/SKILL.md + references/        # 深模块词汇库与判据(供其他 skill 指路引用)
-            ├── domain-modeling/SKILL.md + references/     # 领域词汇表 CONTEXT.md + ADR
+        ├── README.md              # 17 skill 五层管线总览:地基/入口(旁挂 research)/交付/汇入/健康,主流程图与外部前置声明
+        └── skills/                    # 地基:design-deep-module/design-domain-model/build-context；入口:grill/grill-with-docs(旁挂 research)；交付:config/to-prd/to-issues/tdd/review/implement/prototype；汇入:triage/diagnosing-bugs；健康:improve-arch/grill-design
+            ├── design-deep-module/SKILL.md + references/  # 思想基石:深模块词汇库与判据(design- 前缀=思想基石)
+            ├── design-domain-model/SKILL.md               # 思想基石:领域建模判据(通用语言/病灶/ADR 门槛)
+            ├── build-context/SKILL.md + references/       # 记忆层行为:术语落笔 CONTEXT.md + 记 ADR(驱动思想:领域建模)
             ├── grill/SKILL.md                             # 对已成形方案做对抗式压力测试
             ├── grill-with-docs/SKILL.md                   # grill 手法+当场沉淀术语/ADR(主流程入口)
             ├── research/SKILL.md                          # 调研外包给后台代理,产物入文档根 research/

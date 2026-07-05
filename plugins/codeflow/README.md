@@ -1,6 +1,6 @@
 # codeflow — idea→ship 编码工作流
 
-内化自 mattpocock/skills 的编码工作流：从一个还没成形的想法，走到可提交的代码，另汇入外来 issue/PR 分诊与硬 bug 诊断两条支线。16 个 skill 分五层协作（外加入口层旁挂的 research），靠文件产物衔接（不自动串调）。目标项目侧的文档统一收在 `docs/jljskills/codeflow/` 下：
+内化自 mattpocock/skills 的编码工作流：从一个还没成形的想法，走到可提交的代码，另汇入外来 issue/PR 分诊与硬 bug 诊断两条支线。17 个 skill 分五层协作（外加入口层旁挂的 research），靠文件产物衔接（不自动串调）。目标项目侧的文档统一收在 `docs/jljskills/codeflow/` 下：
 
 - `CONTEXT.md` —— 领域术语表（build-context 维护）
 - `adr/` —— 达到三条件门槛的重大决策记录
@@ -20,12 +20,13 @@ grill-with-docs ──▶ [说不清就 prototype] ──▶ to-prd ──▶ to
 
 汇入关系：外来 issue 经 `/codeflow:triage` 分诊到 `ready-for-agent` 后，由 `/codeflow:implement` 按同一套 tdd/review 流程认领实施，等同接到 to-issues 产出的切片；`/codeflow:diagnosing-bugs` 修复硬 bug 后的复盘一旦指向架构性缺口，移交 `/codeflow:improve-arch` 接着深化，不在诊断内部展开。
 
-## 五层 16 个 skill，各一句话
+## 五层 17 个 skill，各一句话
 
-**地基**（其余 skill 的共用词汇与记忆层，通常不单独调用）
+**地基**（思想基石与记忆层，通常不单独调用。命名约定：`design-` 前缀 = 思想基石 skill，一思想一 skill；行为 skill 以正文「驱动思想」槽位声明驱动它的思想——判据见 `docs/jljskills/codeflow/adr/0005`）
 
-- `/codeflow:design-deep-module` —— 深模块设计的词汇库与判据：八术语、deep/shallow 模型、删除测试等四原则。
-- `/codeflow:build-context` —— 挑战冲突术语、锐化模糊词、术语当场落笔进 CONTEXT.md，按三条件门槛记 ADR。
+- `/codeflow:design-deep-module` —— 深模块思想的词汇库与判据：八术语、deep/shallow 模型、删除测试等四原则。
+- `/codeflow:design-domain-model` —— 领域建模思想的判据库：通用语言三原则、三病灶识别、四手法内核、ADR 三条件门槛。
+- `/codeflow:build-context` —— 记忆层行为（驱动思想：领域建模）：按判据出手，术语当场落笔进 CONTEXT.md，过门槛的决策记 ADR。
 
 **入口**（方案还没定型时先拷问）
 
