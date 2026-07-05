@@ -17,6 +17,15 @@ blocked_by: []     # 依赖的其他 issue 编号，如 ["003"]
 ---
 ```
 
+- `/codeflow:triage` 经手的 issue 另有两个**可选**字段（to-issues 直接产出的 issue 不需要）：
+
+```yaml
+category: bug       # bug | enhancement
+state: needs-triage # needs-triage | needs-info | ready-for-agent | ready-for-human | wontfix
+```
+
+  双写规则钉死：`state: ready-for-agent` 时必须同步写 `agent_ready: true`——implement 挑活认的仍是 `agent_ready`，`state` 只供 triage 状态机内部流转用，两者不是一回事。`state: wontfix` 时同步把 `status` 改成 `closed`。
+
 - 正文自由格式：标题、背景、验收标准都放这里；对话记录追加到文末的 `## Comments` 标题下。
 
 ## 增删改查
@@ -44,4 +53,4 @@ blocked_by: []     # 依赖的其他 issue 编号，如 ["003"]
 `Read` 对应路径；用户通常会直接给出文件名或编号。
 
 ---
-> 内化自 mattpocock/skills 的 `skills/engineering/setup-matt-pocock-skills/issue-tracker-local.md`，路径改为 `docs/jljskills/codeflow/issues/`、文件规格补齐 frontmatter 三字段（2026-07-05）。
+> 内化自 mattpocock/skills 的 `skills/engineering/setup-matt-pocock-skills/issue-tracker-local.md`，路径改为 `docs/jljskills/codeflow/issues/`、文件规格补齐 frontmatter 三字段，另为 triage 补 `category`/`state` 两个可选字段（2026-07-05）。
