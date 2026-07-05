@@ -10,7 +10,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 | --- | --- | --- |
 | `figma2web` | Figma 转网页相关 skill | 官方 `figma` 插件（Figma MCP）；`coding` 内部编排调用 `superpowers` |
 | `figma-optimize` | 设计稿交付前评审优化相关 skill | 官方 `figma` 插件（Figma MCP + `figma-use` skill，写回前强制） |
-| `support` | 通用辅助 skill：需求梳理（interview2doc）、workflow 规格（loopspec）、会话交接（handoff）、git 策略（git-policy）；文档类产物统一落目标项目 `docs/jljskills/support/` | — |
+| `support` | 通用辅助 skill：需求梳理（interview2doc）、workflow 规格（loopspec）、会话交接（handoff）、git 策略（git-policy）、skill 改进处方（skill-improve）；文档类产物统一落目标项目 `docs/jljskills/support/` | — |
 | `codeflow` | 编码工作流 idea→ship：拷问→PRD→拆 issue→TDD 实施→双轴审查，含深模块方法论、架构健康层，以及外来 issue/PR 分诊与硬 bug 诊断两条汇入支线 | 可选：`support`（`/support:interview2doc` 前置梳理想法、`/support:handoff` 跨会话衔接） |
 
 ## 安装
@@ -31,7 +31,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 
 ## 调用
 
-安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/figma2web:init`、`/figma-optimize:standard`、`/figma-optimize:page`、`/support:interview2doc`、`/support:loopspec`、`/support:handoff`、`/support:git-policy`、`/codeflow:grill-with-docs`、`/codeflow:to-prd`、`/codeflow:implement`、`/codeflow:improve-arch`、`/codeflow:design-deep-module`。
+安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/figma2web:init`、`/figma-optimize:standard`、`/figma-optimize:page`、`/support:interview2doc`、`/support:loopspec`、`/support:handoff`、`/support:git-policy`、`/support:skill-improve`、`/codeflow:grill-with-docs`、`/codeflow:to-prd`、`/codeflow:implement`、`/codeflow:improve-arch`、`/codeflow:design-deep-module`。
 
 ## 目录结构
 
@@ -64,14 +64,17 @@ jljskills/
     │       │   └── SKILL.md
     │       ├── handoff/               # 把当前会话压缩成交接文档,供新会话接续
     │       │   └── SKILL.md
-    │       └── git-policy/            # 一次配齐项目级 git 三色权限策略与 Git 约定
+    │       ├── git-policy/            # 一次配齐项目级 git 三色权限策略与 Git 约定
+    │       │   ├── SKILL.md
+    │       │   ├── references/policy-menu.md
+    │       │   └── scripts/block-git.sh
+    │       └── skill-improve/         # 给 skill 开分级处方(P1–P5:改什么·按什么顺序改)
     │           ├── SKILL.md
-    │           ├── references/policy-menu.md
-    │           └── scripts/block-git.sh
+    │           └── references/        # dimensions / report / examples
     └── codeflow/
         ├── .claude-plugin/plugin.json
-        ├── README.md              # 17 skill 五层管线总览:地基/入口(旁挂 research)/交付/汇入/健康,主流程图与外部前置声明
-        └── skills/                    # 地基:design-deep-module/design-domain-model/build-context；入口:grill/grill-with-docs(旁挂 research)；交付:config/to-prd/to-issues/tdd/review/implement/prototype；汇入:triage/diagnosing-bugs；健康:improve-arch/grill-design
+        ├── README.md              # 18 skill 五层管线总览:地基/入口(旁挂 research)/交付/汇入/健康,主流程图与外部前置声明
+        └── skills/                    # 地基:design-deep-module/design-domain-model/build-context；入口:grill/grill-with-docs(旁挂 research)；交付:config/to-prd/to-issues/tdd/review/implement/prototype；汇入:triage/diagnosing-bugs；健康:audit-repo/improve-arch/grill-design
             ├── design-deep-module/SKILL.md + references/  # 思想基石:深模块词汇库与判据(design- 前缀=思想基石)
             ├── design-domain-model/SKILL.md               # 思想基石:领域建模判据(通用语言/病灶/ADR 门槛)
             ├── build-context/SKILL.md + references/       # 记忆层行为:术语落笔 CONTEXT.md + 记 ADR(驱动思想:领域建模)
@@ -87,6 +90,7 @@ jljskills/
             ├── prototype/SKILL.md + references/           # 一次性代码探路(逻辑走终端小程序/UI 走多变体路由)
             ├── triage/SKILL.md + references/               # 外来 issue/PR 分诊状态机,被拒 enhancement 沉 out-of-scope/
             ├── diagnosing-bugs/SKILL.md + references/ + scripts/  # 硬 bug/性能回归诊断纪律,反馈回路硬门
+            ├── audit-repo/SKILL.md + references/          # 九类全科体检→自包含交接计划(移植自 shadcn/improve)
             ├── improve-arch/SKILL.md + references/        # 扫描深化机会→HTML 报告(编排入口)
             └── grill-design/SKILL.md                      # 走设计树,收敛 interface 草图
 ```
