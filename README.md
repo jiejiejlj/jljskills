@@ -10,7 +10,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 | --- | --- | --- |
 | `figma2web` | Figma 转网页相关 skill | 官方 `figma` 插件（Figma MCP）；`coding` 内部编排调用 `superpowers` |
 | `figma-optimize` | 设计稿交付前评审优化相关 skill | 官方 `figma` 插件（Figma MCP + `figma-use` skill，写回前强制） |
-| `support` | 通用辅助 skill：需求梳理（interview2doc）、workflow 规格（loopspec）、会话交接（handoff）、git 策略（git-policy） | — |
+| `support` | 通用辅助 skill：需求梳理（interview2doc）、workflow 规格（loopspec）、会话交接（handoff）、git 策略（git-policy）；文档类产物统一落目标项目 `docs/jljskills/support/` | — |
 | `codeflow` | 编码工作流 idea→ship：拷问→PRD→拆 issue→TDD 实施→双轴审查，含深模块方法论、架构健康层，以及外来 issue/PR 分诊与硬 bug 诊断两条汇入支线 | 可选：`support`（`/support:interview2doc` 前置梳理想法、`/support:handoff` 跨会话衔接） |
 
 ## 安装

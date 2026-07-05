@@ -28,11 +28,12 @@ jljskills/
 - 不希望模型在普通对话里自动触发、只允许用户显式 `/<plugin>:<skill>` 调用的 skill，加 `disable-model-invocation: true`，并在 `description` 里写明「仅当用户主动用 `/...` 指令调用时使用」。
 - 用 `allowed-tools` 收窄工具权限到该 skill 实际需要的范围。
 - 较长的方法 / 模板放到 `references/*.md`，在 SKILL.md 里用相对链接引用，保持主文件精炼。
+- **产出落盘判据**：技能在目标项目的产出，文档（人读沉淀物）统一 `docs/jljskills/<plugin>/` 写死不问，代码/配置按项目结构，临时物进 OS 临时目录——判据与否决见 `docs/jljskills/codeflow/adr/0004`。
 - **调用决策规则**：只有「模型必须自主触发」或「另一个 skill 要够到它」时才用 model-invoked（description 每轮占上下文）；否则一律 `disable-model-invocation: true`，白赚零上下文。
 - **引导词优先**：给 skill 一个紧凑、有画面感的核心词（如 `grill` 的「对抗式拷问」、`interview2doc` 的「矛盾即缺口」）——它同时稳定执行行为、提升触发命中。审视时问：核心词够不够一击命中？
 - **写完自检**：逐行做 no-op 测试（跟默认行为相比没改变的句子直接删，别精简）；对照失败模式——提前收工 / 重复 / 沉积 / 蔓延 / 空操作。
 
-参考成熟样例：`plugins/project/skills/interview2doc/`（含 `references/method.md`）。
+参考成熟样例：`plugins/support/skills/interview2doc/`（含 `references/method.md`）。
 完整写作判据与词汇见 [`docs/skill写作指南.md`](docs/skill写作指南.md)。
 
 ## 分发模型
