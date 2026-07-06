@@ -1,6 +1,6 @@
 # codeflow — idea→ship 编码工作流
 
-内化自 mattpocock/skills 的编码工作流：从一个还没成形的想法，走到可提交的代码，另汇入外来 issue/PR 分诊与硬 bug 诊断两条支线。18 个 skill 分五层协作（外加入口层旁挂的 research），靠文件产物衔接（不自动串调）。目标项目侧的文档统一收在 `docs/jljskills/codeflow/` 下：
+内化自 mattpocock/skills 的编码工作流：从一个还没成形的想法，走到可提交的代码，另汇入外来 issue/PR 分诊与硬 bug 诊断两条支线。19 个 skill 分五层协作（外加入口层旁挂的 research），靠文件产物衔接（不自动串调）。目标项目侧的文档统一收在 `docs/jljskills/codeflow/` 下：
 
 - `CONTEXT.md` —— 领域术语表（build-context 维护）
 - `adr/` —— 达到三条件门槛的重大决策记录
@@ -9,6 +9,7 @@
 - `issues/` —— 追踪器选本地 markdown 时的 issue 正文存放处
 - `out-of-scope/` —— triage 判定 `wontfix` 的 enhancement 沉淀知识库，供下次遇到类似请求时先例检查
 - `research/` —— research 产出的一手来源调研 Markdown，供 grill-with-docs 等阶段取用
+- `walkthrough/` —— walkthrough 产出的可执行代码走读文档（`walkthrough.md`）
 
 ## 主流程（文字版）
 
@@ -20,7 +21,7 @@ grill-with-docs ──▶ [说不清就 prototype] ──▶ to-prd ──▶ to
 
 汇入关系：外来 issue 经 `/codeflow:triage` 分诊到 `ready-for-agent` 后，由 `/codeflow:implement` 按同一套 tdd/review 流程认领实施，等同接到 to-issues 产出的切片；`/codeflow:diagnosing-bugs` 修复硬 bug 后的复盘一旦指向架构性缺口，移交 `/codeflow:improve-arch` 接着深化，不在诊断内部展开。
 
-## 五层 18 个 skill，各一句话
+## 五层 19 个 skill，各一句话
 
 **地基**（思想基石与记忆层，通常不单独调用。命名约定：`design-` 前缀 = 思想基石 skill，一思想一 skill；行为 skill 以正文「驱动思想」槽位声明驱动它的思想——判据见 `docs/jljskills/codeflow/adr/0005`）
 
@@ -50,11 +51,12 @@ grill-with-docs ──▶ [说不清就 prototype] ──▶ to-prd ──▶ to
 - `/codeflow:triage` —— 把外来 issue（及声明开启时的外部 PR）推过 triage 状态机：归类、验证、必要时拷问、写 agent-ready 简报；被拒的 enhancement 沉淀进 out-of-scope 知识库。
 - `/codeflow:diagnosing-bugs` —— 硬 bug 与性能回归的诊断纪律：先建一条能对本 bug 变红的反馈回路，无回路不许提假设；复现→最小化→假设→插桩→修复带回归测试→复盘。
 
-**健康**（存量代码库的体检与深化闭环）
+**健康**（存量代码库的体检、深化与走读闭环）
 
 - `/codeflow:audit-repo` —— 以高级顾问身份对存量代码库做九类全科体检（正确性/安全/性能/测试/技术债/依赖/DX/文档/方向），产出零上下文可执行的自包含交接计划（`plans/`，落盘位置待对齐 ADR-0004），源码只读不实施。移植自 shadcn/improve，原样保留，待用后裁剪。
 - `/codeflow:improve-arch` —— 扫描已有代码库找深化机会（shallow → deep），以 HTML 报告呈现候选项，用户选定后接入设计树拷问；终点是 interface 草图，不实施改码。
 - `/codeflow:grill-design` —— 对选定的深化候选走设计树拷问：约束 → seam 位置 → interface 形状 → 藏什么 → 哪些测试存活，收敛出 interface 草图。
+- `/codeflow:walkthrough` —— 读源码产出一份「边走边跑」的可执行 walkthrough：顺 call chain 线性走读，每块代码都真跑、`verify` 复跑校验才交付。以 Showboat（`uvx showboat`）为主、不可用退纯 markdown。只讲解不改码，onboarding / 代码巡览用。移植自 philoserf/claude-code-config。
 
 ## 怎么选
 
@@ -67,6 +69,7 @@ grill-with-docs ──▶ [说不清就 prototype] ──▶ to-prd ──▶ to
 - 拿到一个 issue 要动手实现 → `/codeflow:implement`（内部会读 tdd、收尾读 review，不必单独调用两者）
 - 说不出项目哪里不对但觉得该深化 → `/codeflow:improve-arch`
 - 想给存量代码做全科体检（bug/安全/性能/测试/依赖……），产出给其他会话执行的计划 → `/codeflow:audit-repo`（架构深化仍归 improve-arch，diff 审查仍归 review）
+- 要给一段代码做 onboarding / 代码巡览，留一份照着能复跑的可执行 walkthrough → `/codeflow:walkthrough`（只讲解不改码，需 `uvx showboat`，无则退纯 md）
 - 新项目第一次接入 codeflow → 先 `/codeflow:config`
 - 外来 issue（或外部 PR）堆积、要归类分诊 → `/codeflow:triage`
 - 东西坏了、一时半会查不出根因 → `/codeflow:diagnosing-bugs`
@@ -84,3 +87,4 @@ grill 三兄弟的分界：**grill** 拷问的是方案本身；**grill-with-doc
 
 - 想法还没成形、需要先梳理再进 grill 系列 → 可选先用 `/support:interview2doc`（`support` 插件）。
 - 跨会话衔接 issue 进度 → `/support:handoff`（`support` 插件）。
+- `/codeflow:walkthrough` 的完整能力（可执行代码块 + `verify` 复跑校验）依赖 [Showboat](https://github.com/simonw/showboat)（`uvx showboat`，需本机装 `uv`）；未装则自动退回纯 markdown 手写走读。
