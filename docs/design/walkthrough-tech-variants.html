@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en" data-variant="v1">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Walkthrough · 科技风配色方案</title>
+<style>
+  /* ============ shared layout ============ */
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;min-height:100vh;color:var(--ink);
+    font:15.5px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);position:relative;transition:background .25s,color .25s}
+  .bg-fx{position:fixed;inset:0;z-index:0;pointer-events:none}
+  .wrap{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:26px 26px 90px}
+  :root{--mono:ui-monospace,"SF Mono",Menlo,Consolas,"Roboto Mono",monospace}
+
+  /* ============ switcher ============ */
+  .switch{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+    padding:12px 16px;margin:-26px -26px 22px;background:var(--switch-bg);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--panel-border)}
+  .switch b{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--muted);margin-right:4px}
+  .switch button{font-family:var(--mono);font-size:12.5px;cursor:pointer;padding:6px 13px;border-radius:8px;
+    border:1px solid var(--panel-border);background:transparent;color:var(--muted);transition:.15s}
+  .switch button:hover{color:var(--ink);border-color:var(--accent)}
+  .switch button[aria-current="true"]{color:var(--accent);border-color:var(--accent);
+    background:var(--accent-soft);box-shadow:0 0 0 1px var(--accent) inset, var(--glow)}
+  .switch .vname{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .switch .vname em{color:var(--accent);font-style:normal}
+
+  /* ============ header ============ */
+  header.top{margin:6px 0 20px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+  h1.title{font-size:34px;line-height:1.08;margin:10px 0 8px;font-weight:700;letter-spacing:-.01em;color:var(--h1)}
+  .meta{color:var(--muted);font-size:13px}
+  .chip{display:inline-flex;gap:7px;align-items:center;margin-top:13px;padding:6px 12px;border-radius:999px;
+    border:1px solid var(--panel-border);background:var(--panel);font-size:12px;color:var(--muted)}
+  .chip code{font-family:var(--mono);color:var(--accent)}
+
+  /* ============ cards ============ */
+  .card{position:relative;background:var(--panel);border:1px solid var(--panel-border);border-radius:var(--radius);
+    padding:22px 24px;margin:16px 0;box-shadow:var(--card-shadow);backdrop-filter:var(--card-blur)}
+  .card h2{font-size:20px;margin:0 0 12px;font-weight:650;color:var(--h2);letter-spacing:-.005em}
+  .card h2 .num{font-family:var(--mono);color:var(--accent)}
+  .card p{margin:0 0 11px}
+  code.inl{font-family:var(--mono);font-size:.86em;background:var(--chip);color:var(--ink);padding:1.5px 6px;border-radius:5px;
+    border:1px solid var(--panel-border)}
+  b{color:var(--ink)}
+  .badges{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 14px}
+  .badge{font-family:var(--mono);font-size:11.5px;padding:4px 10px;border-radius:6px;background:var(--accent-soft);
+    color:var(--accent);border:1px solid var(--panel-border)}
+  .badge.dim{background:var(--chip);color:var(--muted)}
+
+  /* code */
+  figure.code{margin:13px 0}
+  figure.code pre{margin:0;background:var(--code-bg);color:var(--code-ink);border:1px solid var(--code-border);
+    border-radius:9px;padding:15px 16px;overflow:auto;font-family:var(--mono);font-size:12.5px;line-height:1.55}
+  figcaption{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:6px}
+  figcaption::before{content:"↳ ";color:var(--accent)}
+  .k{color:var(--code-kw)}.s{color:var(--code-str)}.c{color:var(--code-com)}.f{color:var(--code-fn)}
+
+  /* callout */
+  .callout{border-left:3px solid var(--warn);background:var(--warn-soft);border-radius:0 9px 9px 0;padding:12px 16px;margin:14px 0}
+  .callout .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--warn);font-weight:700}
+  .callout p{margin:6px 0 0;font-size:13.5px}
+
+  /* diagrams */
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:12px 0}
+  .node{flex:1 1 140px;border:1px solid var(--panel-border);border-radius:8px;padding:10px 12px;background:var(--node-bg)}
+  .node .t{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--accent)}
+  .node .d{font-size:11.5px;color:var(--muted);margin-top:3px}
+  .arrow{display:flex;align-items:center;color:var(--accent);font-size:16px}
+  pre.tree{background:var(--node-bg);border:1px solid var(--panel-border);border-radius:8px;padding:12px 14px;overflow:auto;
+    font-family:var(--mono);font-size:12px;line-height:1.5;color:var(--muted)}
+  pre.tree b{color:var(--accent);font-weight:600}
+  .states{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}
+  .st{font-family:var(--mono);font-size:12px;padding:6px 12px;border-radius:999px;border:1px solid var(--panel-border);background:var(--node-bg);color:var(--ink)}
+  .st.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+  .st.off{border-color:var(--warn);color:var(--warn)}
+  .edge{font-family:var(--mono);font-size:11px;color:var(--muted)}
+  ul.wins{margin:6px 0 0;padding-left:18px}ul.wins li{margin:3px 0}
+  .recap{border-color:var(--accent)}
+
+  /* ===================================================================
+     VARIANT 1 · Terminal Cyan — near-black CRT, cyan glow, mono
+     =================================================================== */
+  html[data-variant="v1"]{
+    --bg:#060a0f;--h1:#e6fbff;--h2:#d7f6fb;--ink:#c6d3d8;--muted:#6d8791;
+    --accent:#2ee6d6;--accent-soft:rgba(46,230,214,.10);--glow:0 0 14px rgba(46,230,214,.35);
+    --panel:#0b1219;--panel-border:rgba(46,230,214,.18);--switch-bg:rgba(6,10,15,.82);
+    --card-shadow:0 0 0 1px rgba(46,230,214,.04);--card-blur:none;--radius:10px;
+    --chip:#0f1a22;--node-bg:#0a1016;--code-bg:#05090d;--code-border:rgba(46,230,214,.14);--code-ink:#cfe9ec;
+    --code-kw:#f78c6c;--code-str:#57e389;--code-com:#4a6470;--code-fn:#56c8ff;--warn:#ffb454;--warn-soft:rgba(255,180,84,.08);
+  }
+  html[data-variant="v1"] .bg-fx{
+    background:
+      radial-gradient(1000px 500px at 80% -10%, rgba(46,230,214,.08), transparent 70%),
+      repeating-linear-gradient(0deg, rgba(46,230,214,.035) 0 1px, transparent 1px 3px);}
+  html[data-variant="v1"] h1.title,html[data-variant="v1"] .card h2{font-family:var(--mono);letter-spacing:0}
+
+  /* ===================================================================
+     VARIANT 2 · Indigo Glass — deep slate, violet glow, glassmorphism
+     =================================================================== */
+  html[data-variant="v2"]{
+    --bg:#0a0d18;--h1:#f2f0ff;--h2:#e6e4fb;--ink:#c8ccdd;--muted:#7d81a0;
+    --accent:#8b93ff;--accent-soft:rgba(139,147,255,.13);--glow:0 0 18px rgba(139,147,255,.4);
+    --panel:rgba(255,255,255,.035);--panel-border:rgba(139,147,255,.22);--switch-bg:rgba(10,13,24,.72);
+    --card-shadow:0 8px 40px rgba(80,60,200,.08);--card-blur:blur(6px);--radius:14px;
+    --chip:rgba(255,255,255,.05);--node-bg:rgba(255,255,255,.03);--code-bg:#0c1020;--code-border:rgba(139,147,255,.16);--code-ink:#dfe3fb;
+    --code-kw:#c792ea;--code-str:#a5e6a0;--code-com:#5a5f82;--code-fn:#82aaff;--warn:#f0a860;--warn-soft:rgba(240,168,96,.08);
+  }
+  html[data-variant="v2"] .bg-fx{
+    background:
+      radial-gradient(900px 520px at 15% -8%, rgba(139,147,255,.16), transparent 65%),
+      radial-gradient(760px 500px at 100% 0%, rgba(217,110,255,.10), transparent 60%);}
+  html[data-variant="v2"] h1.title{
+    background:linear-gradient(92deg,#b9b0ff,#e0a0ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ===================================================================
+     VARIANT 3 · Blueprint — dark azure, technical grid, dashed seams
+     =================================================================== */
+  html[data-variant="v3"]{
+    --bg:#07192a;--h1:#eaf5ff;--h2:#d8ecff;--ink:#bcd0e0;--muted:#6b8aa3;
+    --accent:#49a8ff;--accent-soft:rgba(73,168,255,.12);--glow:0 0 12px rgba(73,168,255,.3);
+    --panel:rgba(9,32,52,.72);--panel-border:rgba(73,168,255,.28);--switch-bg:rgba(7,25,42,.85);
+    --card-shadow:none;--card-blur:none;--radius:6px;
+    --chip:#0b2338;--node-bg:#08202f;--code-bg:#051422;--code-border:rgba(73,168,255,.2);--code-ink:#cfe3f2;
+    --code-kw:#ff9e64;--code-str:#7bd88f;--code-com:#4d6e86;--code-fn:#6cb6ff;--warn:#ffcb6b;--warn-soft:rgba(255,203,107,.08);
+  }
+  html[data-variant="v3"] .bg-fx{
+    background-color:#07192a;
+    background-image:
+      linear-gradient(rgba(73,168,255,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(73,168,255,.06) 1px, transparent 1px);
+    background-size:28px 28px;}
+  html[data-variant="v3"] .card{border-style:solid}
+  html[data-variant="v3"] .card::before{content:"";position:absolute;top:-1px;left:-1px;width:10px;height:10px;
+    border-top:2px solid var(--accent);border-left:2px solid var(--accent)}
+  html[data-variant="v3"] .card::after{content:"";position:absolute;bottom:-1px;right:-1px;width:10px;height:10px;
+    border-bottom:2px solid var(--accent);border-right:2px solid var(--accent)}
+
+  /* ===================================================================
+     VARIANT 4 · Neon HUD — black, teal + magenta dual accent, glow
+     =================================================================== */
+  html[data-variant="v4"]{
+    --bg:#08080d;--h1:#eafff8;--h2:#dbfaf2;--ink:#c2ccce;--muted:#71808a;
+    --accent:#2dd4bf;--accent2:#f472b6;--accent-soft:rgba(45,212,191,.10);--glow:0 0 16px rgba(45,212,191,.45);
+    --panel:#0d1013;--panel-border:rgba(45,212,191,.22);--switch-bg:rgba(8,8,13,.85);
+    --card-shadow:0 0 0 1px rgba(244,114,182,.05);--card-blur:none;--radius:4px;
+    --chip:#12171a;--node-bg:#0b0f11;--code-bg:#050708;--code-border:rgba(45,212,191,.16);--code-ink:#d6efe9;
+    --code-kw:#f472b6;--code-str:#5eead4;--code-com:#4b5a5e;--code-fn:#67e8f9;--warn:#fbbf24;--warn-soft:rgba(251,191,36,.08);
+  }
+  html[data-variant="v4"] .bg-fx{
+    background:
+      radial-gradient(760px 440px at 92% -6%, rgba(244,114,182,.12), transparent 62%),
+      radial-gradient(820px 460px at 6% 4%, rgba(45,212,191,.10), transparent 62%);}
+  html[data-variant="v4"] .eyebrow,html[data-variant="v4"] .card h2{text-transform:uppercase;letter-spacing:.04em}
+  html[data-variant="v4"] .badge:nth-child(even){color:var(--accent2);border-color:rgba(244,114,182,.3)}
+</style>
+</head>
+<body>
+<div class="bg-fx"></div>
+<div class="wrap">
+
+  <nav class="switch">
+    <b>科技风 ▸</b>
+    <button data-v="v1" aria-current="true">1 · Terminal Cyan</button>
+    <button data-v="v2">2 · Indigo Glass</button>
+    <button data-v="v3">3 · Blueprint</button>
+    <button data-v="v4">4 · Neon HUD</button>
+    <span class="vname">当前:<em id="vlabel">Terminal Cyan</em></span>
+  </nav>
+
+  <header class="top">
+    <div class="eyebrow">OmbreBackend · Module Walkthrough</div>
+    <h1 class="title">Account Management</h1>
+    <div class="meta">Firebase identity → backend account mirror → full lifecycle · 2 files · 9 endpoints</div>
+    <div class="chip">▣ generated from verified <code>walkthrough-account-20260706.md</code> · showboat verify ✓</div>
+  </header>
+
+  <section class="card">
+    <h2>Overview</h2>
+    <div class="badges">
+      <span class="badge">account.py</span><span class="badge">firebase_utils.py</span>
+      <span class="badge dim">FastAPI</span><span class="badge dim">Firebase JWT</span><span class="badge dim">SQLAlchemy</span>
+    </div>
+    <p>Firebase owns <i>authentication</i>; the backend owns an <i>account mirror</i> — one
+      <code class="inl">users</code> row per Firebase identity, keyed by <code class="inl">firebase_uid</code>.
+      Almost every request is "verify token → find (or provision) the row → act."</p>
+    <div class="flow">
+      <div class="node"><div class="t">signup · /user</div><div class="d">provision row + profile</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="t">login · /login</div><div class="d">find (self-heal), last_login</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="t">deactivate</div><div class="d">is_active=F, del Firebase id</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="t">grace → re-register</div><div class="d">hard-delete, email freed</div></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Architecture</h2>
+    <pre class="tree"><b>app/api/account.py</b>            # router + lifecycle logic
+  provision_user()            #   shared create path
+  hard_delete_stale_deactivated_user
+<b>app/firebase_utils.py</b>         # auth backbone
+  verify_firebase_token()     #   Bearer -> decoded token
+  get_authenticated_user      #   async dep: user_id contextvar
+<b>app/models/__init__.py</b>        # User + UserProfile (1:1)</pre>
+    <div class="flow" style="margin-top:14px">
+      <div class="node"><div class="t">verify_firebase_token</div><div class="d">401 bad token</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="t">_resolve_authenticated_user</div><div class="d">404 no row · 403 inactive</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="t">get_authenticated_user</div><div class="d">user_id → contextvar</div></div>
+    </div>
+    <div class="states" style="margin-top:14px">
+      <span class="st">none</span><span class="edge">—provision→</span>
+      <span class="st on">active</span><span class="edge">—/deactivate→</span>
+      <span class="st off">deactivated</span><span class="edge">—≥7d+re-register→</span>
+      <span class="st">hard-deleted</span>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">3.</span> Token → User row: two-tier dependency</h2>
+    <p>Looks up the row by <code class="inl">firebase_uid</code>, enforces <b>no row → 404</b>,
+      <b>inactive → 403</b>, <b>email mismatch → 403</b>.</p>
+    <figure class="code"><pre>    user = db.query(User).filter(User.firebase_uid == uid).first()
+    <span class="k">if not</span> user:
+        <span class="c"># provisioning is owned by signup + login self-heal</span>
+        <span class="k">raise</span> HTTPException(status_code=<span class="s">404</span>, detail=<span class="s">"User not found ..."</span>)
+    <span class="k">if not</span> user.is_active:
+        <span class="k">raise</span> HTTPException(status_code=<span class="s">403</span>, detail=<span class="s">"Account deactivated"</span>)</pre>      
+      <figcaption>app/firebase_utils.py:189–203</figcaption></figure>
+    <div class="callout">
+      <div class="tag">⚑ War story — async wraps a sync helper</div>
+      <p>A sync yield-dep around <code class="inl">user_id_scope</code> blew up with <i>"Token was created in a different
+        Context"</i>. FastAPI runs <code class="inl">__enter__</code>/<code class="inl">__exit__</code> in two different
+        <code class="inl">copy_context()</code> threadpool calls → the contextvar <code class="inl">set()</code> couldn't be
+        <code class="inl">reset()</code>. Async wrapper keeps set + reset in one Context.</p>
+    </div>
+  </section>
+
+  <section class="card recap">
+    <h2>Recap — cradle to grave</h2>
+    <ul class="wins">
+      <li><b>Firebase authenticates; the backend mirrors.</b> One row per <code class="inl">firebase_uid</code>; reads 404 rather than auto-create.</li>   
+      <li><b>Deactivation is soft + delayed.</b> <code class="inl">is_active</code> + 7-day window; Firebase identity dies immediately.</li>
+      <li><b>Messy realities handled explicitly.</b> Idempotent deletes · non-fatal cleanup · async/sync contextvar split.</li>
+    </ul>
+  </section>
+
+  <p style="color:var(--muted);font-family:var(--mono);font-size:11.5px;margin-top:18px">
+    ▣ 4 科技风配色方案 · 顶部切换 · 同一份内容换皮 · 自包含无 CDN · 选定后再细调</p>
+</div>
+
+<script>
+  const label={v1:"Terminal Cyan",v2:"Indigo Glass",v3:"Blueprint",v4:"Neon HUD"};
+  document.querySelectorAll(".switch button").forEach(b=>{
+    b.addEventListener("click",()=>{
+      const v=b.dataset.v;
+      document.documentElement.dataset.variant=v;
+      document.querySelectorAll(".switch button").forEach(x=>x.setAttribute("aria-current", x===b?"true":"false"));
+      document.getElementById("vlabel").textContent=label[v];
+      window.scrollTo({top:0,behavior:"instant"});
+    });
+  });
+</script>
+</body>
+</html>
