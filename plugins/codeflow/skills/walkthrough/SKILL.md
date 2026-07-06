@@ -6,7 +6,7 @@ allowed-tools:
   - Bash
   - Glob
   - Write
-description: 读源码, 产出可执行的走读文档 —— 一份纯 markdown 地图 + 若干带时间戳的模块文档, 每份再生成科技风 HTML 报告. 适用于讲清代码如何工作, 编写走读, 上手一个项目, 或带人做代码巡览时. 用 showboat 钉死代码路径与 output. 仅当用户主动用 `/codeflow:walkthrough` 指令调用时使用.
+description: 读源码, 产出可执行的走读文档 —— 地图 + 带时间戳的模块文档 + HTML 报告. 适用于讲清代码如何工作, 编写走读, 上手一个项目, 或带人做代码巡览时. 用 showboat 钉死代码路径与 output. 仅当用户主动用 `/codeflow:walkthrough` 指令调用时使用.
 disable-model-invocation: true
 ---
 
@@ -14,21 +14,21 @@ disable-model-invocation: true
 
 ## 文档模型
 
-不再是"单份 `walkthrough.md`", 而是**地图 + 带时间戳的模块文档**, 每份模块文档再配一份 HTML 视图:
+**地图 + 带时间戳的模块文档**, 每份模块文档配一份 HTML 视图:
 
 ```
 docs/jljskills/codeflow/walkthrough/
-  walkthrough.md                        # 地图: 纯 markdown 索引, 不带时间戳, 稳定入口
-  walkthrough.html                      # 地图的 HTML 视图(信息卡导航页)
-  walkthrough-<scope>-<YYYYMMDD>.md      # 模块文档(md 源, showboat 可验证)
-  walkthrough-<scope>-<YYYYMMDD>.html    #   └ 由该 md 生成的 HTML 报告
+  walkthrough.md                        # 地图(索引)
+  walkthrough.html                      # 地图的 HTML 视图
+  walkthrough-<scope>-<YYYYMMDD>.md      # 模块文档
+  walkthrough-<scope>-<YYYYMMDD>.html    #   └ 该 md 的 HTML 报告
 ```
 
-- **`walkthrough.md` 是地图, 不装正文** —— 纯索引(见「地图」小节). 它是**纯 markdown, 不经 showboat**, 可以用 `Write` 直接写.
+- **`walkthrough.md` 是地图, 不装正文** —— 纯 markdown 索引, 不经 showboat, 用 `Write` 直接写.
 - **模块文档是 showboat 托管的可执行 md** —— 只能经 `uvx showboat` 命令写, **绝不能用 `Edit`/`Write` 直接改**(会破坏已 verify 的 output block).
 - `<scope>` = kebab-case slug(`app-spine`、`event-engine`、`account`……); `<YYYYMMDD>` = 内容"截至日期". **同日重生成 → 同名覆盖; 跨天更新 → `git mv` 到新日期**并同步更新地图里的链接.
 
-## 地图 `walkthrough.md`(纯 markdown)
+## 地图 `walkthrough.md`
 
 两块内容:
 
@@ -39,28 +39,27 @@ docs/jljskills/codeflow/walkthrough/
 ```markdown
 | Module (scope) | Doc | Updated | Covers |
 |---|---|---|---|
-| App spine · `app-spine` | walkthrough-app-spine-20260706.md | 2026-07-06 | main.py bootstrap · middleware · workers |
-| Event Engine · `event-engine` | walkthrough-event-engine-20260706.md | 2026-07-06 | evaluate() pipeline · 15 rules |
+| <模块名> · `<scope>` | walkthrough-<scope>-<YYYYMMDD>.md | YYYY-MM-DD | 一句话覆盖的关键入口/文件 |
 ```
 
-列义(非自明的): slug 供技能匹配/参数; Updated 与文件名时间戳一致; Covers=一句话覆盖的关键入口/文件.
+slug 供技能匹配/参数.
 
-**两种"写索引"(关键区分)**:
-- **轻量(自动、免费)**: 每生成/刷新一份模块文档, 就往索引表追加/更新它那一行. 不重读项目, 地图不会立刻过时. 每次新建/刷新结束都自动做.
-- **重量(需询问)**:「**更新索引**」= 重读整个项目 → 刷新结构快照 + 核对整张表(新模块、被 `git mv` 的文档、源码已变的过时文档). 有成本, 只在地图已存在时问用户.
+**两种"写索引"**:
+- **轻量(自动)**: 每生成/刷新一份模块文档, 就往索引表追加/更新它那一行, 不重读项目.
+- **重量(需询问)**:「**更新索引**」= 重读整个项目 → 刷新结构快照 + 核对整张表(新模块、被 `git mv` 的文档、源码已变的过时文档), 并重生成 `walkthrough.html`.
 
 ## Workflow
 
 1. **读源码** —— 动笔前先理解 structure、entry points、dependencies、data flow. 给了 scope 就把阅读和覆盖范围限制在那块.
 2. **规划顺序** —— 从 entry points 出发, 顺着 call chain 决定讲什么、按什么次序.
 3. **初始化 / 分支** —— 按下面的决策树走.
-4. **构建** —— 交替 `showboat note`(讲解) 和 `showboat exec`(代码片段), 线性走读**该模块**, 写进它的模块文档 `walkthrough-<scope>-<日期>.md`. 所有 `showboat` 命令从 repo root 执行, `<file>` 用相对路径, `exec` 里源码路径(如 `src/...`)才按 repo root 正确解析.
+4. **构建** —— 交替 `showboat note`(讲解) 和 `showboat exec`(代码片段), 线性走读该模块, 写进它的模块文档. 所有 `showboat` 命令从 repo root 执行, `<file>` 用相对路径, `exec` 里源码路径(如 `src/...`)才按 repo root 正确解析.
 5. **验证** —— `uvx showboat verify <模块文档>`, 确认所有 code block 产出预期 output. 报了 diff 就 `uvx showboat pop <模块文档>` 移除失败条目, 修命令, 再 `showboat exec` 重新加入.
-6. **生成 HTML 视图 + 写索引** —— md verify 通过后, 按 `references/html-report.md` 手写生成该模块 `.html`; 轻量写/更新地图索引行; 顺带重生成 `walkthrough.html`(成本低).
+6. **生成 HTML 视图 + 写索引** —— md verify 通过后, 按 `references/html-report.md` 手写生成该模块 `.html`; 轻量写索引; 顺带重生成 `walkthrough.html`.
 
 ## 决策树(启动分派)
 
-按地图存在性 + scope 分派出三种动作——**新建 / 刷新 / 更新索引**——**新建、刷新都走上面 Workflow 步 4–6**(构建→验证→出 HTML+写索引), 只在"读哪些源、是否 git mv"上不同; 更新索引不建模块文档.
+三种动作: **新建 / 刷新 / 更新索引**. 新建、刷新都走 Workflow 步 4–6; 更新索引不建模块文档.
 
 ```
 ├─ 地图不存在(首次): 读项目 → 建地图(结构快照 + 空索引) → 建首个模块文档(scope 没给则问选哪个)
@@ -68,16 +67,14 @@ docs/jljskills/codeflow/walkthrough/
      · 带 scope 且在索引 → 默认「刷新」并确认
      · 带 scope 不在索引 → 默认「新建」
      · 没带 scope      → 弹三选一菜单
-        新建 <scope>   —— 建一份新日期模块文档
-        刷新 <scope>   —— 重读该模块重生成(跨天则 git mv 到新日期, 见文档模型)
-        更新索引(重量) —— 见「地图·两种写索引」, 连带重生成 walkthrough.html
+        新建 <scope>   —— 建新模块文档
+        刷新 <scope>   —— 重读该模块重生成
+        更新索引       —— 重量级, 见「两种写索引」
 ```
 
-`showboat init` 现在初始化的是**模块文档**: `uvx showboat init docs/jljskills/codeflow/walkthrough/walkthrough-<scope>-<日期>.md "<Project> — <Module>"`. 若 `uvx`/`showboat` 缺失或 `init` 失败, 运行 `uvx --from showboat showboat --version` 检查安装并重试一次; 仍失败则告知用户 showboat 不可用, 改提供纯 markdown 走读(仍可出 HTML).
+`showboat init` 初始化模块文档: `uvx showboat init docs/jljskills/codeflow/walkthrough/walkthrough-<scope>-<日期>.md "<Project> — <Module>"`. 若 `uvx`/`showboat` 缺失或 `init` 失败, 运行 `uvx --from showboat showboat --version` 检查安装并重试一次; 仍失败则告知用户 showboat 不可用, 改提供纯 markdown 走读(仍可出 HTML).
 
 ## 模块文档结构
-
-每份 `walkthrough-<scope>-<日期>.md`(**注意: 这描述的是模块文档, 不是地图**):
 
 1. **Overview** —— 这个模块做什么、关键技术、入口
 2. **Architecture** —— 涉及的文件/目录、边界、data flow
@@ -90,17 +87,17 @@ docs/jljskills/codeflow/walkthrough/
 ## Example
 
 ```bash
-uvx showboat note docs/jljskills/codeflow/walkthrough/walkthrough-account-20260706.md <<'EOF'
+uvx showboat note docs/jljskills/codeflow/walkthrough/walkthrough-<scope>-<日期>.md <<'EOF'
 ## Configuration
 
 The app reads config from `config.yaml` at startup. The `load_config`
 function validates required fields and falls back to defaults.
 EOF
 
-uvx showboat exec docs/jljskills/codeflow/walkthrough/walkthrough-account-20260706.md bash "sed -n '10,25p' src/config.py"
+uvx showboat exec docs/jljskills/codeflow/walkthrough/walkthrough-<scope>-<日期>.md bash "sed -n '10,25p' src/config.py"
 ```
 
-这会在该模块文档里产出一个 `## Configuration` section: note 的 prose + 一个 `bash` 命令块(`sed -n '10,25p' src/config.py`) + 一个 `output` 块(捕获到的那段源码).
+这会在模块文档里产出一个 `## Configuration` section: note 的 prose + `bash` 命令块 + 捕获输出的 `output` 块.
 
 ## Showboat reference
 
