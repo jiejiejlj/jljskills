@@ -16,11 +16,11 @@ disable-model-invocation: true
 
 走读是写给中文开发者的, **主体语义一律用简体中文行文**——地图、模块文档的 note 讲解、HTML 报告的叙述文字皆是; 被读项目是英文项目也不改变这条.
 
-行文中三类内容保留英文原语, 不硬译:
+中文行文之上, **准确压倒统一**: 硬译会失真、让读者对不回源码与社区语境的通用技术词, 一律保留英文原语——
 
-- **技术术语**: 社区通用说法直接用(call chain、entry point、data flow、boilerplate……), 生造中文译名反而失真;
-- **结构性名目**: 仅限本技能钉死的名目——模块文档三个顶层标题(Overview/Architecture/Core walkthrough)与索引表头; 走读正文里自拟的 section 标题属主体语义, 用中文(如 Example 里的 `## 配置加载`);
-- **代码事实**: 代码、标识符、shell 命令与 `output` block 逐字保持原样.
+- **技术术语**: 社区通用说法直接用(call chain、entry point、data flow、boilerplate……), 生造中文译名反而更难懂;
+- **结构性名目**: 模块文档三个顶层标题(Overview/Architecture/Core walkthrough)与索引表头——它们本身就是这类通用词; 走读正文里自拟的 section 标题属主体语义, 用中文行文(内含术语照常保留, 如 Example 里的 `## 配置加载`);
+- **代码事实**: 代码、标识符、shell 命令与 `output` block 逐字保持原样——这不是翻译问题, 是保真问题.
 
 ## 文档模型
 
