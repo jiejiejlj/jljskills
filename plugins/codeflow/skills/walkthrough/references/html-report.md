@@ -4,6 +4,16 @@
 
 两种产物：**模块报告** `walkthrough-<scope>-<YYYYMMDD>.html`（由对应模块文档生成）与**地图** `walkthrough.html`（由 `walkthrough.md` 生成的信息卡导航页）。
 
+## Contents
+
+- [边界](#边界) —— CDN 取舍与离线兜底
+- [脚手架](#脚手架) —— doctype 骨架 + Terminal Cyan token + 点击放大脚本
+- [头部与 provenance chip](#头部与-provenance-chip)
+- [卡片](#卡片图承担重量代码逐字照搬) —— 卡片顺序 + md 元素 → HTML 转换表
+- [图型](#图型混用别单调) —— 防挤压判据、选型表、五种图型示例
+- [地图 HTML](#地图-htmlwalkthroughhtml)
+- [风格](#风格)
+
 ## 边界
 
 报告 `.html` 与 `.md` 源一同**提交入库**（落盘文档，给人长期回看，不是临时物）。它用 CDN——Tailwind Play CDN、mermaid@11 都是浮动版本、无稳定哈希可钉 SRI。接受此取舍的代价：报告**联网时渲染完整**，离线或 CDN 漂移后 Mermaid 图与 Tailwind 会失效。兜底在于**逐字源码卡片是手搭静态的**，即便 CDN 全挂也读得到——走读最有价值的部分（代码 + 来源行号 + 讲解）不依赖 CDN。若日后要纯离线分发，再评估把 Tailwind 编译进内联 CSS、Mermaid 预渲染成 SVG。

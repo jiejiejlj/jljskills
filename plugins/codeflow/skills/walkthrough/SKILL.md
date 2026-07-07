@@ -59,7 +59,7 @@ slug 供技能匹配/参数.
 3. **初始化 / 分支** —— 按下面的决策树走.
 4. **构建** —— 交替 `showboat note`(讲解) 和 `showboat exec`(代码片段), 线性走读该模块, 写进它的模块文档. 讲解用完整句行文, 先说这段在流程里干什么再讲怎么做, 一段 2-4 句封顶; 复杂逻辑(分支 ≥2 或跳转 ≥3)在 note 里配几行 ASCII 简图, HTML 层转成 Mermaid. 所有 `showboat` 命令从 repo root 执行, `<file>` 用相对路径, `exec` 里源码路径(如 `src/...`)才按 repo root 正确解析.
 5. **验证** —— `uvx showboat verify <模块文档>`, 确认所有 code block 产出预期 output. 报了 diff 就 `uvx showboat pop <模块文档>` 移除失败条目, 修命令, 再 `showboat exec` 重新加入.
-6. **生成 HTML 视图 + 写索引** —— md verify 通过后, 按 `references/html-report.md` 手写生成该模块 `.html`; 轻量写索引; 顺带重生成 `walkthrough.html`.
+6. **生成 HTML 视图 + 写索引** —— md verify 通过后, 按 `references/html-report.md` 手写生成该模块 `.html`. **生成后自检**: md 里每个 `output` 块在 HTML 里都有对应源码卡片、内容逐字一致(先数数量对齐, 再抽查首尾块). 然后轻量写索引, 顺带重生成 `walkthrough.html`.
 
 ## 决策树(启动分派)
 
@@ -115,6 +115,6 @@ HTML 视图的脚手架、Terminal Cyan 配色、卡片结构、图型、地图 
 
 ## Do not use when
 
-- 审查代码找 bugs 或 design issues — 用 `code-audit` 或 `/code-review`
-- 审计 harness customizations — 用 `cc-release-review`
-- 审计 CLAUDE.md — 用 `claudemd-audit`
+- 审代码找 bug 或 design issue —— 审 diff 用 `/codeflow:review`, 全库体检用 `/codeflow:audit-repo`
+- 找架构深化机会(shallow → deep) —— 用 `/codeflow:improve-arch`
+
