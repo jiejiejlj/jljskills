@@ -66,7 +66,7 @@
 
 - **Overview** —— tech-stack 徽章行 + 一句讲解 + call chain（Mermaid flowchart）。
 - **Architecture** —— 文件树（手搭 `<pre>`）+ 依赖/调用关系（Mermaid）+ 生命周期（Mermaid stateDiagram）。
-- **编号小节 ×N** —— 标题带编号；一句讲解；**源码卡片**（手搭 `.code-card` + `.src` 来源标注）；生产 bug / 反直觉旁白 → 琥珀 callout。
+- **编号小节 ×N** —— 标题带编号；讲解（2–4 句）；**逻辑图**（分支 ≥2 或跳转 ≥3 时必配，小图 ~200px）；**源码卡片**（手搭 `.code-card` + `.src` 来源标注）；生产 bug / 反直觉旁白 → 琥珀 callout。
 - **Recap**（青色描边）—— 状态流 + 要义列表，每条一句。
 
 md 各元素照此转换：
@@ -80,11 +80,22 @@ md 各元素照此转换：
 | Architecture 里的文件树 | 手搭 `<pre>`（Mermaid 画不好树） |
 | "war story" 旁白 | 琥珀 callout |
 
-散文克制——一句讲清「哪里疼 / 改了什么」。要一段话才看得懂的地方，重画图。
+讲解先一句「这段在整条流程里干什么」，再讲怎么做；完整句子行文，不写电报体，一段 2–4 句封顶。还讲不清就不是加句子，是配图——图讲结构（谁调谁、哪里分岔），prose 讲意图（为什么这么设计），两者不重复。
 
 ## 图型（混用别单调）
 
-### Mermaid flowchart（call chain / 依赖的主力）
+逻辑形态定图型：
+
+| 逻辑形态 | 图型 |
+|---|---|
+| 线性调用链 | flowchart LR |
+| 条件分支 / 错误路径 | flowchart TD + 菱形 |
+| 多组件一次交互（请求几跳） | sequenceDiagram |
+| 状态生命周期 | stateDiagram-v2 |
+| 输入 → 行为的枚举 | 手搭表格（分支矩阵常比图清楚） |
+| 文件树 | 手搭 `<pre>` |
+
+### Mermaid flowchart LR（call chain / 依赖的主力）
 
 「X 调 Y 调 Z，看这条链」用 flowchart。包进 `.card`，classDef 标青 deep/入口节点，泄漏或异常边标琥珀：
 
@@ -96,6 +107,42 @@ md 各元素照此转换：
       A -. 401 .-> X((abort))
       classDef hot stroke:#2ee6d6,stroke-width:2px;
       class A,B hot
+  </pre>
+</div>
+```
+
+### Mermaid flowchart TD（条件分支 / 错误路径）
+
+「进来先判什么、不满足走哪条岔路」用 TD + 菱形判断，异常/降级边标琥珀：
+
+```html
+<div class="card p-4">
+  <pre class="mermaid">
+    flowchart TD
+      A[dispatch event] --> B{type 有注册?}
+      B -- 是 --> C[逐个跑 type handlers]
+      B -- 否 --> D[跳过]
+      C --> E[跑 wildcard handlers]
+      D --> E
+      classDef warn stroke:#ffb454;
+      class D warn
+  </pre>
+</div>
+```
+
+### Mermaid sequenceDiagram（一次交互几跳）
+
+「请求进来，在几个组件间怎么往返」用时序图——先后次序与消息归属比 flowchart 清楚：
+
+```html
+<div class="card p-4">
+  <pre class="mermaid">
+    sequenceDiagram
+      Client->>Router: POST /login
+      Router->>Auth: verify_token(jwt)
+      Auth-->>Router: user_id
+      Router->>DB: get_user(user_id)
+      DB-->>Client: 200 + profile
   </pre>
 </div>
 ```
@@ -114,8 +161,6 @@ md 各元素照此转换：
   </pre>
 </div>
 ```
-
-时序图（`sequenceDiagram`）适合「一次请求几跳」。
 
 ### 手搭文件树（Mermaid 画不好树）
 

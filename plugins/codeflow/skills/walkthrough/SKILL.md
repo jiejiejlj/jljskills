@@ -57,7 +57,7 @@ slug 供技能匹配/参数.
 1. **读源码** —— 动笔前先理解 structure、entry points、dependencies、data flow. 给了 scope 就把阅读和覆盖范围限制在那块.
 2. **规划顺序** —— 从 entry points 出发, 顺着 call chain 决定讲什么、按什么次序.
 3. **初始化 / 分支** —— 按下面的决策树走.
-4. **构建** —— 交替 `showboat note`(讲解) 和 `showboat exec`(代码片段), 线性走读该模块, 写进它的模块文档. 所有 `showboat` 命令从 repo root 执行, `<file>` 用相对路径, `exec` 里源码路径(如 `src/...`)才按 repo root 正确解析.
+4. **构建** —— 交替 `showboat note`(讲解) 和 `showboat exec`(代码片段), 线性走读该模块, 写进它的模块文档. 讲解用完整句行文, 先说这段在流程里干什么再讲怎么做, 一段 2-4 句封顶; 复杂逻辑(分支 ≥2 或跳转 ≥3)在 note 里配几行 ASCII 简图, HTML 层转成 Mermaid. 所有 `showboat` 命令从 repo root 执行, `<file>` 用相对路径, `exec` 里源码路径(如 `src/...`)才按 repo root 正确解析.
 5. **验证** —— `uvx showboat verify <模块文档>`, 确认所有 code block 产出预期 output. 报了 diff 就 `uvx showboat pop <模块文档>` 移除失败条目, 修命令, 再 `showboat exec` 重新加入.
 6. **生成 HTML 视图 + 写索引** —— md verify 通过后, 按 `references/html-report.md` 手写生成该模块 `.html`; 轻量写索引; 顺带重生成 `walkthrough.html`.
 
