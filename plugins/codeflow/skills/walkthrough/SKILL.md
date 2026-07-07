@@ -12,7 +12,15 @@ disable-model-invocation: true
 
 读源码, 产出**边走边跑**的走读 —— 顺着 call chain 一路走读, 每块代码都真跑一遍, 连 output 一起用 showboat 钉进文档. 全部落在 `docs/jljskills/codeflow/walkthrough/` 下.
 
-**产出语言钉死简体中文**: 地图、模块文档的 note 讲解、HTML 报告的叙述文字一律用简体中文行文(术语如 call chain、entry points 照常中英混排); 代码、标识符、shell 命令与 `output` block 逐字保持原样. 被读项目是英文项目也不改变这条——走读是写给中文读者的.
+## Language
+
+走读是写给中文开发者的, **主体语义一律用简体中文行文**——地图、模块文档的 note 讲解、HTML 报告的叙述文字皆是; 被读项目是英文项目也不改变这条.
+
+行文中三类内容保留英文原语, 不硬译:
+
+- **技术术语**: 社区通用说法直接用(call chain、entry point、data flow、boilerplate……), 生造中文译名反而失真;
+- **结构性名目**: 仅限本技能钉死的名目——模块文档三个顶层标题(Overview/Architecture/Core walkthrough)与索引表头; 走读正文里自拟的 section 标题属主体语义, 用中文(如 Example 里的 `## 配置加载`);
+- **代码事实**: 代码、标识符、shell 命令与 `output` block 逐字保持原样.
 
 ## 文档模型
 
