@@ -12,6 +12,8 @@ disable-model-invocation: true
 
 读源码, 产出**边走边跑**的走读 —— 顺着 call chain 一路走读, 每块代码都真跑一遍, 连 output 一起用 showboat 钉进文档. 全部落在 `docs/jljskills/codeflow/walkthrough/` 下.
 
+**产出语言钉死简体中文**: 地图、模块文档的 note 讲解、HTML 报告的叙述文字一律用简体中文行文(术语如 call chain、entry points 照常中英混排); 代码、标识符、shell 命令与 `output` block 逐字保持原样. 被读项目是英文项目也不改变这条——走读是写给中文读者的.
+
 ## 文档模型
 
 **地图 + 带时间戳的模块文档**, 每份模块文档配一份 HTML 视图:
@@ -88,16 +90,16 @@ slug 供技能匹配/参数.
 
 ```bash
 uvx showboat note docs/jljskills/codeflow/walkthrough/walkthrough-<scope>-<日期>.md <<'EOF'
-## Configuration
+## 配置加载
 
-The app reads config from `config.yaml` at startup. The `load_config`
-function validates required fields and falls back to defaults.
+应用启动时从 `config.yaml` 读入配置. `load_config` 函数校验必填字段,
+缺失时回落到默认值.
 EOF
 
 uvx showboat exec docs/jljskills/codeflow/walkthrough/walkthrough-<scope>-<日期>.md bash "sed -n '10,25p' src/config.py"
 ```
 
-这会在模块文档里产出一个 `## Configuration` section: note 的 prose + `bash` 命令块 + 捕获输出的 `output` 块.
+这会在模块文档里产出一个 `## 配置加载` section: note 的 prose + `bash` 命令块 + 捕获输出的 `output` 块.
 
 ## Showboat reference
 
