@@ -23,6 +23,11 @@
       "name": "codeflow",
       "source": "./plugins/codeflow",
       "description": "编码工作流 idea→ship 相关 skill"
+    },
+    {
+      "name": "skillflow",
+      "source": "./plugins/skillflow",
+      "description": "skill 相关技能组合：写作判据基石 + 造 + 审"
     }
   ]
 }
