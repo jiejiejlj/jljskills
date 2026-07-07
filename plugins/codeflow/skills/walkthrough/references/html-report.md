@@ -21,9 +21,20 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script type="module">
   import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-  mermaid.initialize({ startOnLoad:true, theme:"base", securityLevel:"loose", themeVariables:{
+  // useMaxWidth:false 是命门——默认 true 会把宽图整体缩进容器, 字体跟着缩没
+  mermaid.initialize({ startOnLoad:false, theme:"base", securityLevel:"loose",
+    flowchart:{useMaxWidth:false}, sequence:{useMaxWidth:false}, state:{useMaxWidth:false},
+    themeVariables:{
     background:"#0b1219", primaryColor:"#0a1016", primaryBorderColor:"#2ee6d6",
-    primaryTextColor:"#c6d3d8", lineColor:"#2ee6d6", fontFamily:"ui-monospace,Menlo,monospace" }});
+    primaryTextColor:"#c6d3d8", lineColor:"#2ee6d6", fontSize:"15px",
+    fontFamily:"ui-monospace,Menlo,monospace" }});
+  await mermaid.run();
+  // 点击放大: 克隆 svg 进全屏 overlay, 点击 overlay 或 Esc 关闭
+  const zoom = document.getElementById("zoom-overlay");
+  document.querySelectorAll(".diagram svg").forEach(svg =>
+    svg.addEventListener("click", () => { zoom.replaceChildren(svg.cloneNode(true)); zoom.classList.add("open"); }));
+  zoom.addEventListener("click", () => zoom.classList.remove("open"));
+  addEventListener("keydown", e => { if (e.key === "Escape") zoom.classList.remove("open"); });
 </script>
 <style>
   :root{--accent:#2ee6d6;--glow:0 0 14px rgba(46,230,214,.35)}
@@ -33,6 +44,12 @@
     radial-gradient(1000px 500px at 80% -10%, rgba(46,230,214,.08), transparent 70%),
     repeating-linear-gradient(0deg, rgba(46,230,214,.035) 0 1px, transparent 1px 3px);}
   .card{background:#0b1219;border:1px solid rgba(46,230,214,.18);border-radius:10px}
+  .diagram{overflow-x:auto}                                 /* 宽图横向滚动, 绝不缩放 */
+  .diagram svg{display:block;margin:0 auto;cursor:zoom-in}  /* 小图居中, 宽图从左滚 */
+  #zoom-overlay{position:fixed;inset:0;display:none;z-index:50;background:rgba(6,10,15,.94);
+    overflow:auto;padding:4vh 4vw;cursor:zoom-out}
+  #zoom-overlay.open{display:block}
+  #zoom-overlay svg{width:100%;height:auto}                 /* CSS 覆盖 svg 宽高属性 → 放大到视口宽 */
   .glow{box-shadow:0 0 0 1px var(--accent) inset, var(--glow)}      /* 当前 TOC 项 / 选中态 */
   .code-card{background:#05090d;border:1px solid rgba(46,230,214,.14)}
   .src::before{content:"↳ source: ";color:var(--accent)}           /* figcaption 前缀 */
@@ -51,6 +68,7 @@
       ...header + cards...
     </main>
   </div>
+  <div id="zoom-overlay"></div>
 </body></html>
 ```
 
@@ -84,6 +102,12 @@ md 各元素照此转换：
 
 ## 图型（混用别单调）
 
+**动笔前先过三条防挤压判据**——判据让图天生窄、免交互；横向滚动与点击放大只给真正压不窄的图（如多跳时序图）兜底：
+
+- **一图一事**：节点 >8，或一张图混多个阶段（启动 + 请求 + 鉴权）→ 拆成多张图，各配一句讲解。
+- **节点标签只留一行短语**：清单/枚举细节归 prose 或文件树，不用 `<br/>` 往节点里塞多行——多行长标签是宽度的直接来源。
+- **LR 链 >5 节点**：改 TD，或拆段。
+
 逻辑形态定图型：
 
 | 逻辑形态 | 图型 |
@@ -100,7 +124,7 @@ md 各元素照此转换：
 「X 调 Y 调 Z，看这条链」用 flowchart。包进 `.card`，classDef 标青 deep/入口节点，泄漏或异常边标琥珀：
 
 ```html
-<div class="card p-4">
+<div class="card p-4 diagram">
   <pre class="mermaid">
     flowchart LR
       A[verify_token] --> B[resolve_user] --> C[get_user]
@@ -116,7 +140,7 @@ md 各元素照此转换：
 「进来先判什么、不满足走哪条岔路」用 TD + 菱形判断，异常/降级边标琥珀：
 
 ```html
-<div class="card p-4">
+<div class="card p-4 diagram">
   <pre class="mermaid">
     flowchart TD
       A[dispatch event] --> B{type 有注册?}
@@ -135,7 +159,7 @@ md 各元素照此转换：
 「请求进来，在几个组件间怎么往返」用时序图——先后次序与消息归属比 flowchart 清楚：
 
 ```html
-<div class="card p-4">
+<div class="card p-4 diagram">
   <pre class="mermaid">
     sequenceDiagram
       Client->>Router: POST /login
@@ -152,7 +176,7 @@ md 各元素照此转换：
 「active → deactivated → hard-deleted」这类状态流用 stateDiagram，比手搭胶囊更稳：
 
 ```html
-<div class="card p-4">
+<div class="card p-4 diagram">
   <pre class="mermaid">
     stateDiagram-v2
       [*] --> active: provision
@@ -196,6 +220,6 @@ md 各元素照此转换：
 - 编辑感、示意图感，不要仪表盘感。近黑底 + 青色辉光偏科技风。
 - 用色克制：一个强调色（青 `#2ee6d6`）+ callout 琥珀。辉光只给当前 TOC 项与选中态。
 - 标题、徽章、TOC、来源标注全等宽；正文系统无衬线。
-- Mermaid 用 `themeVariables` 调成青色，别让它像空投进来的白底图；图高约 320px。
+- Mermaid 用 `themeVariables` 调成青色，别让它像空投进来的白底图；图按原生尺寸渲染不缩放（`useMaxWidth:false`），宽图在 `.diagram` 内横向滚动、点击全屏放大。
 - **代码高亮必做**：源码卡片手工 `<span class=k/s/c/f>`（关键字/字符串/注释/函数名）上色——逐字代码不走 Mermaid，只能自己上色。覆盖这几类常见 token 即可，更多按需再加，不必一步到位。
-- 脚本只有 Tailwind CDN 和 Mermaid ESM 两个，其余全静态。响应式：代码、树各自 `overflow:auto`。
+- 外部依赖只有 Tailwind CDN 和 Mermaid ESM 两个；点击放大是内联的十来行零依赖脚本，其余全静态。响应式：代码、树、图各自 `overflow:auto`。
