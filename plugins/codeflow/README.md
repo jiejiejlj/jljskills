@@ -23,7 +23,7 @@ grill-with-docs ──▶ [说不清就 prototype] ──▶ to-prd ──▶ to
 
 ## 五层 19 个 skill，各一句话
 
-**地基**（思想基石与记忆层，通常不单独调用。命名约定：`design-` 前缀 = 思想基石 skill，一思想一 skill；行为 skill 以正文「驱动思想」槽位声明驱动它的思想——判据见 `docs/jljskills/codeflow/adr/0005`）
+**地基**（思想基石与记忆层，通常不单独调用。命名约定：`design-` 前缀 = 思想基石 skill，一思想一 skill；行为 skill 以正文「驱动思想」槽位声明驱动它的思想）
 
 - `/codeflow:design-deep-module` —— 深模块思想的词汇库与判据：八术语、deep/shallow 模型、删除测试等四原则。
 - `/codeflow:design-domain-model` —— 领域建模思想的判据库：通用语言三原则、三病灶识别、四手法内核、ADR 三条件门槛。
@@ -53,7 +53,7 @@ grill-with-docs ──▶ [说不清就 prototype] ──▶ to-prd ──▶ to
 
 **健康**（存量代码库的体检、深化与走读闭环）
 
-- `/codeflow:audit-repo` —— 以高级顾问身份对存量代码库做九类全科体检（正确性/安全/性能/测试/技术债/依赖/DX/文档/方向），产出零上下文可执行的自包含交接计划（`plans/`，落盘位置待对齐 ADR-0004），源码只读不实施。移植自 shadcn/improve，原样保留，待用后裁剪。
+- `/codeflow:audit-repo` —— 以高级顾问身份对存量代码库做九类全科体检（正确性/安全/性能/测试/技术债/依赖/DX/文档/方向），产出零上下文可执行的自包含交接计划（`plans/`，落盘位置待对齐产出落盘判据），源码只读不实施。移植自 shadcn/improve，原样保留，待用后裁剪。
 - `/codeflow:improve-arch` —— 扫描已有代码库找深化机会（shallow → deep），以 HTML 报告呈现候选项，用户选定后接入设计树拷问；终点是 interface 草图，不实施改码。
 - `/codeflow:grill-design` —— 对选定的深化候选走设计树拷问：约束 → seam 位置 → interface 形状 → 藏什么 → 哪些测试存活，收敛出 interface 草图。
 - `/codeflow:walkthrough` —— 读源码产出一份「边走边跑」的可执行 walkthrough：顺 call chain 线性走读，每块代码都真跑、`verify` 复跑校验才交付。以 Showboat（`uvx showboat`）为主、不可用退纯 markdown。只讲解不改码，onboarding / 代码巡览用。移植自 philoserf/claude-code-config。

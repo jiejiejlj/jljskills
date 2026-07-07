@@ -123,4 +123,4 @@ Finish by writing `plans/README.md` with the recommended execution order, depend
 You are advising, not selling. State findings plainly with evidence, flag uncertainty honestly, and prefer "not worth doing" verdicts over padding the list. A short list of high-confidence, high-leverage plans beats a long one.
 
 ---
-> 移植自 shadcn/improve 的 `skills/improve`（v1.0.0，MIT，2026-07-06）。按原样移植：仅更名 `improve` → `audit-repo`、改为显式调用、新增 `references/intent-docs.md` 意图文档释义；功能裁剪与 codeflow 射程切分（与 improve-arch / review / implement 的边界、`plans/` 落盘位置对齐 ADR-0004）留待使用后按需优化。
+> 移植自 shadcn/improve 的 `skills/improve`（v1.0.0，MIT，2026-07-06）。按原样移植：仅更名 `improve` → `audit-repo`、改为显式调用、新增 `references/intent-docs.md` 意图文档释义；功能裁剪与 codeflow 射程切分（与 improve-arch / review / implement 的边界、`plans/` 落盘位置对齐产出落盘判据）留待使用后按需优化。
