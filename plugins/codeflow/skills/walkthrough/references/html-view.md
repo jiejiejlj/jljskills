@@ -1,0 +1,219 @@
+# HTML 视图格式
+
+将'md'文档渲染为单个 HTML 文件, 由已 `verify` 的模块文档 md **生成**. Tailwind 与 Mermaid 都走 CDN. **md 是 source-of-truth, HTML 是视图** — `output` block 逐字照搬进源码卡片, 一字不改. 图形关系 (call chain, 依赖, 生命周期状态机) 用 Mermaid 稳; 更编辑感的视觉 (文件树, **逐字保真的源码卡片**, provenance chip, mass diagram、cross-section) 用手搭 div / 内联 SVG. 两者混用, 全靠 Mermaid 会千篇一律. 本文档自举: 脚手架, Terminal Cyan token, 卡片结构, 图型全在下面, 不依赖任何样张文件.
+
+两种产物: **模块视图** `walkthrough-<scope>-<YYYYMMDD>.html` (由对应模块文档生成) 与**地图** `walkthrough.html` (由 `walkthrough.md` 生成的信息卡导航页). 两者同落 `html/` 子目录, 与 md 源不同层 (完整落盘路径见 SKILL "产物" 节).
+
+## 脚手架
+
+单文件, Tailwind CDN + Mermaid ESM + 一层 Terminal Cyan 自定义 `<style>` (Tailwind 不便表达的 token / 辉光 / 代码上色). Mermaid 用 `themeVariables` 调成青色, 跟页面一套皮:
+
+```html
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title><Project> — <Module> · Walkthrough</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  // useMaxWidth:false 是命门 — 默认 true 会把宽图整体缩进容器, 字体跟着缩没
+  mermaid.initialize({ startOnLoad:false, theme:"base", securityLevel:"loose",
+    flowchart:{useMaxWidth:false}, sequence:{useMaxWidth:false}, state:{useMaxWidth:false},
+    themeVariables:{
+    background:"#0b1219", primaryColor:"#0a1016", primaryBorderColor:"#2ee6d6",
+    primaryTextColor:"#c6d3d8", lineColor:"#2ee6d6", fontSize:"15px",
+    fontFamily:"ui-monospace,Menlo,monospace" }});
+  await mermaid.run();
+  // 点击放大: 克隆 svg 进全屏 overlay, 点击 overlay 或 Esc 关闭
+  const zoom = document.getElementById("zoom-overlay");
+  document.querySelectorAll(".diagram svg").forEach(svg =>
+    svg.addEventListener("click", () => { zoom.replaceChildren(svg.cloneNode(true)); zoom.classList.add("open"); }));
+  zoom.addEventListener("click", () => zoom.classList.remove("open"));
+  addEventListener("keydown", e => { if (e.key === "Escape") zoom.classList.remove("open"); });
+</script>
+<style>
+  :root{--accent:#2ee6d6;--glow:0 0 14px rgba(46,230,214,.35)}
+  body{background:#060a0f}
+  /* 固定特效层: 右上青色辉光 + 扫描线微网格 */
+  .bg-fx{position:fixed;inset:0;z-index:0;pointer-events:none;background:
+    radial-gradient(1000px 500px at 80% -10%, rgba(46,230,214,.08), transparent 70%),
+    repeating-linear-gradient(0deg, rgba(46,230,214,.035) 0 1px, transparent 1px 3px);}
+  .card{background:#0b1219;border:1px solid rgba(46,230,214,.18);border-radius:10px}
+  .diagram{overflow-x:auto}                                 /* 宽图横向滚动, 绝不缩放 */
+  .diagram svg{display:block;margin:0 auto;cursor:zoom-in}  /* 小图居中, 宽图从左滚 */
+  #zoom-overlay{position:fixed;inset:0;display:none;z-index:50;background:rgba(6,10,15,.94);
+    overflow:auto;padding:4vh 4vw;cursor:zoom-out}
+  #zoom-overlay.open{display:block}
+  #zoom-overlay svg{width:100%;height:auto}                 /* CSS 覆盖 svg 宽高属性 → 放大到视口宽 */
+  .glow{box-shadow:0 0 0 1px var(--accent) inset, var(--glow)}      /* 当前 TOC 项 / 选中态 */
+  .code-card{background:#05090d;border:1px solid rgba(46,230,214,.14)}
+  .src::before{content:"↳ source: ";color:var(--accent)}           /* figcaption 前缀 */
+  .mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+  /* 语法高亮: 手工 span, 逐字代码 Mermaid 装不下, 只能自己上色 */
+  .k{color:#f78c6c}.s{color:#57e389}.c{color:#4a6470}.f{color:#56c8ff}
+</style>
+</head>
+<body class="text-[#c6d3d8] font-sans">
+  <div class="bg-fx"></div>
+  <div class="relative z-10 grid grid-cols-[240px_minmax(0,1fr)] max-w-[1180px] mx-auto">
+    <aside class="sticky top-0 h-screen overflow-auto p-6 border-r border-[rgba(46,230,214,.18)] mono text-xs space-y-1">
+      ...TOC...
+    </aside>
+    <main class="px-8 py-9 min-w-0 space-y-4">
+      ...header + cards...
+    </main>
+  </div>
+  <div id="zoom-overlay"></div>
+</body></html>
+```
+
+## 头部
+
+顶部一行 provenance chip, 一眼溯源到已验证的 md: `▣ generated from verified <md 文件> · showboat verify ✓`. 上方 eyebrow (`<Project> · Module Walkthrough`) + 等宽大标题 (模块名) + 一行 meta (覆盖文件数 / 端点数等). 没有引言段 — chip 之后直接进 Overview 卡. 左侧 sticky TOC: Overview / Architecture / 各编号小节 / Recap, 当前项 `.glow`.
+
+## 卡片
+
+每份模块视图一列 `.card`, 按顺序:
+
+- **Overview** — tech-stack 徽章行 + 一句讲解 + call chain (Mermaid flowchart).
+- **Architecture** — 文件树 (手搭 `<pre>`) + 依赖/调用关系 (Mermaid) + 生命周期 (Mermaid stateDiagram).
+- **编号小节 ×N** — 标题带编号; 讲解; **逻辑图** (由 md 里的 ASCII 简图转 Mermaid 而来, 小图 ~200px); **源码卡片** (手搭 `.code-card` + `.src` 来源标注); 生产 bug / 反直觉旁白 → 琥珀 callout.
+- **Recap** (青色描边) — 状态流 + 要义列表, 每条一句.
+
+md 各元素照此转换:
+
+| md 元素 (showboat) | → HTML |
+|---|---|
+| `note` prose | 卡片正文 `<p>` |
+| ` ```output ` 块 (已 verify) | 手搭 `.code-card`, **逐字照搬, 全保真** |
+| ` ```bash sed -n 'A,Bp' file ` | 收成一行 `.src` → `↳ source: file:LA–LB` (人不关心跑了什么 sed) |
+| Overview/Architecture 里的调用/依赖/状态 ASCII 图 | Mermaid flowchart / stateDiagram |
+| Architecture 里的文件树 | 手搭 `<pre>` (Mermaid 画不好树) |
+| "war story" 旁白 | 琥珀 callout |
+
+讲解行文在 md 阶段已定 (笔法与配图判据见 SKILL 工作流步 4), `note` prose 逐字进卡片正文, HTML 层不改写. 图与 prose 分工不重复: 图讲结构 (谁调谁, 哪里分岔), prose 讲意图 (为什么这么设计).
+
+## 图型 (混用别单调)
+
+**动笔前先过三条防挤压判据** — 判据让图天生窄, 免交互; 横向滚动与点击放大只给真正压不窄的图 (如多跳时序图) 兜底:
+
+- **一图一事**: 节点 >8, 或一张图混多个阶段 (启动 + 请求 + 鉴权) → 拆成多张图, 各配一句讲解.
+- **节点标签只留一行短语**: 清单/枚举细节归 prose 或文件树, 不用 `<br/>` 往节点里塞多行 — 多行长标签是宽度的直接来源.
+- **LR 链 >5 节点**: 改 TD, 或拆段.
+
+逻辑形态定图型:
+
+| 逻辑形态 | 图型 |
+|---|---|
+| 线性调用链 | flowchart LR |
+| 条件分支 / 错误路径 | flowchart TD + 菱形 |
+| 多组件一次交互 (请求几跳) | sequenceDiagram |
+| 状态生命周期 | stateDiagram-v2 |
+| 输入 → 行为的枚举 | 手搭表格 (分支矩阵常比图清楚) |
+| 文件树 | 手搭 `<pre>` |
+
+### Mermaid flowchart LR (call chain / 依赖的主力)
+
+"X 调 Y 调 Z, 看这条链" 用 flowchart. 包进 `.card`, classDef 标青 deep/入口节点, 泄漏或异常边标琥珀:
+
+```html
+<div class="card p-4 diagram">
+  <pre class="mermaid">
+    flowchart LR
+      A[verify_token] --> B[resolve_user] --> C[get_user]
+      A -. 401 .-> X((abort))
+      classDef hot stroke:#2ee6d6,stroke-width:2px;
+      class A,B hot
+  </pre>
+</div>
+```
+
+### Mermaid flowchart TD (条件分支 / 错误路径)
+
+"进来先判什么, 不满足走哪条岔路" 用 TD + 菱形判断, 异常/降级边标琥珀:
+
+```html
+<div class="card p-4 diagram">
+  <pre class="mermaid">
+    flowchart TD
+      A[dispatch event] --> B{type 有注册?}
+      B -- 是 --> C[逐个跑 type handlers]
+      B -- 否 --> D[跳过]
+      C --> E[跑 wildcard handlers]
+      D --> E
+      classDef warn stroke:#ffb454;
+      class D warn
+  </pre>
+</div>
+```
+
+### Mermaid sequenceDiagram (一次交互几跳)
+
+"请求进来, 在几个组件间怎么往返" 用时序图 — 先后次序与消息归属比 flowchart 清楚:
+
+```html
+<div class="card p-4 diagram">
+  <pre class="mermaid">
+    sequenceDiagram
+      Client->>Router: POST /login
+      Router->>Auth: verify_token(jwt)
+      Auth-->>Router: user_id
+      Router->>DB: get_user(user_id)
+      DB-->>Client: 200 + profile
+  </pre>
+</div>
+```
+
+### Mermaid stateDiagram (生命周期状态机)
+
+"active → deactivated → hard-deleted" 这类状态流用 stateDiagram, 比手搭胶囊更稳:
+
+```html
+<div class="card p-4 diagram">
+  <pre class="mermaid">
+    stateDiagram-v2
+      [*] --> active: provision
+      active --> deactivated: POST /deactivate
+      deactivated --> [*]: ≥7d + re-register (hard-delete)
+  </pre>
+</div>
+```
+
+### 手搭文件树 (Mermaid 画不好树)
+
+关键行 `<b>` 高亮:
+
+```html
+<pre class="code-card mono text-xs rounded-lg p-3 overflow-auto text-[#6d8791]"><b class="text-[#2ee6d6]">app/api/account.py</b>      # router + lifecycle
+  provision_user()          #   shared create path
+<b class="text-[#2ee6d6]">app/firebase_utils.py</b>   # auth backbone</pre>
+```
+
+### 手搭源码卡片 (逐字保真, Mermaid 装不下)
+
+走读的命根 — 已 verify 的 `output` 逐字进来, 手工 `<span>` 上色 + 来源标注:
+
+```html
+<figure>
+  <pre class="code-card mono text-xs rounded-lg p-4 overflow-auto text-[#cfe9ec]">    user = db.query(User).filter(User.firebase_uid == uid).first()
+    <span class="k">if not</span> user:
+        <span class="k">raise</span> HTTPException(status_code=<span class="s">404</span>, detail=<span class="s">"..."</span>)</pre>
+  <figcaption class="src mono text-[11px] text-[#6d8791] mt-1.5">app/firebase_utils.py:189–203</figcaption>
+</figure>
+```
+
+## 地图 HTML (`walkthrough.html`)
+
+- **Header** — 项目名 + `结构快照刷新于:<日期>`.
+- **结构快照区** — 模块树 (手搭 `<pre>`) + entry points.
+- **索引区** — 信息卡网格, 一模块一张卡: 模块名 / Covers 一句 / Updated / 覆盖的关键文件 / 打开按钮 (`<a>` 链到该模块 `.html`).
+
+## 风格
+
+- 编辑感, 示意图感, 不要仪表盘感. 近黑底 + 青色辉光偏科技风.
+- 用色克制: 一个强调色 (青 `#2ee6d6`) + callout 琥珀 (`#ffb454`); 源码卡片深底 `#05090d` + 青色描边. 辉光克制 — 只上 `.glow` 在当前 TOC 项与选中态.
+- 标题, 徽章, TOC, 来源标注全等宽 (`mono`); 正文系统无衬线.
+- Mermaid 用 `themeVariables` 调成青色, 别让它像空投进来的白底图; 图按原生尺寸渲染不缩放 (`useMaxWidth:false`), 宽图在 `.diagram` 内横向滚动, 点击全屏放大.
+- **代码高亮必做**: 源码卡片手工 `<span class=k/s/c/f>` (关键字/字符串/注释/函数名) 上色 — 逐字代码不走 Mermaid, 只能自己上色. 覆盖这几类常见 token 即可, 更多按需再加, 不必一步到位.
+- 外部依赖只有 Tailwind CDN 和 Mermaid ESM 两个; 点击放大是内联的十来行零依赖脚本, 其余全静态. 响应式: 代码与树各自 `overflow:auto`, 图在 `.diagram` 内 `overflow-x:auto`.
