@@ -49,8 +49,9 @@ const fp = fnv1a(canon(surface(node)));             // → 8 位十六进制,如
 
 ## 双账互证 (用户要求)
 
-- **仓库侧** `docs/jljskills/figma-optimize/.loop-optimize-ledger.json`: `{fileKey, rev, entries:[{nodeId,path,stage,fp,decision,ts}]}`.
-- **Figma 侧** `node.setPluginData('loop-optimize', {fp,stage,decision,rev,ts})`.
+- **仓库侧** `docs/jljskills/figma-optimize/.loop-optimize-ledger.json`: `{fileKey, rev, entries:[{nodeId,path,stage,fp,decision,ts}]}`(文件名可含连字符).
+- **Figma 侧** `node.setSharedPluginData('loop_optimize','audit', JSON.stringify({fp,stage,decision,rev,ts}))`.
+  - ⚠ **两个必踩的坑**: ① 用 `setSharedPluginData`(三参: namespace, key, value 均字符串)——`setPluginData` / `getPluginData` 在 `use_figma` **不支持**(见 figma-facts). ② namespace **只能字母数字 / `_` / `.`**, 不能连字符 → 用 `loop_optimize` 而非 `loop-optimize`(否则 `setSharedPluginData` 抛错、整脚本原子回滚). 变量与 TextStyle 也支持 `setSharedPluginData`, 故 standard 阶段两侧俱全.
 - **价值** = 韧性 (一侧丢另一侧兜: 换机 / 换仓靠 pluginData, 导出抹了靠仓库台账) + 失同步侦测 (`doc≠fig` → 报"手改/复刻件", 取保守重审).
 
 ## `rev` 语义

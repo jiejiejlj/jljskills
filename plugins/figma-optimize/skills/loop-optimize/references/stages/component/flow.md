@@ -14,8 +14,9 @@
 
 ## P0 — 前置校验
 
-1. figma-mcp 可用(未认证 → 先跑认证流程).
+1. figma-mcp 可用(未认证 → 先跑认证流程; 开局用 `whoami` 亮认证身份给用户确认改的是对的账号 / 文件).
 2. 向用户索取**待收编的界面稿链接 / 范围**(单页 / 若干区块). **不落盘, 每次现问.**
+3. **Read [`../../fingerprint.md`](../../fingerprint.md)(硬性步骤)装载指纹机制**; 按其「分诊比对闸门」读仓库台账 + 候选 / master 的 pluginData, 命中且双账一致的对象跳过(已裁定 · 未变). 本阶段指纹**即同构键**(见「审计面」), 与去重同一基元, 顺带做幂等.
 
 ## P1 — 装载判据 + 摸底
 
@@ -60,9 +61,20 @@
 
 报告含: 成立的组件(名 / 变体 / 收编处数), 游离克隆归位数, 跳过项及原因, 保留例外, 稿内组件化程度变化(实例数 / 散件数, 收编前后).
 
+## P7 — 盖指纹 + 更新台账(硬性收尾, 双账互证)
+
+按 [fingerprint.md](../../fingerprint.md) 的「何时盖 / HARD GATE」执行, 用本阶段「审计面(rev 1)」的同构键当 `fp`:
+
+1. **Figma 侧**: 给成立的 master(及处置过的候选)`setSharedPluginData('loop_optimize','audit', {fp,stage:'component',decision:'componentized',rev,ts})`.
+2. **仓库侧**: 写 / 更新 `docs/jljskills/figma-optimize/.loop-optimize-ledger.json`.
+3. 阶段末统一盖, 一句话披露.
+
+> 未盖台账 = 本阶段**未收尾**.
+
 ## 完成标志
 
 采纳候选全部收编且逐处外观零变化; 报告产出.
+- **P7 已执行: master / 处置候选双账俱盖且一致.**
 
 ## 边界
 

@@ -12,9 +12,10 @@
 
 ## P0 — 前置校验
 
-1. figma-mcp 可用(未认证 → 先跑认证流程).
+1. figma-mcp 可用(未认证 → 先跑认证流程; 开局用 `whoami` 亮认证身份给用户确认改的是对的账号 / 文件).
 2. 向用户索取**待审的 Figma 链接 / 范围**(单页 / 若干区块). **不落盘, 每次现问.**
 3. 说明本次评审依据: 内置清单(见 [checklist.md](checklist.md))+ 现场从设计规范板抽取的项目标准.
+4. **Read [`../../fingerprint.md`](../../fingerprint.md)(硬性步骤)装载指纹机制**; 按其「分诊比对闸门」读仓库台账 + 各区块 pluginData, 命中且双账一致的区块跳过(已裁定 · 未变), 只审新增 / 变更项. **此步绝不因"看起来是新文件"跳过 —— 台账正是幂等与失同步侦测的入口.**
 
 ## P1 — 三源级联装载标准(零 config)
 
@@ -70,11 +71,22 @@
 
 按 [report-template.md](report-template.md) 出报告: 发现的问题, 处置结果(已改 / 跳过 / 待改 / 受限建议), 保留的例外, 给开发的交接 TL;DR; 如本次评审跨到关联的设计规范板, 补填「附: 关联标准板复查」章节.
 
+## P8 — 盖指纹 + 更新台账(硬性收尾, 双账互证)
+
+按 [fingerprint.md](../../fingerprint.md) 的「何时盖 / HARD GATE」执行, 用本阶段「审计面(rev 1)」算 `fp`:
+
+1. **Figma 侧**: 给本阶段所审节点 `setSharedPluginData('loop_optimize','audit', {fp,stage:'page',decision,rev,ts})` 盖水印(命名空间只能字母数字 / `_` / `.`, 故用 `loop_optimize`; `decision` 取 reviewed / exception-kept 等; `ts` 由用户给或取当前, 脚本内 `Date.now()` 被禁, 别用).
+2. **仓库侧**: 写 / 更新 `docs/jljskills/figma-optimize/.loop-optimize-ledger.json`(`{fileKey,revs,entries:[{nodeId,path,stage,fp,decision,ts}]}`).
+3. 盖搭已批准裁决的顺风车, 不单设重 gate; 一句话向用户披露"给这批已裁定项盖指纹水印".
+
+> 未盖台账 = 本阶段**未收尾**. 这一步保证重跑幂等 + 可侦测手改 / 复刻失同步.
+
 ## 完成标志
 
 - 数值类审计项复审后归零, 或仅剩报告标注的有意例外.
 - 结构类, 切图友好类高严重度问题均已处置(改到位或明确跳过并记录).
 - 报告产出, 设计师可据它交付开发.
+- **P8 已执行: 本阶段节点双账(Figma pluginData + 仓库台账)俱盖且一致.**
 
 ## 边界
 
