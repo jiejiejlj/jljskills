@@ -16,7 +16,7 @@
 
 ## 计算 (use_figma 的 JS 里, 确定性无随机)
 
-两条规范化命门: **抹掉绝对坐标**(哈希父相对子树, 7 克隆撞同一指纹)、**浮点归整**(round(x*100)/100 砍 168.003 噪声).
+两条规范化命门: **抹掉绝对坐标**(哈希父相对子树, 7 克隆撞同一指纹), **浮点归整**(round(x*100)/100 砍 168.003 噪声).
 
 审计面递归子树; `bv`(绑定变量 id) 优先于裸色 (token 化正是所审). canon 键排序确定性序列化 → fnv1a → 8 位十六进制.
 
@@ -45,7 +45,7 @@ const fnv1a = s=>{let h=0x811c9dc5>>>0;for(let i=0;i<s.length;i++){h^=s.charCode
 const fp = fnv1a(canon(surface(node)));             // → 8 位十六进制,如 "a3f19b02"
 ```
 
-> 抹绝对坐标靠"哈希父相对子树"实现 (surface 只取 node.x/y 的父相对值并递归) — 7 份 footer 克隆算出同一指纹、自然撞在一起去重. 各 stage 用**同一 canon/fnv1a**, 只换 `surface()` 的 prop 清单 (见"落位"一节).
+> 抹绝对坐标靠"哈希父相对子树"实现 (surface 只取 node.x/y 的父相对值并递归) — 7 份 footer 克隆算出同一指纹, 自然撞在一起去重. 各 stage 用**同一 canon/fnv1a**, 只换 `surface()` 的 prop 清单 (见"落位"一节).
 
 ## 双账互证 (用户要求)
 
@@ -73,4 +73,4 @@ const fp = fnv1a(canon(surface(node)));             // → 8 位十六进制,如
 
 ## 落位
 
-机制单一真相源在本文件; 每个 `stages/<type>/flow.md` 各自定义**本阶段 `surface()` prop 清单 + rev**(page 审几何字体、standard 审变量集合与 valuesByMode、component 拿它当同构键).
+机制单一真相源在本文件; 每个 `stages/<type>/flow.md` 各自定义**本阶段 `surface()` prop 清单 + rev**(page 审几何字体, standard 审变量集合与 valuesByMode, component 拿它当同构键).
