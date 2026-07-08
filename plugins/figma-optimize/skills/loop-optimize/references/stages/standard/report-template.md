@@ -13,7 +13,7 @@ collections_count: <变量集合数>
 
 # 标准体系评审报告 · <规范板名>
 
-> 由 `/figma-optimize:standard` 产出. 发现问题, 处置结果与保留的例外见下.
+> 由 `/figma-optimize:loop-optimize` 的 standard 阶段产出. 发现问题, 处置结果与保留的例外见下.
 
 ## 体系快照
 - **变量集合数**: <N 个集合, 如 色板 / 字阶 / 间距 / 圆角>

@@ -13,7 +13,7 @@ standard_source: <设计规范板 | variables/styles | 人工补 | 混合>
 
 # 交付就绪报告 · <页面 / 范围名>
 
-> 由 `/figma-optimize:page` 产出. 发现问题, 处置结果与保留的例外见下.
+> 由 `/figma-optimize:loop-optimize` 的 page 阶段产出. 发现问题, 处置结果与保留的例外见下.
 
 ## 项目标准快照
 本次评审对照的标准(三源级联抽取):
