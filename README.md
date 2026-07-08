@@ -9,7 +9,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 | Plugin | 说明 | 前置依赖（不装则相关功能静默失效） |
 | --- | --- | --- |
 | `figma2web` | Figma 转网页相关 skill | 官方 `figma` 插件（Figma MCP）；`coding` 内部编排调用 `superpowers` |
-| `figma-optimize` | 设计稿交付前评审优化相关 skill | 官方 `figma` 插件（Figma MCP + `figma-use` skill，写回前强制） |
+| `figma-optimize` | 单入口 loop-optimize: 贴链接自动分诊 + 沿 standard→page→component 依赖链优化, 写回 Figma | 官方 `figma` 插件（Figma MCP + `figma-use` skill，写回前强制） |
 | `support` | 通用辅助 skill：需求梳理（interview2doc）、workflow 规格（loopspec）、会话交接（handoff）、git 策略（git-policy）；文档类产物统一落目标项目 `docs/jljskills/support/` | — |
 | `codeflow` | 编码工作流 idea→ship：拷问→PRD→拆 issue→TDD 实施→双轴审查，含深模块方法论、架构健康层，以及外来 issue/PR 分诊与硬 bug 诊断两条汇入支线 | 可选：`support`（`/support:interview2doc` 前置梳理想法、`/support:handoff` 跨会话衔接）；`walkthrough` 需 `uvx showboat`（本机装 `uv`），未装则退回纯 markdown |
 | `skillflow` | skill 相关技能组合：写作判据基石（design-skill-rules）+ 造（build-skill）+ 审（review-skill，lint→score→improve 分级处方，中文报告）；判据基石移植自 mattpocock `writing-great-skills`，审移植自 philoserf `cc-review`（skill-only） | — |
@@ -33,7 +33,7 @@ jiejiejlj 的个人 Claude Code skill 集合，以 **plugin marketplace** 形式
 
 ## 调用
 
-安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/figma2web:init`、`/figma-optimize:standard`、`/figma-optimize:page`、`/support:interview2doc`、`/support:loopspec`、`/support:handoff`、`/support:git-policy`、`/codeflow:grill-with-docs`、`/codeflow:to-prd`、`/codeflow:implement`、`/codeflow:improve-arch`、`/codeflow:design-deep-module`、`/codeflow:walkthrough`、`/skillflow:build-skill`、`/skillflow:review-skill`。
+安装后 skill 自带命名空间：`/<plugin>:<skill>`，例如 `/figma2web:init`、`/figma-optimize:loop-optimize`、`/support:interview2doc`、`/support:loopspec`、`/support:handoff`、`/support:git-policy`、`/codeflow:grill-with-docs`、`/codeflow:to-prd`、`/codeflow:implement`、`/codeflow:improve-arch`、`/codeflow:design-deep-module`、`/codeflow:walkthrough`、`/skillflow:build-skill`、`/skillflow:review-skill`。
 
 ## 目录结构
 
@@ -51,11 +51,8 @@ jljskills/
     ├── figma-optimize/
     │   ├── .claude-plugin/plugin.json
     │   ├── README.md              # 导览与写方向契约(写回侧)
-    │   └── skills/                    # standard(规范板评审)/ page(界面稿评审)/ component(散件收编)/ figma-facts(共享判据地基)
-    │       ├── standard/SKILL.md + references/
-    │       ├── page/SKILL.md + references/
-    │       ├── component/SKILL.md + references/
-    │       └── figma-facts/SKILL.md   # 共享 Figma API 判据单一真相源,供 page/standard/component 的 flow P1 装载
+    │   └── skills/                    # 单 skill: loop-optimize(贴链接自动分诊 + 沿链优化)
+    │       └── loop-optimize/SKILL.md + references/   # router(分诊)/ figma-facts(共享判据地基)/ fingerprint(去重)/ stages/(standard、page、component 三段 flow+cookbook)
     ├── support/
     │   ├── .claude-plugin/plugin.json
     │   └── skills/
