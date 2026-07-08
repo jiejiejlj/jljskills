@@ -1,6 +1,6 @@
 ---
 name: loop-optimize
-description: figma-optimize 总入口。贴一个 Figma 链接，自动分诊页面类型、排出优化行程单、沿 standard→page→component 依赖链逐阶段驱动评审与写回。仅 /figma-optimize:loop-optimize 手动触发。
+description: figma-optimize 总入口. 贴一个 Figma 链接, 自动分诊页面类型, 排出优化行程单, 沿 standard→page→component 依赖链逐阶段驱动评审与写回. 仅 /figma-optimize:loop-optimize 手动触发.
 allowed-tools: Read, Grep, Glob, Write, Edit, AskUserQuestion, mcp__plugin_figma_figma
 disable-model-invocation: true
 ---
