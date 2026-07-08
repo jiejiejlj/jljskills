@@ -73,6 +73,6 @@
 
 ## 审计面(rev 1)
 
-本阶段的 `surface()` 递归子树结构(节点类型 + 图层结构 + auto-layout 骨架, 忽略文本内容与画布位置), 其输出**即同构键** — 同指纹的散件 = 收编候选. 这与 §6 去重是同一基元, 用于给克隆分组: **component 拿指纹当同构键**(区别于 page 阶段的审计面, 避免混淆).
+本阶段的 `surface()` 递归子树结构(节点类型 + 图层结构 + auto-layout 骨架, 忽略文本内容与画布位置), 其输出**即同构键** — 同指纹的散件 = 收编候选. 这与 [`../../fingerprint.md`](../../fingerprint.md) 的去重是同一基元, 用于给克隆分组: **component 拿指纹当同构键**(区别于 page 阶段的审计面, 避免混淆).
 
 canon / fnv1a 复用 [`../../fingerprint.md`](../../fingerprint.md), 本阶段只定义 surface 取哪些 prop.

@@ -52,7 +52,7 @@ jljskills/
     │   ├── .claude-plugin/plugin.json
     │   ├── README.md              # 导览与写方向契约(写回侧)
     │   └── skills/                    # 单 skill: loop-optimize(贴链接自动分诊 + 沿链优化)
-    │       └── loop-optimize/SKILL.md + references/   # router(分诊)/ figma-facts(共享判据地基)/ fingerprint(去重)/ stages/(standard、page、component 三段 flow+cookbook)
+    │       └── loop-optimize/SKILL.md + references/   # router(分诊)/ figma-facts(共享判据地基)/ fingerprint(去重)/ stages/(standard, page, component 三段 flow+cookbook)
     ├── support/
     │   ├── .claude-plugin/plugin.json
     │   └── skills/
